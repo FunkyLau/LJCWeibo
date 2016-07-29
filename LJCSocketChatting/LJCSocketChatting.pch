@@ -1,0 +1,79 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "AppDelegate.h"
+#import "SuperViewController.h"
+#import "PhoneNotification.h"
+#import "AppSettings.h"
+#import "PathUtil.h"
+#import "FileUtil.h"
+//#import "DataBaseManager.h"
+#import "NSString+Extensions.h"
+#import "YYKit.h"
+#import "MobClick.h"
+#import "UIButton+add.h"
+#import "AppUtils.h"
+//#import "AppTheme.h"
+#import "AppHttpInterface.h"
+#import "RequestGenerator.h"
+#import "AFNetworking.h"
+#import "JLog.h"
+#import "DHUIKit.h"
+#import "DHGridView.h"
+#import "NSDate+DHAdd.h"
+#import "Masonry.h"
+#import "ViewUtils.h"
+#import "MJRefresh.h"
+
+#endif
+
+// 定义Masonry
+#define MAS_SHORTHAND
+
+
+#define StartSuppressPerformSelectorLeakWarning \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"")
+
+#define EndSuppressPerformSelectorLeakWarning _Pragma("clang diagnostic pop")
+
+
+//主题默认色值
+//#define DEFAULT_BTN_COLOR   [UIColor colorWithRed:20/255.f green:130/255.f blue:198/255.f alpha:1]//原蓝色
+#define DEFAULT_BTN_COLOR UIColorHex(3db6e6)
+//UIColorHex(3db6e6)
+#define DEFAULT_COLOR   [UIColor colorWithRed:49/255.f green:133/255.f blue:241/255.f alpha:1]
+
+//背景色
+#define DEFAULT_BACKGROUND_COLOR [UIColor colorWithRed:241/255.f green:241/255.f blue:241/255.f alpha:1]
+
+#define UIColorRGBA(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+
+//白色
+#define WHITE_COLOR [UIColor whiteColor]
+//透明色
+#define CLEAR_COLOR [UIColor clearColor]
+//棕色
+#define  GRAY_COLOR [UIColor grayColor]
+//青(主题默认色)
+//#define DEFAULT_COLOR [UIColor colorWithRed:38.0/255.0 green:128.0/255.0 blue:127.0/255.0 alpha:1.0]
+//黑色
+#define BLACK_COLOR [UIColor blackColor]
+//字体
+#define Font(F) [UIFont systemFontOfSize:(F)]
+//深度报告cell详情颜色
+//#define DEEPREPORT_COLOR UIColorRGBA(204, 227, 227, 1)
+#define DEEPREPORT_COLOR UIColorHex(EEF7FC)
+
+#define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define _IPHONE80_ 80000
+
