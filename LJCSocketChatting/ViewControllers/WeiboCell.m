@@ -117,7 +117,22 @@
 //WEIBO_ONLY_TEXT
 
 
-
++(UIView *)singleViewWithImageName:(NSString *)imageName{
+    UIView *singleView = [UIView new];
+    UIImageView *imageView = [UIImageView new];
+    [singleView addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(singleView.mas_left);
+        make.top.equalTo(singleView.mas_top);
+        make.bottom.equalTo(singleView.mas_bottom);
+        make.right.mas_equalTo(singleView.centerX);
+    }];
+    UILabel *numberLabel = [UILabel new];
+    
+    
+    
+    return singleView;
+}
 
 -(void)layoutSubviews{
     [super layoutSubviews];
