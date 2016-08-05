@@ -8,6 +8,7 @@
 
 #import "RequestGenerator.h"
 #import "UserManager.h"
+#import "Users.h"
 #import "NSString+Extensions.h"
 #import <CommonCrypto/CommonDigest.h>
 
@@ -146,7 +147,7 @@
 
 //修改昵称(URL要修改)
 +(NSURLRequest *)changeNickName:(NSString *)nickName{
-    NSString *telnum = [[UserManager sharedInstance] loginedUser].teleNum;
+    NSString *telnum = [[UserManager sharedInstance] loginedUser].usersEmail;
     //NSString *urlStr = [[NSString stringWithFormat:@"%@modifyNick?telnum=%@&nickname=%@",SeverURL,telnum,nickName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     
@@ -160,12 +161,12 @@
 
 //上传头像或问题报告
 + (NSURLRequest *)UpdateImageRequest:(NSString *)imagePath andImgType:(NSInteger)type andRegistTel:(NSString *)registTel{
-    UserInfo *user = [[UserManager sharedInstance] loginedUser];
+    Users *user = [[UserManager sharedInstance] loginedUser];
     NSData *data = [NSData dataWithContentsOfFile:imagePath];
 //    NSString *urlStr = [NSString stringWithFormat:@"%@Editavatar&uid=%@&avatar=%@", kServerUrl, [UserInfoManager sharedInstance].loginedUser.uid, data];
     NSString *urlStr;
     if (user) {
-        urlStr = [NSString stringWithFormat:@"%@uploadImg?telnum=%@&type=%d", SeverURL, user.teleNum,(int)type];
+        urlStr = [NSString stringWithFormat:@"%@uploadImg?telnum=%@&type=%d", SeverURL, user.usersEmail,(int)type];
     }else{
         urlStr = [NSString stringWithFormat:@"%@uploadImg?telnum=%@&type=%d", SeverURL, registTel,(int)type];
     }
@@ -177,7 +178,7 @@
     
     NSMutableData *body = [NSMutableData data];
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    NSString *temp = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"imgFile\"; filename=\"%@.png\"\r\n",user.teleNum];
+    NSString *temp = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"imgFile\"; filename=\"%@.png\"\r\n",user.usersEmail];
     [body appendData:[[NSString stringWithString:temp] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[NSData dataWithData:data]];

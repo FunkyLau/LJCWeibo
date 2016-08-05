@@ -20,7 +20,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    CGRect windowFrame = [UIScreen mainScreen].bounds;
+    self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 20, windowFrame.size.width, windowFrame.size.height-20)];
+    //
+    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     HomeViewController *homeVC = [HomeViewController new];
     DiscoverViewController *discoverVC = [DiscoverViewController new];
     MessageBoxViewController *msgBoxVC = [MessageBoxViewController new];

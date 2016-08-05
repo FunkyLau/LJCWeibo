@@ -17,6 +17,7 @@ typedef enum : NSUInteger {
     FWD_TEXT_PIC
 } WEIBOTYPE;
 
+
 @interface WeiboCell : UITableViewCell
 @property(nonatomic,assign)WEIBOTYPE weiboType;
 @property(nonatomic,strong,readonly)Messages *message;
