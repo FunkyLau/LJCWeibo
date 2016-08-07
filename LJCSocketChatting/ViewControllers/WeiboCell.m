@@ -45,6 +45,11 @@
     @weakify(self)
     //所有类型的微博都有头像、昵称、时间、微博来源、赞数、转发数、评论数
     [self.contentView addSubview:self.headPicView];
+    [self.contentView addSubview:self.nickNameLabel];
+    [self.contentView addSubview:self.timeLabel];
+    [self.contentView addSubview:self.contentsView];
+    [self.contentView addSubview:self.bottomBar];
+    
     [self.headPicView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
         make.left.equalTo(self.contentView.mas_left).offset(5);
@@ -52,14 +57,14 @@
         make.size.mas_equalTo(CGSizeMake(40, 40));
         
     }];
-    [self.contentView addSubview:self.nickNameLabel];
+    
     [self.nickNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
         make.left.equalTo(self.headPicView.mas_right).offset(10);
         make.top.equalTo(self.contentView.mas_top).offset(12);
         make.size.mas_equalTo(self.nickNameLabel.intrinsicContentSize);
     }];
-    [self.contentView addSubview:self.timeLabel];
+    
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
         make.right.equalTo(self.contentView.mas_right).offset(-10);
@@ -67,37 +72,18 @@
         make.size.mas_equalTo(self.timeLabel.intrinsicContentSize);
     }];
     
-    switch (_weiboType) {
-        case WEIBO_ONLY_TEXT:
-        {
-            [self.contentView addSubview:self.contentsView];
-            [self.contentsView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(self.headPicView.mas_right).offset(10);
-                make.right.equalTo(self.contentView.mas_right).offset(-10);
-                make.top.equalTo(self.nickNameLabel.mas_bottom).offset(5);
-                //make.bottom.equalTo(self.bottomBar.mas_top).offset(-10);
-            }];
-            break;
-        }
-        case WEIBO_TEXT_PIC:
-        {
-            
-            break;
-        }
-        case FWD_TEXT:
-        {
-            
-            break;
-        }
-        case FWD_TEXT_PIC:
-        {
-            
-            break;
-        }
     
-    }
-    [self.contentView addSubview:self.bottomBar];
+    [self.contentsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.left.equalTo(self.headPicView.mas_right).offset(10);
+        make.right.equalTo(self.contentView.mas_right).offset(-10);
+        make.top.equalTo(self.nickNameLabel.mas_bottom).offset(5);
+        make.bottom.equalTo(self.bottomBar.mas_top).offset(-10);
+        
+    }];
+    
     [self.bottomBar mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
         make.left.equalTo(self.nickNameLabel);
         make.right.equalTo(self.contentView.mas_right).offset(-20);
         make.bottom.equalTo(self.contentView.mas_bottom);
@@ -144,12 +130,42 @@
 }
 //微博正文
 -(UIView *)contentsView{
+    /*
+    switch (_weiboType) {
+        case WEIBO_ONLY_TEXT:
+        {
+            
+            
+            break;
+        }
+        case WEIBO_TEXT_PIC:
+        {
+            
+            break;
+        }
+        case FWD_TEXT:
+        {
+            
+            break;
+        }
+        case FWD_TEXT_PIC:
+        {
+            
+            break;
+        }
+            
+    }
+     */
     if (!_contentsView) {
         UIView *contentsView = [UIView new];
-        UITextView *contentTextView = [UITextView new];
+        UILabel *contentTextView = [UILabel new];
         contentTextView.text = _message.messages_info;
+        contentTextView.numberOfLines = 0;
+        contentTextView.font = Font(12);
         [contentsView addSubview:contentTextView];
         CGSize size = contentTextView.intrinsicContentSize;
+        //contentTextView.preferredMaxLayoutWidth = size.width;
+        contentsView.size = size;
         //@weakify(self)
         [contentTextView mas_makeConstraints:^(MASConstraintMaker *make) {
             //@strongify(self)
@@ -157,7 +173,7 @@
 //            make.right.equalTo(self.contentView.mas_right).offset(-10);
 //            make.top.equalTo(self.nickNameLabel.mas_bottom).offset(5);
 //            make.bottom.equalTo(self.bottomBar.mas_top).offset(-10);
-            //make.edges.equalTo(contentsView);
+            make.edges.equalTo(contentsView);
             make.size.mas_equalTo(size);
         }];
         
