@@ -8,7 +8,8 @@
 
 #import "HomeViewController.h"
 #import "WeiboCell.h"
-
+#import "Messages.h"
+#import "Users.h"
 
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSString *cellId;
@@ -23,7 +24,7 @@
     [super viewDidLoad];
     cellId = @"cell";
     [self.view addSubview:self.mainTableView];
-    
+    [self.mainTableView registerClass:[WeiboCell class] forCellReuseIdentifier:cellId];
     
 }
 
@@ -60,9 +61,9 @@
     return 120;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return 80;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 120;
+}
 
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -71,21 +72,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WeiboCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    
+    /*
     if (!cell) {
         cell = [[WeiboCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-        cell.weiboType = WEIBO_ONLY_TEXT;
+        cell.message = _message;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+     */
     
     return cell;
 }
+
+//-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView willDisplayCell:(WeiboCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 
 {
     if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -96,5 +104,15 @@
         //[cell setLayoutMargins:UIEdgeInsetsZero];
         [cell setLayoutMargins:UIEdgeInsetsMake(0, 60, 0, 0)];
     }
+    Messages * _message = [Messages new];
+    _message.users = [Users new];
+    _message.users.usersNikename = @"大话西游";
+    _message.messages_time = @"2小时前";
+    _message.messages_info = @"我想从成都挖个人才来我司工作，待遇性格什么都谈好了，他现在只有最后一个问题，就是小孩在上海怎么上学的问题，能解决这个就来。我这方面没经验，咨询一下各位，目前夫妻双方都不是上海人的情况下，怎么解决他小孩上学问题呢？是怎么个流程呢？";
+    _message.messages_type = @"";
+    
+    [cell bindCellDataWithMessage:_message];
+    
+    //[cell layoutIfNeeded];
 }
 @end

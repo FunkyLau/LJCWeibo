@@ -20,6 +20,8 @@ typedef enum : NSUInteger {
 
 @interface WeiboCell : UITableViewCell
 @property(nonatomic,assign)WEIBOTYPE weiboType;
-@property(nonatomic,strong,readonly)Messages *message;
+@property(nonatomic,strong)Messages *message;
+
+- (void)bindCellDataWithMessage:(Messages *)message;
 
 @end

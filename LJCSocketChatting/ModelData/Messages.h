@@ -11,7 +11,7 @@
 @interface Messages : NSObject
 //@property (nonatomic, assign) NSUInteger postID;
 @property (nonatomic, strong) NSString *messages_type;
-
+@property (nonatomic, strong) NSString *messages_contentType;
 @property (nonatomic, strong) NSString *messages_info;
 @property (nonatomic, strong) NSString *messages_time;
 @property (nonatomic, strong) NSString *messages_collectnum;

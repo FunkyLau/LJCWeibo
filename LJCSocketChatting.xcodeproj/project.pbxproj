@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E015BD0A1D59BE88002B898C /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = E015BD091D59BE88002B898C /* UIImage+RoundedCorner.m */; };
 		E0284D9C1D27D41400C4D28B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0284D9B1D27D41400C4D28B /* main.m */; };
 		E0284D9F1D27D41400C4D28B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0284D9E1D27D41400C4D28B /* AppDelegate.m */; };
 		E0284DA21D27D41400C4D28B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0284DA11D27D41400C4D28B /* ViewController.m */; };
@@ -375,6 +376,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E015BD081D59BE88002B898C /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		E015BD091D59BE88002B898C /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		E0284D971D27D41400C4D28B /* LJCSocketChatting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LJCSocketChatting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0284D9B1D27D41400C4D28B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E0284D9D1D27D41400C4D28B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1114,6 +1117,8 @@
 				E0284F451D27D44900C4D28B /* YYKit */,
 				E0284FF61D27D44900C4D28B /* ZLNavigationController */,
 				E028500E1D27D44900C4D28B /* ZYQAssetPickerController */,
+				E015BD081D59BE88002B898C /* UIImage+RoundedCorner.h */,
+				E015BD091D59BE88002B898C /* UIImage+RoundedCorner.m */,
 			);
 			path = Libs;
 			sourceTree = "<group>";
@@ -2427,6 +2432,7 @@
 				E0CB1C001D4700D4009D33FF /* HomeViewController.m in Sources */,
 				E02850FE1D27D44900C4D28B /* ZLChannelViewModel.m in Sources */,
 				E02850FA1D27D44900C4D28B /* UIImage+ImageEffects.m in Sources */,
+				E015BD0A1D59BE88002B898C /* UIImage+RoundedCorner.m in Sources */,
 				E02850F91D27D44900C4D28B /* NSArray+Log.m in Sources */,
 				E02850B51D27D44900C4D28B /* NSTimer+YYAdd.m in Sources */,
 				E02850F71D27D44900C4D28B /* YYTransaction.m in Sources */,

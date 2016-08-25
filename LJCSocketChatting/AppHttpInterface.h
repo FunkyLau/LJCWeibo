@@ -59,9 +59,9 @@ static inline NSString* severURL(kSeverType sType) {
             url = @"http://139.159.35.149:8080/appInterface/";
         }
         
-        if (DEBUG) {
-            NSLog(@"当前服务器地址：%@",url);
-        }
+//        if (DEBUG) {
+//            NSLog(@"当前服务器地址：%@",url);
+//        }
     });
     return url;
 }
