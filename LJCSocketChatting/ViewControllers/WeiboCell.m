@@ -41,7 +41,7 @@
     [self.contentView addSubview:self.headPicView];
     [self.contentView addSubview:self.nickNameLabel];
     [self.contentView addSubview:self.timeLabel];
-    [self.contentView addSubview:self.contentsView];
+    //[self.contentView addSubview:self.contentsView];
     [self.contentView addSubview:self.bottomBar];
     return self;
 }
@@ -54,7 +54,7 @@
         headView.layer.cornerRadius = 20;
         headView.backgroundColor = GRAY_COLOR;
         
-        _headPicView = headView;
+        return _headPicView = headView;
     }
     
     return _headPicView;
@@ -66,7 +66,7 @@
         UILabel *label = [UILabel new];
         label.font = sysFont(14);
         
-        _nickNameLabel = label;
+        return _nickNameLabel = label;
     }
     return _nickNameLabel;
 }
@@ -78,7 +78,7 @@
         label.font = sysFont(12);
         
         label.textColor = DEFAULT_COLOR;
-        _timeLabel = label;
+        return _timeLabel = label;
     }
     return _timeLabel;
 }
@@ -260,7 +260,7 @@
     self.headPicView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:_message.users.avatarImageURL]];
     self.nickNameLabel.text = _message.users.usersNikename;
     self.timeLabel.text = _message.messages_time;
-    
+    [self.contentView addSubview:self.contentsView];
     
     [self.headPicView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)

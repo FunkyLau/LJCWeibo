@@ -25,7 +25,7 @@
     cellId = @"cell";
     [self.view addSubview:self.mainTableView];
     [self.mainTableView registerClass:[WeiboCell class] forCellReuseIdentifier:cellId];
-    
+    self.mainTableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -61,9 +61,9 @@
     return 120;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 120;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 120;
+//}
 
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -113,6 +113,6 @@
     
     [cell bindCellDataWithMessage:_message];
     
-    //[cell layoutIfNeeded];
+    [cell layoutIfNeeded];
 }
 @end
