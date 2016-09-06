@@ -14,6 +14,7 @@
 
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSString *cellId;
+    NSArray *messagesArr;
 }
 @property (nonatomic,weak)UITableView *mainTableView;
 
@@ -37,13 +38,31 @@
     }
     user.usersNikename = @"乐一游劉";
     [self setTitle:user.usersNikename];
+    
+    
+    Messages * message1 = [Messages new];
+    message1.users = [Users new];
+    message1.users.usersNikename = @"大话西游";
+    message1.messages_time = @"2小时前";
+    message1.messages_info = @"我想从成都挖个人才来我司工作，待遇性格什么都谈好了，他现在只有最后一个问题，就是小孩在上海怎么上学的问题，能解决这个就来。我这方面没经验，咨询一下各位，目前夫妻双方都不是上海人的情况下，怎么解决他小孩上学问题呢？是怎么个流程呢？";
+    message1.messages_type = @"WEIBO_TEXT_PIC";
+    
+    Messages * message2 = [Messages new];
+    message2.users = [Users new];
+    message2.users.usersNikename = @"乐一游劉";
+    message2.messages_time = @"3小时前";
+    message2.messages_info = @"本文不会花太长篇幅来描述这些 controller 的实现细节，只会重点关注在收发信息的过程，游戏状态和数据是怎么变化的。关于具体实现，请自行阅读 Github 上的源码。我们的插件刚启动的时候处于compact状态。这点空间并不够展示游戏的棋盘，在 iPhone 上尤其不够。我们可以简单粗暴地立即切换成expanded状态，但是苹果官方警告不要这么做，毕竟还是应该把控制权交给用户。";
+    message2.messages_type = @"WEIBO_ONLY_TEXT";
+    
+    messagesArr = @[message1,message2];
+    
     //button_icon_group   timeline_setting_lineheight_decrement_icon
     //[self.topRightButton setImage:[UIImage imageNamed:@"mask_timeline_top_icon_2"] forState:UIControlStateNormal];
     [self.navigationController setNavigationBarHidden:NO];
     [self.view addSubview:self.mainTableView];
     
     [self.mainTableView registerClass:[WeiboCell class] forCellReuseIdentifier:cellId];
-    
+    //[self.mainTableView reloadData];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -61,6 +80,8 @@
         make.edges.equalTo(self.view).insets(inset);
         //make.edges.equalTo(self.view);
     }];
+    //加载完重新刷新tableView
+    [self.mainTableView reloadData];
 }
 
 -(UITableView *)mainTableView{
@@ -87,14 +108,12 @@
 
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
+    return messagesArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WeiboCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    if (indexPath.row == 1) {
-        cell.weiboType = WEIBO_TEXT_PIC;
-    }
+    
     /*
     if (!cell) {
         cell = [[WeiboCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
@@ -102,7 +121,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
      */
-    //[cell layoutIfNeeded];
+    [cell layoutIfNeeded];
     return cell;
 }
 
@@ -126,17 +145,14 @@
         //[cell setLayoutMargins:UIEdgeInsetsZero];
         [cell setLayoutMargins:UIEdgeInsetsMake(0, 60, 0, 0)];
     }
-    Messages * _message = [Messages new];
-    _message.users = [Users new];
-    _message.users.usersNikename = @"大话西游";
-    _message.messages_time = @"2小时前";
-    _message.messages_info = @"我想从成都挖个人才来我司工作，待遇性格什么都谈好了，他现在只有最后一个问题，就是小孩在上海怎么上学的问题，能解决这个就来。我这方面没经验，咨询一下各位，目前夫妻双方都不是上海人的情况下，怎么解决他小孩上学问题呢？是怎么个流程呢？";
-    _message.messages_type = @"";
+    Messages *message = messagesArr[indexPath.row];
     
+    if ([message.messages_type isEqualToString:@"WEIBO_TEXT_PIC"]) {
+        cell.weiboType = WEIBO_TEXT_PIC;
+    }
     
+    [cell bindCellDataWithMessage:message];
     
-    [cell bindCellDataWithMessage:_message];
-    
-    //[cell layoutIfNeeded];
+    [cell layoutIfNeeded];
 }
 @end
