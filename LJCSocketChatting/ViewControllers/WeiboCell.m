@@ -43,6 +43,8 @@
     [self.contentView addSubview:self.timeLabel];
     //[self.contentView addSubview:self.contentsView];
     [self.contentView addSubview:self.bottomBar];
+    
+    [self layoutIfNeeded];
     return self;
 }
 //头像
@@ -89,8 +91,8 @@
         case WEIBO_ONLY_TEXT:
         {
             if (!_contentsView) {
-                //return _contentsView = [self onlyTextView];
-                return _contentsView = [self textPicView];
+                return _contentsView = [self onlyTextView];
+                //return _contentsView = [self textPicView];
             }
             break;
         }
@@ -111,10 +113,7 @@
             
             break;
         }
-            
     }
-    
-    
     return _contentsView;
 }
 
@@ -146,9 +145,9 @@
         bottomMenuView.alignment = UIStackViewAlignmentFill;
         bottomMenuView.distribution = UIStackViewDistributionFillEqually;
         bottomMenuView.spacing = 5;
-        UIView *agreeView = [WeiboCell singleViewWithImageName:@"close" andNumber:@"13"];
-        UIView *forwardView = [WeiboCell singleViewWithImageName:@"close" andNumber:@"14"];
-        UIView *commentView = [WeiboCell singleViewWithImageName:@"close" andNumber:@"14"];
+        UIView *agreeView = [WeiboCell singleViewWithImageName:@"timeline_item_like_icon" andNumber:@"13"];
+        UIView *forwardView = [WeiboCell singleViewWithImageName:@"timeline_item_forward_icon" andNumber:@"14"];
+        UIView *commentView = [WeiboCell singleViewWithImageName:@"timeline_item_commented_icon" andNumber:@"14"];
         NSArray *menuArr = @[agreeView,forwardView,commentView];
         for (UIView *view in menuArr) {
             [bottomMenuView addArrangedSubview:view];
@@ -216,7 +215,6 @@
 //        });
 //        
 //    });
-    
     return contentsView;
 }
 
@@ -252,14 +250,17 @@
     
 }
 
+//-(void)didMoveToSuperview {
+//    [self layoutIfNeeded];
+//}
+
 - (void)bindCellDataWithMessage:(Messages *)message{
     _message = message;
-    @weakify(self)
-    
     
     self.headPicView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:_message.users.avatarImageURL]];
     self.nickNameLabel.text = _message.users.usersNikename;
     self.timeLabel.text = _message.messages_time;
+    @weakify(self)
     [self.contentView addSubview:self.contentsView];
     
     [self.headPicView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -284,25 +285,22 @@
         make.size.mas_equalTo(self.timeLabel.intrinsicContentSize);
     }];
     
-    
     [self.contentsView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
         make.left.equalTo(self.headPicView.mas_right).offset(10);
         make.right.equalTo(self.contentView.mas_right).offset(-10);
         make.top.equalTo(self.nickNameLabel.mas_bottom).offset(5);
-        make.bottom.equalTo(self.bottomBar.mas_top).offset(-10);
-        //        UILabel *label = [self.contentsView viewWithTag:1];
-        //        make.height.mas_equalTo(label.height);
+        //make.bottom.equalTo(self.bottomBar.mas_top).offset(-10);
     }];
     
     [self.bottomBar mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
         make.left.equalTo(self.nickNameLabel);
         make.right.equalTo(self.contentView.mas_right).offset(-20);
-        make.bottom.equalTo(self.contentView.mas_bottom);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
         make.top.equalTo(self.contentsView.mas_bottom).offset(10);
         
     }];
-    
+    //[self layoutIfNeeded];
 }
 @end

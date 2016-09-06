@@ -30,8 +30,8 @@
     MessageBoxViewController *msgBoxVC = [MessageBoxViewController new];
     MeViewController *meVC = [MeViewController new];
     
-    homeVC.controllerState = ControllerStateWithBothButtonAndSearchBar;
-    discoverVC.controllerState = ControllerStateWithBothButtonAndSearchBar;
+    homeVC.controllerState = ControllerStateWithBothMenuButton;
+    discoverVC.controllerState = ControllerStateWithRightButtonAndSearchBar;
     msgBoxVC.controllerState = ControllerStateWithBothMenuButton;
     meVC.controllerState = ControllerStateWithBothMenuButton;
     
@@ -39,11 +39,11 @@
     UITabBarController *rootNavController = [[UITabBarController alloc] init];
     
     
-    UITabBarItem *homeItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:[UIImage imageNamed:@"close_cha"] tag:1];
-    UITabBarItem *msgBoxItem = [[UITabBarItem alloc] initWithTitle:@"消息" image:[UIImage imageNamed:@"close_cha"] tag:2];
-    UITabBarItem *marketItem = [[UITabBarItem alloc] initWithTitle:@"探索" image:[UIImage imageNamed:@"close_cha"] tag:3];
+    UITabBarItem *homeItem = [[UITabBarItem alloc] initWithTitle:@"主页" image:[UIImage imageNamed:@"home_tab_icon_1"] tag:1];
+    UITabBarItem *msgBoxItem = [[UITabBarItem alloc] initWithTitle:@"消息" image:[UIImage imageNamed:@"home_tab_icon_2"] tag:2];
+    UITabBarItem *marketItem = [[UITabBarItem alloc] initWithTitle:@"探索" image:[UIImage imageNamed:@"home_tab_icon_3"] tag:3];
     
-    UITabBarItem *meItem = [[UITabBarItem alloc] initWithTitle:@"个人" image:[UIImage imageNamed:@"close_cha"] tag:4];
+    UITabBarItem *meItem = [[UITabBarItem alloc] initWithTitle:@"个人" image:[UIImage imageNamed:@"home_tab_icon_4"] tag:4];
     [homeVC setTabBarItem:homeItem];
     [msgBoxVC setTabBarItem:msgBoxItem];
     [discoverVC setTabBarItem:marketItem];

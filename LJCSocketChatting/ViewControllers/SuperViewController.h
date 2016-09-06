@@ -37,9 +37,9 @@ typedef enum {
                                      DHCtrlState_TopBar_LBtn_GoBack |
                                      DHCtrlState_TopBar_RBtn),
     
-    // 显示左右功能按钮，中间是搜索栏
-    ControllerStateWithBothButtonAndSearchBar = (DHCtrlState_TopBar|
-                                                 DHCtrlState_TopBar_LBtn_Menu|
+    // 显示右边功能按钮，中间是搜索栏
+    ControllerStateWithRightButtonAndSearchBar = (DHCtrlState_TopBar|
+                                                 //DHCtrlState_TopBar_LBtn_Menu|
                                                  DHCtrlState_TopBar_RBtn|
                                                  DHCtrlState_SearchBar),
     
@@ -70,6 +70,7 @@ static NSInteger const topToolBarHeight = 40;
 @property (nonatomic, readonly, weak) UIButton      *topLeftButton;
 @property (nonatomic, readonly, weak) UIButton      *topRightButton;
 @property (nonatomic, readonly) UIButton      *topRealRightButton;
+@property (nonatomic, weak)     UIView * searchView;
 @property (nonatomic, readonly) CGFloat       topBarHeight;
 @property (nonatomic) ControllerState          controllerState;
 @property (nonatomic, readonly) UIView        *bgView;

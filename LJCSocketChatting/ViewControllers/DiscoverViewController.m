@@ -10,4 +10,21 @@
 
 @implementation DiscoverViewController
 
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id sender) {
+        [self presentController:[UIViewController new]];
+    }];
+    [self.searchView addGestureRecognizer:tapGesture];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+}
+
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    
+}
 @end

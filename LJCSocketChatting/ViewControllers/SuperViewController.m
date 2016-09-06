@@ -73,21 +73,21 @@
         return;
     }
     
-    CGRect topR = CGRectMake(0, 10, kScreenWidth, _topBarHeight);
+    CGRect topR = CGRectMake(0, 0, kScreenWidth, _topBarHeight);
     UIView *topToolsV = [[UIView alloc] initWithFrame:topR];
     _topView = topToolsV;
-    topToolsV.backgroundColor = WHITE_COLOR;
+    topToolsV.backgroundColor = DEFAULT_COLOR;
     [self.view addSubview:topToolsV];
     
     // 左边返回按钮
     if (_controllerState & DHCtrlState_TopBar_LBtn_GoBack ||
         _controllerState & DHCtrlState_TopBar_LBtn_Menu) {
         
-        UIImage *btnImage = [UIImage imageNamed:@"goback_icon@2x.png"];
+        UIImage *btnImage = [UIImage imageNamed:@"button_back"];
         if (_controllerState & DHCtrlState_TopBar_LBtn_Menu) {
-            btnImage = [YYImage imageNamed:@"icon_menu"];
-            btnImage = [UIImage imageWithSize:CGSizeMake(30, 34) drawBlock:^(CGContextRef context) {
-                [btnImage drawInRect:CGRectMake(0, 5, 24, 24) withContentMode:UIViewContentModeScaleAspectFill clipsToBounds:YES];
+            btnImage = [YYImage imageNamed:@"button_icon_group"];
+            btnImage = [UIImage imageWithSize:CGSizeMake(34, 34) drawBlock:^(CGContextRef context) {
+                [btnImage drawInRect:CGRectMake(0, 0, 34, 34) withContentMode:UIViewContentModeScaleAspectFill clipsToBounds:YES];
             }];
         }
         
@@ -98,7 +98,7 @@
                     action:@selector(topToolsBarLeftButtonClick)
           forControlEvents:UIControlEventTouchUpInside];
         [leftBtn sizeToFit];
-        leftBtn.center = CGPointMake(kTopToolsBtnWidthArea/2.f-10, _topBarCenterY);
+        leftBtn.center = CGPointMake(kTopToolsBtnWidthArea/2.f-15, _topBarCenterY);
         
  
         // 设置按钮点击扩大范围
@@ -112,7 +112,7 @@
         UILabel *titleL = [UILabel new];
         _titleLabel = titleL;
         titleL.font = DHLabelFont;
-        [titleL setTextColor:[UIColor whiteColor]];
+        [titleL setTextColor:WHITE_COLOR];
         [titleL setTextAlignment:NSTextAlignmentCenter];
         titleL.lineBreakMode = NSLineBreakByClipping;
         titleL.center = CGPointMake(topToolsV.center.x, _topBarCenterY);
@@ -127,14 +127,21 @@
     // 右边功能按钮
     if (_controllerState & DHCtrlState_TopBar_RBtn){
         
+//        UIImage *btnImage = [YYImage imageNamed:@"mask_timeline_top_icon_2"];
+//        btnImage = [UIImage imageWithSize:CGSizeMake(34, 34) drawBlock:^(CGContextRef context) {
+//            [btnImage drawInRect:CGRectMake(0, 0, 34, 34) withContentMode:UIViewContentModeScaleAspectFill clipsToBounds:YES];
+//        }];
+        
         UIButton *messageBt = [UIButton buttonWithType:UIButtonTypeCustom];
+        //[messageBt setImage:btnImage forState:UIControlStateNormal];
         _topRightButton = messageBt;
+        
         messageBt.backgroundColor = [UIColor clearColor];
         [messageBt setTitle:@"" forState:UIControlStateNormal];
         //[messageBt.titleLabel setFont:[UIFont systemFontOfSize:12]];
         [messageBt sizeToFit];
         
-        messageBt.center = CGPointMake(self.width-kTopToolsBtnWidthArea/2.f, _topBarCenterY);
+        messageBt.center = CGPointMake(self.width-kTopToolsBtnWidthArea/2.f+15, _topBarCenterY);
         [messageBt setEnlargeEdgeWithTop:messageBt.frame.origin.y
                                    right:fabs(kTopToolsBtnWidthArea-messageBt.width)/2
                                   bottom:topToolsV.height-messageBt.frame.origin.y-messageBt.height
@@ -144,7 +151,24 @@
     }
     // 中间为搜索栏
     if (_controllerState & DHCtrlState_SearchBar) {
+        UIView *searchView = [UIView new];
+        searchView.frame = CGRectMake(20, 10, kScreenWidth-40, 25);
+        //searchView.size = CGSizeMake(kScreenWidth-80, 25);
+        UIImageView *searchIcon = [UIImageView new];
+        searchIcon.image = [UIImage imageNamed:@"profile_search_icon"];
+        UILabel *searchLabel = [UILabel new];
+        searchLabel.text = @"搜索";
+        searchLabel.font = Font(12);
+        searchIcon.frame = CGRectMake(CGRectGetWidth(searchView.frame)/2-15, 6, 15, 15);
+        searchLabel.frame = CGRectMake(CGRectGetMaxX(searchIcon.frame), 6, searchLabel.intrinsicContentSize.width, searchLabel.intrinsicContentSize.height) ;
+        [searchView addSubview:searchIcon];
+        [searchView addSubview:searchLabel];
+        searchView.layer.masksToBounds = YES;
+        searchView.layer.cornerRadius = 12.5;
+        _searchView = searchView;
         
+        searchView.backgroundColor = UIColorRGBA(40, 102, 194, 1);
+        [topToolsV addSubview:searchView];
     }
     
 }
@@ -166,6 +190,7 @@
         _titleLabel.center = tempCenter;
     }
 }
+
 -(void)setTitileFont:(UIFont*)font{
     
     if (_titleLabel) {
@@ -210,7 +235,8 @@
     
     // 初始化顶部工具栏及子控件
     _topBarHeight = topToolBarHeight;
-    _topBarCenterY = 22 + (_topBarHeight-22) / 2.f;
+    //_topBarCenterY = 22 + (_topBarHeight-22) / 2.f;
+    _topBarCenterY = _topBarHeight/ 2.f;
     if(_controllerState == DHCtrlState_None) {
         _topBarHeight = 0;
         _topBarCenterY = 0;
