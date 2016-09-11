@@ -237,6 +237,8 @@
 		E02851311D28A5E700C4D28B /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E02851301D28A5E700C4D28B /* libc++.tbd */; };
 		E02851331D28A5FE00C4D28B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E02851321D28A5FE00C4D28B /* SystemConfiguration.framework */; };
 		E02851351D28A60F00C4D28B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E02851341D28A60F00C4D28B /* libsqlite3.tbd */; };
+		E05947CF1D82518100BEDAE0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E05947CE1D82518100BEDAE0 /* LoginViewController.m */; };
+		E06639091D82B275005717AF /* LJCCustomField.m in Sources */ = {isa = PBXBuildFile; fileRef = E06639081D82B275005717AF /* LJCCustomField.m */; };
 		E079BC5D1D7EB9A800737E12 /* about_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E079B6A31D7EB99E00737E12 /* about_button.png */; };
 		E079BC5E1D7EB9A800737E12 /* about_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E079B6A41D7EB99E00737E12 /* about_button@2x.png */; };
 		E079BC5F1D7EB9A800737E12 /* about_button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E079B6A51D7EB99E00737E12 /* about_button@3x.png */; };
@@ -2179,6 +2181,10 @@
 		E02851301D28A5E700C4D28B /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		E02851321D28A5FE00C4D28B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E02851341D28A60F00C4D28B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		E05947CD1D82518100BEDAE0 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		E05947CE1D82518100BEDAE0 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		E06639071D82B275005717AF /* LJCCustomField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJCCustomField.h; sourceTree = "<group>"; };
+		E06639081D82B275005717AF /* LJCCustomField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJCCustomField.m; sourceTree = "<group>"; };
 		E079B6A31D7EB99E00737E12 /* about_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about_button.png; sourceTree = "<group>"; };
 		E079B6A41D7EB99E00737E12 /* about_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about_button@2x.png"; sourceTree = "<group>"; };
 		E079B6A51D7EB99E00737E12 /* about_button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about_button@3x.png"; sourceTree = "<group>"; };
@@ -4530,7 +4536,7 @@
 		E02851181D27D75900C4D28B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E079B6A21D7EB99E00737E12 /* images */,
+				E05947CC1D824CB600BEDAE0 /* 登录注册 */,
 				E0BCCA511D48605800E42BDA /* 发微博 */,
 				E0BCC9781D4714D100E42BDA /* 我 */,
 				E0BCC9741D4714AB00E42BDA /* 消息 */,
@@ -4572,6 +4578,17 @@
 				E02851281D27DC7300C4D28B /* UserManager.m */,
 			);
 			path = ModelData;
+			sourceTree = "<group>";
+		};
+		E05947CC1D824CB600BEDAE0 /* 登录注册 */ = {
+			isa = PBXGroup;
+			children = (
+				E05947CD1D82518100BEDAE0 /* LoginViewController.h */,
+				E05947CE1D82518100BEDAE0 /* LoginViewController.m */,
+				E06639071D82B275005717AF /* LJCCustomField.h */,
+				E06639081D82B275005717AF /* LJCCustomField.m */,
+			);
+			name = "登录注册";
 			sourceTree = "<group>";
 		};
 		E079B6A21D7EB99E00737E12 /* images */ = {
@@ -6069,6 +6086,7 @@
 		E0BCC9781D4714D100E42BDA /* 我 */ = {
 			isa = PBXGroup;
 			children = (
+				E079B6A21D7EB99E00737E12 /* images */,
 				E0BCC9791D4714E800E42BDA /* MeViewController.h */,
 				E0BCC97A1D4714E800E42BDA /* MeViewController.m */,
 			);
@@ -7760,6 +7778,7 @@
 				E028511B1D27D75900C4D28B /* SuperViewController.m in Sources */,
 				E0284DA21D27D41400C4D28B /* ViewController.m in Sources */,
 				E0BCC97B1D4714E800E42BDA /* MeViewController.m in Sources */,
+				E06639091D82B275005717AF /* LJCCustomField.m in Sources */,
 				E02850F01D27D44900C4D28B /* YYGestureRecognizer.m in Sources */,
 				E02850701D27D44900C4D28B /* MMDrawerController.m in Sources */,
 				E02850611D27D44900C4D28B /* MJRefreshAutoGifFooter.m in Sources */,
@@ -7845,6 +7864,7 @@
 				E028509D1D27D44900C4D28B /* SevenSwitch.m in Sources */,
 				E02850DB1D27D44900C4D28B /* YYTextEffectWindow.m in Sources */,
 				E02850521D27D44900C4D28B /* MASViewAttribute.m in Sources */,
+				E05947CF1D82518100BEDAE0 /* LoginViewController.m in Sources */,
 				E02851011D27D44900C4D28B /* ZLPopView.m in Sources */,
 				E02850441D27D44900C4D28B /* DHLongPressButton.m in Sources */,
 				E02850A91D27D44900C4D28B /* NSBundle+YYAdd.m in Sources */,

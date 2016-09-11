@@ -113,7 +113,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WeiboCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     /*
     if (!cell) {
         cell = [[WeiboCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
@@ -130,7 +130,7 @@
 //}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    //[tableView deselectRowAtIndexPath:indexPath animated:NO];
     
 }
 
