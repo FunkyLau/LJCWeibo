@@ -57,7 +57,7 @@
     messagesArr = @[message1,message2];
     
     //button_icon_group   timeline_setting_lineheight_decrement_icon
-    //[self.topRightButton setImage:[UIImage imageNamed:@"mask_timeline_top_icon_2"] forState:UIControlStateNormal];
+    [self.topLeftButton setImage:[UIImage imageNamed:@"button_icon_group"] forState:UIControlStateNormal];
     [self.navigationController setNavigationBarHidden:NO];
     [self.view addSubview:self.mainTableView];
     

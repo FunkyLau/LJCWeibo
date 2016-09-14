@@ -47,7 +47,12 @@ typedef enum {
     ControllerStateWithBothMenuButton = (DHCtrlState_TopBar |
                                      DHCtrlState_TopBar_Title |
                                      DHCtrlState_TopBar_LBtn_Menu |
-                                     DHCtrlState_TopBar_RBtn)
+                                     DHCtrlState_TopBar_RBtn),
+    //只有左右功能按钮（登录）
+    LoginControlerState = (DHCtrlState_TopBar |
+                           DHCtrlState_TopBar_LBtn_GoBack |
+                           DHCtrlState_TopBar_RBtn)
+    
     
 } ControllerState;
 

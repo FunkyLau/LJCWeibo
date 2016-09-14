@@ -24,6 +24,14 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    //self.topView.backgroundColor = CLEAR_COLOR;
+    [self.topLeftButton setImage:nil forState:UIControlStateNormal];
+    [self.topLeftButton setTitle:@"关闭" forState:UIControlStateNormal];
+    self.topLeftButton.titleLabel.font = Font(11);
+    
+    [self.topRightButton setTitle:@"注册" forState:UIControlStateNormal];
+    self.topRightButton.titleLabel.font = Font(11);
+    
     [self.view addSubview:self.headIcon];
     [self.view addSubview:self.accountField];
     [self.view addSubview:self.passwordField];

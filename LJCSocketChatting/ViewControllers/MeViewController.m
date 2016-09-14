@@ -17,12 +17,20 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
+    
     Users *user = [[UserManager sharedInstance] loginedUser];
     
     if (!user) {
-        [self presentController:[LoginViewController new]];
+        LoginViewController *loginVC = [LoginViewController new];
+        loginVC.controllerState = LoginControlerState;
+        [self presentController:loginVC];
     }
+    
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+}
 
 @end

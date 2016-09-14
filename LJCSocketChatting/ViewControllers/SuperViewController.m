@@ -85,7 +85,7 @@
         
         UIImage *btnImage = [UIImage imageNamed:@"button_back"];
         if (_controllerState & DHCtrlState_TopBar_LBtn_Menu) {
-            btnImage = [YYImage imageNamed:@"button_icon_group"];
+//            btnImage = [YYImage imageNamed:@"button_icon_group"];
             btnImage = [UIImage imageWithSize:CGSizeMake(34, 34) drawBlock:^(CGContextRef context) {
                 [btnImage drawInRect:CGRectMake(0, 0, 34, 34) withContentMode:UIViewContentModeScaleAspectFill clipsToBounds:YES];
             }];
