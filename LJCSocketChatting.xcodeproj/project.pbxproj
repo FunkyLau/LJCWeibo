@@ -237,6 +237,7 @@
 		E02851311D28A5E700C4D28B /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E02851301D28A5E700C4D28B /* libc++.tbd */; };
 		E02851331D28A5FE00C4D28B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E02851321D28A5FE00C4D28B /* SystemConfiguration.framework */; };
 		E02851351D28A60F00C4D28B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E02851341D28A60F00C4D28B /* libsqlite3.tbd */; };
+		E029F71D1D8984E500A84950 /* UIButton+UIButtonImageWithLable.m in Sources */ = {isa = PBXBuildFile; fileRef = E029F71C1D8984E400A84950 /* UIButton+UIButtonImageWithLable.m */; };
 		E05947CF1D82518100BEDAE0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E05947CE1D82518100BEDAE0 /* LoginViewController.m */; };
 		E06639091D82B275005717AF /* LJCCustomField.m in Sources */ = {isa = PBXBuildFile; fileRef = E06639081D82B275005717AF /* LJCCustomField.m */; };
 		E079BC5D1D7EB9A800737E12 /* about_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E079B6A31D7EB99E00737E12 /* about_button.png */; };
@@ -2181,6 +2182,8 @@
 		E02851301D28A5E700C4D28B /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		E02851321D28A5FE00C4D28B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E02851341D28A60F00C4D28B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		E029F71B1D8984E400A84950 /* UIButton+UIButtonImageWithLable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+UIButtonImageWithLable.h"; sourceTree = "<group>"; };
+		E029F71C1D8984E400A84950 /* UIButton+UIButtonImageWithLable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+UIButtonImageWithLable.m"; sourceTree = "<group>"; };
 		E05947CD1D82518100BEDAE0 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E05947CE1D82518100BEDAE0 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E06639071D82B275005717AF /* LJCCustomField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJCCustomField.h; sourceTree = "<group>"; };
@@ -3844,6 +3847,8 @@
 				E028500E1D27D44900C4D28B /* ZYQAssetPickerController */,
 				E015BD081D59BE88002B898C /* UIImage+RoundedCorner.h */,
 				E015BD091D59BE88002B898C /* UIImage+RoundedCorner.m */,
+				E029F71B1D8984E400A84950 /* UIButton+UIButtonImageWithLable.h */,
+				E029F71C1D8984E400A84950 /* UIButton+UIButtonImageWithLable.m */,
 			);
 			path = Libs;
 			sourceTree = "<group>";
@@ -7752,6 +7757,7 @@
 				E02850721D27D44900C4D28B /* MMExampleDrawerVisualStateManager.m in Sources */,
 				E02850951D27D44900C4D28B /* SDWebImagePrefetcher.m in Sources */,
 				E02850431D27D44900C4D28B /* DHGridView.m in Sources */,
+				E029F71D1D8984E500A84950 /* UIButton+UIButtonImageWithLable.m in Sources */,
 				E02850AC1D27D44900C4D28B /* NSDictionary+YYAdd.m in Sources */,
 				E028505B1D27D44900C4D28B /* ShowBigViewController.m in Sources */,
 				E02850361D27D44900C4D28B /* LLSimpleCamera.m in Sources */,
