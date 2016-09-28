@@ -38,7 +38,7 @@
     [self.view addSubview:self.accountField];
     [self.view addSubview:self.passwordField];
     [self.view addSubview:self.loginBtn];
-    [self.view addSubview:self.loginStackView];
+    //[self.view addSubview:self.loginStackView];
     
 //    UIButton *noPwdBtn = [self buttonFactoryWithImageName:@"onepassword-button" andTitle:@"无密登录"];
 //    UIButton *wechatBtn = [self buttonFactoryWithImageName:@"detail_share_weixin_session" andTitle:@"微信"];
@@ -98,6 +98,7 @@
         make.height.equalTo(@35);
     }];
     
+    /*
     [self.loginStackView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
         make.top.equalTo(self.view.mas_bottom).offset(-80);
@@ -106,7 +107,7 @@
         make.bottom.equalTo(self.view.mas_bottom);
         
     }];
-    
+    */
 }
 
 -(UIImageView *)headIcon{

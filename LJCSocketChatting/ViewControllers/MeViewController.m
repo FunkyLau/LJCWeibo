@@ -11,6 +11,10 @@
 #import "UserManager.h"
 #import "LoginViewController.h"
 
+@interface MeViewController ()
+
+@end
+
 
 @implementation MeViewController
 

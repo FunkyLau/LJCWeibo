@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E010D2D91D911029001DACA3 /* LJCMeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E010D2D81D911029001DACA3 /* LJCMeHeadView.m */; };
 		E015BD0A1D59BE88002B898C /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = E015BD091D59BE88002B898C /* UIImage+RoundedCorner.m */; };
 		E0284D9C1D27D41400C4D28B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0284D9B1D27D41400C4D28B /* main.m */; };
 		E0284D9F1D27D41400C4D28B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0284D9E1D27D41400C4D28B /* AppDelegate.m */; };
@@ -1739,6 +1740,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E010D2D71D911029001DACA3 /* LJCMeHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJCMeHeadView.h; sourceTree = "<group>"; };
+		E010D2D81D911029001DACA3 /* LJCMeHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJCMeHeadView.m; sourceTree = "<group>"; };
 		E015BD081D59BE88002B898C /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		E015BD091D59BE88002B898C /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		E0284D971D27D41400C4D28B /* LJCSocketChatting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LJCSocketChatting.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -6094,6 +6097,8 @@
 				E079B6A21D7EB99E00737E12 /* images */,
 				E0BCC9791D4714E800E42BDA /* MeViewController.h */,
 				E0BCC97A1D4714E800E42BDA /* MeViewController.m */,
+				E010D2D71D911029001DACA3 /* LJCMeHeadView.h */,
+				E010D2D81D911029001DACA3 /* LJCMeHeadView.m */,
 			);
 			name = "我";
 			sourceTree = "<group>";
@@ -7956,6 +7961,7 @@
 				E02850EC1D27D44900C4D28B /* YYTextView.m in Sources */,
 				E02850231D27D44900C4D28B /* AFHTTPSessionManager.m in Sources */,
 				E02850F21D27D44900C4D28B /* YYReachability.m in Sources */,
+				E010D2D91D911029001DACA3 /* LJCMeHeadView.m in Sources */,
 				E02850E61D27D44900C4D28B /* YYTextAttribute.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
