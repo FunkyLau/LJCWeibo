@@ -95,6 +95,47 @@
         [self addSubview:self.sexAddrLabel];
         [self addSubview:self.headImgView];
         [self addSubview:self.searchBtn];
+        [self addSubview:self.settingBtn];
+        [self addSubview:self.profileView];
+        @weakify(self)
+        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            @strongify(self)
+            make.centerX.mas_equalTo(self.centerX);
+            make.top.equalTo(self.mas_top).offset(10);
+            
+        }];
+        [self.sexAddrLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            @strongify(self)
+            make.centerX.mas_equalTo(self.centerX);
+            make.top.equalTo(self.titleLabel.mas_bottom).offset(10);
+            
+        }];
+        [self.settingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            @strongify(self)
+            make.top.equalTo(self.mas_top).offset(10);
+            make.right.equalTo(self.mas_right).offset(10);
+            make.size.mas_equalTo(CGSizeMake(20, 20));
+        }];
+        [self.searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            @strongify(self)
+            make.top.equalTo(self.mas_top).offset(10);
+            make.right.equalTo(self.settingBtn.mas_left).offset(10);
+            make.left.equalTo(self.titleLabel.mas_right);
+            make.size.mas_equalTo(CGSizeMake(20, 20));
+        }];
+        [self.headImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+            @strongify(self)
+            make.centerX.mas_equalTo(self.centerX);
+            make.top.equalTo(self.sexAddrLabel.mas_bottom).offset(10);
+        }];
+        [self.profileView mas_makeConstraints:^(MASConstraintMaker *make) {
+            @strongify(self)
+            make.left.equalTo(self.mas_left);
+            make.right.equalTo(self.mas_right);
+            make.top.equalTo(self.headImgView.mas_bottom);
+            make.bottom.equalTo(self.mas_bottom).offset(20);
+        }];
+        
     }
     return self;
 }
