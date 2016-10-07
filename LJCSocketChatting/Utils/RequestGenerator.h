@@ -10,8 +10,8 @@
 
 
 
-@class PayForData;
-@class UserInfo;
+//@class PayForData;
+//@class UserInfo;
 @interface RequestGenerator : NSObject{
     
 }

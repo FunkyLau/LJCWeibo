@@ -7,11 +7,12 @@
 //
 
 #import "LJCMeHeadView.h"
+#import "Users.h"
+#import "Messages.h"
 
 @interface LJCProfileView ()
 @property(nonatomic,weak)UILabel *numberLabel;
 @property(nonatomic,weak)UILabel *titleLabel;
-
 @end
 
 @implementation LJCProfileView
@@ -42,8 +43,9 @@
 -(UILabel *)titleLabel{
     if (!_titleLabel) {
         UILabel *titleLabel = [UILabel new];
-        titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        titleLabel.font = [UIFont boldSystemFontOfSize:11];
         titleLabel.textColor = WHITE_COLOR;
+        titleLabel.textAlignment = NSTextAlignmentCenter;
         return _titleLabel = titleLabel;
     }
     return _titleLabel;
@@ -52,8 +54,9 @@
 -(UILabel *)numberLabel{
     if (!_numberLabel) {
         UILabel *numberLabel = [UILabel new];
-        numberLabel.font = [UIFont boldSystemFontOfSize:14];
+        numberLabel.font = [UIFont boldSystemFontOfSize:13];
         numberLabel.textColor = WHITE_COLOR;
+        numberLabel.textAlignment = NSTextAlignmentCenter;
         return _numberLabel = numberLabel;
     }
     return _numberLabel;
@@ -74,7 +77,7 @@
 @property(weak,nonatomic)UIButton *searchBtn;
 @property(weak,nonatomic)UIButton *settingBtn;
 @property(weak,nonatomic)UIStackView *profileView;
-@property(strong,nonatomic)UserInfo *localUser;
+@property(strong,nonatomic)Users *localUser;
 @end
 
 
@@ -91,12 +94,14 @@
 
 -(instancetype)init{
     if (self = [super init]) {
+        self.backgroundColor = DEFAULT_COLOR;
         [self addSubview:self.titleLabel];
         [self addSubview:self.sexAddrLabel];
         [self addSubview:self.headImgView];
         [self addSubview:self.searchBtn];
         [self addSubview:self.settingBtn];
         [self addSubview:self.profileView];
+        
         @weakify(self)
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             @strongify(self)
@@ -113,13 +118,13 @@
         [self.settingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             @strongify(self)
             make.top.equalTo(self.mas_top).offset(10);
-            make.right.equalTo(self.mas_right).offset(10);
+            make.right.equalTo(self.mas_right).offset(-10);
             make.size.mas_equalTo(CGSizeMake(20, 20));
         }];
         [self.searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             @strongify(self)
             make.top.equalTo(self.mas_top).offset(10);
-            make.right.equalTo(self.settingBtn.mas_left).offset(10);
+            make.right.equalTo(self.settingBtn.mas_left).offset(-10);
             make.left.equalTo(self.titleLabel.mas_right);
             make.size.mas_equalTo(CGSizeMake(20, 20));
         }];
@@ -133,14 +138,14 @@
             make.left.equalTo(self.mas_left);
             make.right.equalTo(self.mas_right);
             make.top.equalTo(self.headImgView.mas_bottom);
-            make.bottom.equalTo(self.mas_bottom).offset(20);
+            make.bottom.equalTo(self.mas_bottom).offset(-10);
         }];
         
     }
     return self;
 }
 
--(void)setLocalUser:(UserInfo *)localUser{
+-(void)setLocalUser:(Users *)localUser{
     _localUser = localUser;
 }
 
@@ -169,6 +174,7 @@
         UIImageView *headImgView = [UIImageView new];
         headImgView.layer.masksToBounds = YES;
         headImgView.layer.cornerRadius = 25;
+        headImgView.image = [YYImage imageNamed:@"mood_himonoonna_icon_no"];
         return _headImgView = headImgView;
     }
     return _headImgView;
@@ -189,8 +195,6 @@
     if (!_settingBtn) {
         UIButton *settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [settingBtn setImage:[UIImage imageNamed:@"button_icon_setting@2x"] forState:UIControlStateNormal];
-        
-        
         return _settingBtn = settingBtn;
     }
     return _settingBtn;
@@ -203,10 +207,23 @@
         profileView.alignment = UIStackViewAlignmentFill;
         profileView.distribution = UIStackViewDistributionFillEqually;
         profileView.spacing = 0;
-        
+        LJCProfileView *weiboView = [LJCProfileView new];
+        [weiboView setLabelTitle:@"微博" andNumber:[NSString stringWithFormat:@"%d",_localUser.messageses.count]];
+        LJCProfileView *followView = [LJCProfileView new];
+        [followView setLabelTitle:@"关注" andNumber:[NSString stringWithFormat:@"%d",_localUser.messageses.count]];
+        LJCProfileView *fansView = [LJCProfileView new];
+        [fansView setLabelTitle:@"粉丝" andNumber:[NSString stringWithFormat:@"%d",_localUser.messageses.count]];
+        NSArray *views = @[weiboView,followView,fansView];
+        [views enumerateObjectsUsingBlock:^(LJCProfileView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [profileView addArrangedSubview:obj];
+        }];
         return _profileView = profileView;
     }
     return _profileView;
+}
+
+-(void)setImageWithImageName:(NSString *)imgName{
+    self.headImgView.image = [YYImage imageNamed:imgName];
 }
 
 @end

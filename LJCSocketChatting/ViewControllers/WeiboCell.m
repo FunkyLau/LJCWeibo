@@ -35,18 +35,24 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self) {
         self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+        //所有类型的微博都有头像、昵称、时间、微博来源、赞数、转发数、评论数
+        [self.contentView addSubview:self.headPicView];
+        [self.contentView addSubview:self.nickNameLabel];
+        [self.contentView addSubview:self.timeLabel];
+        //[self.contentView addSubview:self.contentsView];
+        [self.contentView addSubview:self.bottomBar];
+        
         
     }
-    //所有类型的微博都有头像、昵称、时间、微博来源、赞数、转发数、评论数
-    [self.contentView addSubview:self.headPicView];
-    [self.contentView addSubview:self.nickNameLabel];
-    [self.contentView addSubview:self.timeLabel];
-    //[self.contentView addSubview:self.contentsView];
-    [self.contentView addSubview:self.bottomBar];
     
-    [self layoutIfNeeded];
     return self;
 }
+
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    //[self.contentView layoutIfNeeded];
+}
+
 //头像
 -(UIImageView *)headPicView{
     if (!_headPicView) {
@@ -244,11 +250,6 @@
     return singleView;
 }
 
-
--(void)layoutSubviews{
-    [super layoutSubviews];
-    
-}
 
 //-(void)didMoveToSuperview {
 //    [self layoutIfNeeded];

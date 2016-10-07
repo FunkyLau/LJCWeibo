@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LJCMeHeadView : UIView
+@class Users;
 
+@interface LJCMeHeadView : UIView
+-(void)setLocalUser:(Users *)localUser;
 @end
 
 
