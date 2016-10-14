@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @class Users;
 @interface Messages : NSObject
-//@property (nonatomic, assign) NSUInteger postID;
+@property(nonatomic,assign)NSUInteger messages_id;
 @property (nonatomic, strong) NSString *messages_type;
 @property (nonatomic, strong) NSString *messages_contentType;
 @property (nonatomic, strong) NSString *messages_info;

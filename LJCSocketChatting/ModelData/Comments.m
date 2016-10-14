@@ -7,7 +7,18 @@
 //
 
 #import "Comments.h"
+#import "Messages.h"
+#import "Users.h"
 
 @implementation Comments
+
+-(instancetype)initWithAttributes:(NSDictionary *)attributes
+{
+    
+    if (self = [super init]) {
+        
+    }
+    return self;
+}
 
 @end

@@ -32,8 +32,8 @@
     
     homeVC.controllerState = ControllerStateWithBothMenuButton;
     discoverVC.controllerState = ControllerStateWithRightButtonAndSearchBar;
-    msgBoxVC.controllerState = ControllerStateWithBothMenuButton;
-    //meVC.controllerState = ControllerStateWithBothMenuButton;
+    msgBoxVC.controllerState = ControllerStateShowLogo;
+    meVC.controllerState = DHCtrlState_TopBar|DHCtrlState_TopBar_Title;
     
     //UINavigationController *rootNavController = [[UINavigationController alloc] initWithRootViewController:homeVC];
     UITabBarController *rootNavController = [[UITabBarController alloc] init];

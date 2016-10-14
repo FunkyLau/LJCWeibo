@@ -9,6 +9,8 @@
 #import "LJCMeHeadView.h"
 #import "Users.h"
 #import "Messages.h"
+#import "Userinfo.h"
+
 
 @interface LJCProfileView ()
 @property(nonatomic,weak)UILabel *numberLabel;
@@ -21,6 +23,8 @@
     if (self = [super init]) {
         [self addSubview:self.numberLabel];
         [self addSubview:self.titleLabel];
+        
+        
         @weakify(self)
         [self.numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             @strongify(self)
@@ -39,6 +43,8 @@
     }
     return self;
 }
+
+
 
 -(UILabel *)titleLabel{
     if (!_titleLabel) {
@@ -71,16 +77,18 @@
 
 
 @interface LJCMeHeadView ()
-@property(weak,nonatomic)UILabel *titleLabel;
+//@property(weak,nonatomic)UILabel *titleLabel;
 @property(weak,nonatomic)UILabel *sexAddrLabel;
 @property(weak,nonatomic)UIImageView *headImgView;
-@property(weak,nonatomic)UIButton *searchBtn;
-@property(weak,nonatomic)UIButton *settingBtn;
+@property(weak,nonatomic)UIImageView *backgroundImageView;
 @property(weak,nonatomic)UIStackView *profileView;
 @property(strong,nonatomic)Users *localUser;
+@property(weak,nonatomic)UITableView *tableView;
+@property(assign,nonatomic)CGFloat initialHeight;
+
 @end
 
-
+static NSString * const ObservedKeyPath = @"contentOffset";
 
 @implementation LJCMeHeadView
 
@@ -91,43 +99,21 @@
     // Drawing code
 }
 */
-
+/*
 -(instancetype)init{
     if (self = [super init]) {
         self.backgroundColor = DEFAULT_COLOR;
-        [self addSubview:self.titleLabel];
         [self addSubview:self.sexAddrLabel];
         [self addSubview:self.headImgView];
-        [self addSubview:self.searchBtn];
-        [self addSubview:self.settingBtn];
         [self addSubview:self.profileView];
-        
         @weakify(self)
-        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            @strongify(self)
-            make.centerX.mas_equalTo(self.centerX);
-            make.top.equalTo(self.mas_top).offset(10);
-            
-        }];
         [self.sexAddrLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             @strongify(self)
             make.centerX.mas_equalTo(self.centerX);
-            make.top.equalTo(self.titleLabel.mas_bottom).offset(10);
+            make.top.equalTo(self.mas_top).offset(10);
             
         }];
-        [self.settingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            @strongify(self)
-            make.top.equalTo(self.mas_top).offset(10);
-            make.right.equalTo(self.mas_right).offset(-10);
-            make.size.mas_equalTo(CGSizeMake(20, 20));
-        }];
-        [self.searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            @strongify(self)
-            make.top.equalTo(self.mas_top).offset(10);
-            make.right.equalTo(self.settingBtn.mas_left).offset(-10);
-            make.left.equalTo(self.titleLabel.mas_right);
-            make.size.mas_equalTo(CGSizeMake(20, 20));
-        }];
+        
         [self.headImgView mas_makeConstraints:^(MASConstraintMaker *make) {
             @strongify(self)
             make.centerX.mas_equalTo(self.centerX);
@@ -144,26 +130,91 @@
     }
     return self;
 }
+*/
+- (instancetype)initWithTableView:(UITableView *)tableView initialHeight:(CGFloat)height {
+    //self = [super initWithFrame:CGRectMake(0, -height, kScreenWidth, height)];
+    if (self = [super init]) {
+        _tableView = tableView;
+        _initialHeight = height;
+        //添加观察者
+        [_tableView addObserver:self forKeyPath:ObservedKeyPath options:NSKeyValueObservingOptionNew context:nil];
+        [self createSubviews];
+    }
+    
+    return self;
+}
+
+-(void)createSubviews{
+    //self.backgroundColor = DEFAULT_COLOR;
+    [self addSubview:self.backgroundImageView];
+    [self.backgroundImageView addSubview:self.sexAddrLabel];
+    [self.backgroundImageView addSubview:self.headImgView];
+    [self.backgroundImageView addSubview:self.profileView];
+    @weakify(self)
+    [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.edges.equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth, 200));
+    }];
+    [self.profileView mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.left.equalTo(self.backgroundImageView.mas_left);
+        make.right.equalTo(self.backgroundImageView.mas_right);
+        //make.top.equalTo(self.headImgView.mas_bottom).offset(10);
+        make.bottom.equalTo(self.backgroundImageView.mas_bottom).offset(-10);
+    }];
+    [self.headImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.centerX.equalTo(self.backgroundImageView);
+        //make.top.equalTo(self.sexAddrLabel.mas_bottom).offset(5);
+        make.bottom.equalTo(self.profileView.mas_top).offset(-10);
+    }];
+    [self.sexAddrLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.centerX.equalTo(self.backgroundImageView);
+        make.bottom.equalTo(self.headImgView.mas_top).offset(-10);
+        make.top.equalTo(self.backgroundImageView.mas_top).offset(20);
+    }];
+    
+    
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:ObservedKeyPath]) {
+        NSValue *value = change[NSKeyValueChangeNewKey];
+        CGPoint contentOffset = value.CGPointValue;
+        if (contentOffset.y < -self.initialHeight) {
+            CGRect frame = self.backgroundImageView.frame;
+            CGFloat height = - contentOffset.y;
+            //NSLog(@"%lf", height);
+            frame.size.height = height;
+            // Aligned background image view's bottom with bottom of its superview
+            frame.origin.y = self.initialHeight - height;
+            self.backgroundImageView.frame = frame;
+            //self.backgroundImageView
+            
+        }
+    }
+    else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
 
 -(void)setLocalUser:(Users *)localUser{
     _localUser = localUser;
-}
-
--(UILabel *)titleLabel{
-    if (!_titleLabel) {
-        UILabel *titleLabel = [UILabel new];
-        titleLabel.font = [UIFont boldSystemFontOfSize:14];
-        titleLabel.textColor = WHITE_COLOR;
-        return _titleLabel = titleLabel;
-    }
-    return _titleLabel;
 }
 
 -(UILabel *)sexAddrLabel{
     if (!_sexAddrLabel) {
         UILabel *sexAddrLabel = [UILabel new];
         sexAddrLabel.font = Font(12);
-        sexAddrLabel.textColor = GRAY_COLOR;
+        sexAddrLabel.textColor = WHITE_COLOR;
+        //Userinfo *userInfo = _localUser.userinfos[0];
+        Userinfo *userInfo = [Userinfo new];
+        userInfo.userinfo_sex = @"男";
+        userInfo.userinfo_address = @"江苏 南京";
+        sexAddrLabel.text = [NSString stringWithFormat:@"%@ %@",userInfo.userinfo_sex,userInfo.userinfo_address];
         return _sexAddrLabel = sexAddrLabel;
     }
     return _sexAddrLabel;
@@ -180,24 +231,21 @@
     return _headImgView;
 }
 
--(UIButton *)searchBtn{
-    if (!_searchBtn) {
-        UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [searchBtn setImage:[UIImage imageNamed:@"search_icon"] forState:UIControlStateNormal];
+-(UIImageView *)backgroundImageView{
+    if (!_backgroundImageView) {
+        UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Stanford campus.jpg"]];
+        //backgroundImageView.frame = self.bounds;
+        backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+        UIVisualEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
         
-        
-        return _searchBtn = searchBtn;
+        [backgroundImageView addSubview:visualEffectView];
+        [visualEffectView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(backgroundImageView);
+        }];
+        return _backgroundImageView = backgroundImageView;
     }
-    return _searchBtn;
-}
-
--(UIButton *)settingBtn{
-    if (!_settingBtn) {
-        UIButton *settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [settingBtn setImage:[UIImage imageNamed:@"button_icon_setting@2x"] forState:UIControlStateNormal];
-        return _settingBtn = settingBtn;
-    }
-    return _settingBtn;
+    return _backgroundImageView;
 }
 
 -(UIStackView *)profileView{
@@ -208,11 +256,11 @@
         profileView.distribution = UIStackViewDistributionFillEqually;
         profileView.spacing = 0;
         LJCProfileView *weiboView = [LJCProfileView new];
-        [weiboView setLabelTitle:@"微博" andNumber:[NSString stringWithFormat:@"%d",_localUser.messageses.count]];
+        [weiboView setLabelTitle:@"微博" andNumber:[NSString stringWithFormat:@"%lu",(unsigned long)_localUser.messageses.count]];
         LJCProfileView *followView = [LJCProfileView new];
-        [followView setLabelTitle:@"关注" andNumber:[NSString stringWithFormat:@"%d",_localUser.messageses.count]];
+        [followView setLabelTitle:@"关注" andNumber:[NSString stringWithFormat:@"%lu",(unsigned long)_localUser.messageses.count]];
         LJCProfileView *fansView = [LJCProfileView new];
-        [fansView setLabelTitle:@"粉丝" andNumber:[NSString stringWithFormat:@"%d",_localUser.messageses.count]];
+        [fansView setLabelTitle:@"粉丝" andNumber:[NSString stringWithFormat:@"%lu",(unsigned long)_localUser.messageses.count]];
         NSArray *views = @[weiboView,followView,fansView];
         [views enumerateObjectsUsingBlock:^(LJCProfileView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [profileView addArrangedSubview:obj];
@@ -226,4 +274,7 @@
     self.headImgView.image = [YYImage imageNamed:imgName];
 }
 
+- (void)dealloc {
+    [self.tableView removeObserver:self forKeyPath:ObservedKeyPath context:nil];
+}
 @end

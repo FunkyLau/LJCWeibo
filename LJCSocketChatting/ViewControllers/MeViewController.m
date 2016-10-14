@@ -13,14 +13,18 @@
 #import "LJCMeHeadView.h"
 #import "WeiboCell.h"
 #import "Messages.h"
+#import "Userinfo.h"
 
 @interface MeViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSString *cellId;
     NSArray *messagesArr;
     Users *user;
+    CGFloat initialHeight;
 }
 @property(nonatomic,weak)UITableView *mainTableView;
-@property(nonatomic,weak)LJCMeHeadView *headView;
+//@property(nonatomic,weak)LJCMeHeadView *headView;
+@property(weak,nonatomic)UIButton *searchBtn;
+@property(weak,nonatomic)UIButton *settingBtn;
 @end
 
 
@@ -29,6 +33,7 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     cellId = @"cell";
+    initialHeight = 200.f;
     //self.topView.backgroundColor = CLEAR_COLOR;
     //加载数据
     [self loadInfomation];
@@ -41,9 +46,11 @@
         loginVC.controllerState = LoginControlerState;
         [self presentController:loginVC];
     }else{
-        [self.view addSubview:self.mainTableView];
-        [self.mainTableView registerClass:[WeiboCell class] forCellReuseIdentifier:cellId];
         
+        self.title = user.usersNikename;
+        [self.topView addSubview:self.searchBtn];
+        [self.topView addSubview:self.settingBtn];
+        [self.view addSubview:self.mainTableView];
     }
 }
 
@@ -52,10 +59,22 @@
     @weakify(self)
     [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
-        
-        UIEdgeInsets inset = UIEdgeInsetsMake(0,0,50,0);
+        UIEdgeInsets inset = UIEdgeInsetsMake(40,0,50,0);
         make.edges.equalTo(self.view).insets(inset);
         //make.edges.equalTo(self.view);
+    }];
+    [self.settingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.top.equalTo(self.topView.mas_top).offset(5);
+        make.right.equalTo(self.topView.mas_right).offset(-10);
+        make.size.mas_equalTo(CGSizeMake(30, 30));
+    }];
+    [self.searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.top.equalTo(self.topView.mas_top).offset(10);
+        make.right.equalTo(self.settingBtn.mas_left).offset(-10);
+        //make.left.equalTo(self.sexAddrLabel.mas_right);
+        make.size.mas_equalTo(CGSizeMake(20, 20));
     }];
 }
 
@@ -71,21 +90,51 @@
         mainTableView.dataSource = self;
         mainTableView.rowHeight = UITableViewAutomaticDimension;
         mainTableView.estimatedRowHeight = 120.f;
-
-        //mainTableView.tableHeaderView = self.headView;
+        //mainTableView.backgroundColor = CLEAR_COLOR;
+        mainTableView.contentInset = UIEdgeInsetsMake(initialHeight, 0, 0, 0);
+        [mainTableView registerClass:[WeiboCell class] forCellReuseIdentifier:cellId];
+        LJCMeHeadView *headView = [[LJCMeHeadView alloc] initWithTableView:mainTableView initialHeight:initialHeight];
+        [headView setLocalUser:user];
+        [mainTableView addSubview:headView];
+        
+        [headView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(mainTableView.mas_bottom).offset(-initialHeight);
+            make.left.equalTo(mainTableView.mas_left);
+            make.right.equalTo(mainTableView.mas_right);
+            make.bottom.equalTo(mainTableView.mas_top);
+        }];
+        
         return _mainTableView = mainTableView;
     }
     return _mainTableView;
 }
-
+/*
 -(LJCMeHeadView *)headView{
     if (!_headView) {
-        LJCMeHeadView *headView = [LJCMeHeadView new];
-        
+        LJCMeHeadView *headView = [[LJCMeHeadView alloc] initWithTableView:_mainTableView initialHeight:initialHeight];
         [headView setLocalUser:user];
         return _headView = headView;
     }
     return _headView;
+}
+*/
+-(UIButton *)searchBtn{
+    if (!_searchBtn) {
+        UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [searchBtn setImage:[UIImage imageNamed:@"search_icon"] forState:UIControlStateNormal];
+        
+        return _searchBtn = searchBtn;
+    }
+    return _searchBtn;
+}
+
+-(UIButton *)settingBtn{
+    if (!_settingBtn) {
+        UIButton *settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [settingBtn setImage:[UIImage imageNamed:@"button_icon_setting"] forState:UIControlStateNormal];
+        return _settingBtn = settingBtn;
+    }
+    return _settingBtn;
 }
 
 -(void)loadInfomation{
@@ -130,13 +179,13 @@
 
 #pragma mark UITableViewDataSource
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 120.0f;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return 120.0f;
+//}
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    return self.headView;
-}
+//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    return self.headView;
+//}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return messagesArr.count;

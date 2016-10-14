@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E010D2D91D911029001DACA3 /* LJCMeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E010D2D81D911029001DACA3 /* LJCMeHeadView.m */; };
+		E01549A81DAA228900DD45D4 /* Stanford campus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E01549A71DAA228900DD45D4 /* Stanford campus.jpg */; };
 		E015BD0A1D59BE88002B898C /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = E015BD091D59BE88002B898C /* UIImage+RoundedCorner.m */; };
 		E0284D9C1D27D41400C4D28B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0284D9B1D27D41400C4D28B /* main.m */; };
 		E0284D9F1D27D41400C4D28B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0284D9E1D27D41400C4D28B /* AppDelegate.m */; };
@@ -1742,6 +1743,7 @@
 /* Begin PBXFileReference section */
 		E010D2D71D911029001DACA3 /* LJCMeHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJCMeHeadView.h; sourceTree = "<group>"; };
 		E010D2D81D911029001DACA3 /* LJCMeHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJCMeHeadView.m; sourceTree = "<group>"; };
+		E01549A71DAA228900DD45D4 /* Stanford campus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Stanford campus.jpg"; sourceTree = "<group>"; };
 		E015BD081D59BE88002B898C /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		E015BD091D59BE88002B898C /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		E0284D971D27D41400C4D28B /* LJCSocketChatting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LJCSocketChatting.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3746,6 +3748,7 @@
 		E0284D991D27D41400C4D28B /* LJCSocketChatting */ = {
 			isa = PBXGroup;
 			children = (
+				E079B6A21D7EB99E00737E12 /* images */,
 				E02851261D27DC7300C4D28B /* ModelData */,
 				E02851221D27D84B00C4D28B /* Utils */,
 				E02851181D27D75900C4D28B /* ViewControllers */,
@@ -4602,6 +4605,7 @@
 		E079B6A21D7EB99E00737E12 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				E01549A71DAA228900DD45D4 /* Stanford campus.jpg */,
 				E079B6A31D7EB99E00737E12 /* about_button.png */,
 				E079B6A41D7EB99E00737E12 /* about_button@2x.png */,
 				E079B6A51D7EB99E00737E12 /* about_button@3x.png */,
@@ -6094,7 +6098,6 @@
 		E0BCC9781D4714D100E42BDA /* 我 */ = {
 			isa = PBXGroup;
 			children = (
-				E079B6A21D7EB99E00737E12 /* images */,
 				E0BCC9791D4714E800E42BDA /* MeViewController.h */,
 				E0BCC97A1D4714E800E42BDA /* MeViewController.m */,
 				E010D2D71D911029001DACA3 /* LJCMeHeadView.h */,
@@ -7351,6 +7354,7 @@
 				E079C0021D7EB9A800737E12 /* onepassword-toolbar-light@3x.png in Resources */,
 				E079BDC01D7EB9A800737E12 /* compose_toolbar_4@3x.png in Resources */,
 				E079BFEA1D7EB9A800737E12 /* onepassword-button-light.png in Resources */,
+				E01549A81DAA228900DD45D4 /* Stanford campus.jpg in Resources */,
 				E079BC9D1D7EB9A800737E12 /* button_jd@3x.png in Resources */,
 				E079BC751D7EB9A800737E12 /* avatar_list_mask@3x.png in Resources */,
 				E079BFF31D7EB9A800737E12 /* onepassword-extension-light~compact.png in Resources */,
@@ -8097,6 +8101,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9QR79Z6DWN;
 				GCC_PREFIX_HEADER = LJCSocketChatting/LJCSocketChatting.pch;
 				INFOPLIST_FILE = LJCSocketChatting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -8115,6 +8120,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9QR79Z6DWN;
 				GCC_PREFIX_HEADER = LJCSocketChatting/LJCSocketChatting.pch;
 				INFOPLIST_FILE = LJCSocketChatting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
