@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E010D2D91D911029001DACA3 /* LJCMeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E010D2D81D911029001DACA3 /* LJCMeHeadView.m */; };
+		E011D5FA1DB4713D00492815 /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E011D5F91DB4713D00492815 /* RegistViewController.m */; };
 		E01549A81DAA228900DD45D4 /* Stanford campus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E01549A71DAA228900DD45D4 /* Stanford campus.jpg */; };
 		E015BD0A1D59BE88002B898C /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = E015BD091D59BE88002B898C /* UIImage+RoundedCorner.m */; };
 		E0284D9C1D27D41400C4D28B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0284D9B1D27D41400C4D28B /* main.m */; };
@@ -1743,6 +1744,8 @@
 /* Begin PBXFileReference section */
 		E010D2D71D911029001DACA3 /* LJCMeHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJCMeHeadView.h; sourceTree = "<group>"; };
 		E010D2D81D911029001DACA3 /* LJCMeHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJCMeHeadView.m; sourceTree = "<group>"; };
+		E011D5F81DB4713D00492815 /* RegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistViewController.h; sourceTree = "<group>"; };
+		E011D5F91DB4713D00492815 /* RegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistViewController.m; sourceTree = "<group>"; };
 		E01549A71DAA228900DD45D4 /* Stanford campus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Stanford campus.jpg"; sourceTree = "<group>"; };
 		E015BD081D59BE88002B898C /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		E015BD091D59BE88002B898C /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
@@ -4598,6 +4601,8 @@
 				E05947CE1D82518100BEDAE0 /* LoginViewController.m */,
 				E06639071D82B275005717AF /* LJCCustomField.h */,
 				E06639081D82B275005717AF /* LJCCustomField.m */,
+				E011D5F81DB4713D00492815 /* RegistViewController.h */,
+				E011D5F91DB4713D00492815 /* RegistViewController.m */,
 			);
 			name = "登录注册";
 			sourceTree = "<group>";
@@ -7928,6 +7933,7 @@
 				E02850A81D27D44900C4D28B /* NSArray+YYAdd.m in Sources */,
 				E02850C61D27D44900C4D28B /* YYCache.m in Sources */,
 				E02850901D27D44900C4D28B /* SDWebImageCompat.m in Sources */,
+				E011D5FA1DB4713D00492815 /* RegistViewController.m in Sources */,
 				E02850941D27D44900C4D28B /* SDWebImageManager.m in Sources */,
 				E02850931D27D44900C4D28B /* SDWebImageDownloaderOperation.m in Sources */,
 				E02850D61D27D44900C4D28B /* YYWebImageOperation.m in Sources */,

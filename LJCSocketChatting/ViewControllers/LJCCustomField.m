@@ -27,9 +27,9 @@
         UIEdgeInsets inset = UIEdgeInsetsMake(0,0,1,0);
         make.edges.equalTo(self).insets(inset);
     }];
-    if ([self.textField.placeholder isEqualToString:@"请输入密码"]) {
-        self.textField.secureTextEntry = YES;
-    }
+//    if ([self.textField.placeholder isEqualToString:@"请输入密码"]) {
+//        self.textField.secureTextEntry = YES;
+//    }
     UIView *lineView = [UIView new];
     lineView.backgroundColor = DEFAULT_BACKGROUND_COLOR;
     [self addSubview:lineView];
@@ -47,6 +47,10 @@
     [super layoutSubviews];
     
     
+}
+
+-(void)setSecurityMode{
+    self.textField.secureTextEntry = YES;
 }
 
 -(UITextField *)textField{

@@ -37,8 +37,8 @@
     //self.topView.backgroundColor = CLEAR_COLOR;
     //加载数据
     [self loadInfomation];
-    user = [Users new];
-    user.usersNikename = @"乐一游劉";
+    //user = [Users new];
+    //user.usersNikename = @"乐一游劉";
     //user.userinfos
     if (!user) {
         user = [[UserManager sharedInstance] loginedUser];
@@ -46,16 +46,20 @@
         loginVC.controllerState = LoginControlerState;
         [self presentController:loginVC];
     }else{
-        
         self.title = user.usersNikename;
         [self.topView addSubview:self.searchBtn];
         [self.topView addSubview:self.settingBtn];
         [self.view addSubview:self.mainTableView];
+        [self subviewLayouts];
     }
 }
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
+    
+}
+
+-(void)subviewLayouts{
     @weakify(self)
     [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)

@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "LJCCustomField.h"
 #import "UIButton+UIButtonImageWithLable.h"
+#import "RegistViewController.h"
 
 @interface LoginViewController ()
 
@@ -28,12 +29,13 @@
     [self.topLeftButton setFrame:CGRectMake(10, 10, 30, 20)];
     [self.topLeftButton setImage:nil forState:UIControlStateNormal];
     [self.topLeftButton setTitle:@"关闭" forState:UIControlStateNormal];
+    [self.topLeftButton addTarget:self action:@selector(closeThisViewController) forControlEvents:UIControlEventTouchUpInside];
     
     self.topLeftButton.titleLabel.font = Font(11);
     
     [self.topRightButton setTitle:@"注册" forState:UIControlStateNormal];
     self.topRightButton.titleLabel.font = Font(11);
-    
+    [self.topRightButton addTarget:self action:@selector(forwardToRegistView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.headIcon];
     [self.view addSubview:self.accountField];
     [self.view addSubview:self.passwordField];
@@ -137,7 +139,7 @@
 -(LJCCustomField *)passwordField{
     if (!_passwordField) {
         LJCCustomField *inputView = [[LJCCustomField alloc] initWithPlaceHolder:@"请输入密码"];
-        
+        [inputView setSecurityMode];
         
         return _passwordField = inputView;
     }
@@ -165,14 +167,20 @@
         stackView.alignment = UIStackViewAlignmentFill;
         stackView.distribution = UIStackViewDistributionFillEqually;
         stackView.spacing = 0;
-        
         //NSArray *thirdPartLoginArr =
-        
-        
-        
         return _loginStackView = stackView;
     }
     return _loginStackView;
+}
+
+-(void)forwardToRegistView{
+    RegistViewController *registVC = [RegistViewController new];
+    registVC.controllerState = ControllerStateOnlyLeftButton;
+    [self presentController:registVC];
+}
+
+-(void)closeThisViewController{
+    [self dismissControllerAnimated];
 }
 
 /*

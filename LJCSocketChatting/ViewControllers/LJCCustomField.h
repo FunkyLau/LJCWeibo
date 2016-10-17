@@ -11,4 +11,5 @@
 @interface LJCCustomField : UIView
 
 -(instancetype)initWithPlaceHolder:(NSString *)placeHolderStr;
+-(void)setSecurityMode;
 @end
