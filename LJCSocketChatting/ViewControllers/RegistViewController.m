@@ -14,6 +14,9 @@
 @property (nonatomic,weak)LJCCustomField *accountField;
 @property (nonatomic,weak)LJCCustomField *passwordField;
 @property (nonatomic,weak)LJCCustomField *enterField;
+@property (nonatomic,weak)LJCCustomField *nickNameField;
+@property (nonatomic,weak)LJCCustomField *verCodeField;
+@property (nonatomic,weak)UIImageView *verCodeImageView;
 @property (nonatomic,weak)UIButton *loginBtn;
 @end
 
@@ -24,7 +27,12 @@
     self.title = @"注册";
     [self.view addSubview:self.accountField];
     [self.view addSubview:self.passwordField];
+    [self.view addSubview:self.enterField];
+    [self.view addSubview:self.nickNameField];
+    [self.view addSubview:self.verCodeField];
+    [self.view addSubview:self.verCodeImageView];
     [self.view addSubview:self.loginBtn];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -53,14 +61,50 @@
         //make.right.equalTo(self.view.mas_right);
         make.height.equalTo(@30);
     }];
+    [self.enterField mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.top.equalTo(self.passwordField.mas_bottom).offset(20);
+        make.left.equalTo(self.view.mas_left).offset(20);
+        make.right.equalTo(self.view.mas_right).offset(-20);
+        //make.right.equalTo(self.view.mas_right);
+        make.height.equalTo(@30);
+    }];
+    
+    [self.nickNameField mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.top.equalTo(self.enterField.mas_bottom).offset(20);
+        make.left.equalTo(self.view.mas_left).offset(20);
+        make.right.equalTo(self.view.mas_right).offset(-20);
+        //make.right.equalTo(self.view.mas_right);
+        make.height.equalTo(@30);
+    }];
+    
+    [self.verCodeField mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.top.equalTo(self.nickNameField.mas_bottom).offset(20);
+        make.left.equalTo(self.view.mas_left).offset(20);
+        //make.right.equalTo(self.view.mas_right).offset(-100);
+        //make.right.equalTo(self.view.mas_right);
+        make.height.equalTo(@30);
+    }];
+    
+    [self.verCodeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.nickNameField.mas_bottom).offset(20);
+        make.left.equalTo(self.verCodeField.mas_right).offset(10);
+        make.right.equalTo(self.view.mas_right).offset(-20);
+        make.size.mas_equalTo(CGSizeMake(50, 30));
+    }];
+    
     [self.loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
-        make.top.equalTo(self.passwordField.mas_bottom).offset(30);
+        make.top.equalTo(self.verCodeField.mas_bottom).offset(30);
         make.left.equalTo(self.view.mas_left).offset(20);
         make.right.equalTo(self.view.mas_right).offset(-20);
         //make.bottom.equalTo(self.view).dividedBy(2);
         make.height.equalTo(@35);
     }];
+    
+    
 }
 
 -(LJCCustomField *)accountField{
@@ -81,6 +125,48 @@
     return _passwordField;
 }
 
+-(LJCCustomField *)enterField{
+    if (!_enterField) {
+        LJCCustomField *inputView = [[LJCCustomField alloc] initWithPlaceHolder:@"请确认密码"];
+        [inputView setSecurityMode];
+        return _enterField = inputView;
+    }
+    return _enterField;
+}
+
+-(LJCCustomField *)nickNameField{
+    if (!_nickNameField) {
+        LJCCustomField *inputView = [[LJCCustomField alloc] initWithPlaceHolder:@"请输入昵称"];
+        
+        return _nickNameField = inputView;
+    }
+    return _nickNameField;
+}
+
+-(LJCCustomField *)verCodeField{
+    if (!_verCodeField) {
+        LJCCustomField *inputView = [[LJCCustomField alloc] initWithPlaceHolder:@"请输入验证码"];
+        //@weakify(self)
+//        inputView.setTextLengthBlock = ^(int length){
+//            if (length > 4) {
+//                inputView.userInteractionEnabled = NO;
+//            }
+//        };
+        return _verCodeField = inputView;
+    }
+    return _verCodeField;
+}
+
+-(UIImageView *)verCodeImageView{
+    if (!_verCodeImageView) {
+        UIImageView *verView = [UIImageView new];
+        NSURL *url = [NSURL URLWithString:kImageCheck];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        verView.image = [YYImage imageWithData:data];
+        return _verCodeImageView = verView;
+    }
+    return _verCodeImageView;
+}
 -(UIButton *)loginBtn{
     if (!_loginBtn) {
         UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];

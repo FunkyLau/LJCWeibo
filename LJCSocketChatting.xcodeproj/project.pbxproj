@@ -4550,14 +4550,13 @@
 		E02851181D27D75900C4D28B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E02B50CA1DB5AEF30091F19A /* BaseClasses */,
 				E05947CC1D824CB600BEDAE0 /* 登录注册 */,
 				E0BCCA511D48605800E42BDA /* 发微博 */,
 				E0BCC9781D4714D100E42BDA /* 我 */,
 				E0BCC9741D4714AB00E42BDA /* 消息 */,
 				E0BCC9701D47143700E42BDA /* 发现 */,
 				E0CB1BFD1D4700AB009D33FF /* 首页 */,
-				E02851191D27D75900C4D28B /* SuperViewController.h */,
-				E028511A1D27D75900C4D28B /* SuperViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -4592,6 +4591,15 @@
 				E02851281D27DC7300C4D28B /* UserManager.m */,
 			);
 			path = ModelData;
+			sourceTree = "<group>";
+		};
+		E02B50CA1DB5AEF30091F19A /* BaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				E02851191D27D75900C4D28B /* SuperViewController.h */,
+				E028511A1D27D75900C4D28B /* SuperViewController.m */,
+			);
+			name = BaseClasses;
 			sourceTree = "<group>";
 		};
 		E05947CC1D824CB600BEDAE0 /* 登录注册 */ = {

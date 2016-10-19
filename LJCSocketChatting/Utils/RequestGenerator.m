@@ -66,12 +66,21 @@
 + (NSURLRequest *)registerRequestWithNickName:(NSString *)nickName andPhoneNum: (NSString *)phoneNumStr andPass:(NSString *)passStr andVerCode:(NSString *)verCode{
     NSString *md5Pwd = [self md5HexDigest:passStr];
     //NSString *urlStr = [[NSString stringWithFormat:@"%@register?telnum=%@&password=%@&nickname=%@&code=%@", SeverURL,phoneNumStr,md5Pwd, nickName,verCode] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *urlStr = [[NSString stringWithFormat:@"%@register?telnum=%@&password=%@&nickname=%@&code=%@", SeverURL,phoneNumStr,md5Pwd, nickName,verCode] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];  //如仍不行则换上面的方法
-    NSLog(@"%@",urlStr);
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
-    [request setHTTPMethod:@"GET"];//POST
-    request.timeoutInterval = kTimeoutInterval;
-    return request;
+    //NSString *urlStr = [[NSString stringWithFormat:@"%@register?telnum=%@&password=%@&nickname=%@&code=%@", SeverURL,phoneNumStr,md5Pwd, nickName,verCode] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];  //如仍不行则换上面的方法
+    //NSLog(@"%@",urlStr);
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+//    [request setHTTPMethod:@"GET"];//POST
+//    request.timeoutInterval = kTimeoutInterval;
+    //NSString *urlStr = [[NSString stringWithFormat:@"%@register?telnum=%@&password=%@&nickname=%@&code=%@", SeverURL,phoneNumStr,md5Pwd, nickName,verCode] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    return
+    [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST"
+                                                  URLString:kRegistUser
+                                        parameters:@{@"telnum":phoneNumStr,
+                                                     @"password":md5Pwd,
+                                                     @"nickname":nickName,
+                                                     @"code":verCode}
+                                                      error:nil];
+    //return request;
 }
 
 +(NSURLRequest *)userInfoChangeRequest:(NSString *)urlStr{
@@ -159,7 +168,7 @@
 }
 
 
-//上传头像或问题报告
+//上传头像
 + (NSURLRequest *)UpdateImageRequest:(NSString *)imagePath andImgType:(NSInteger)type andRegistTel:(NSString *)registTel{
     Users *user = [[UserManager sharedInstance] loginedUser];
     NSData *data = [NSData dataWithContentsOfFile:imagePath];

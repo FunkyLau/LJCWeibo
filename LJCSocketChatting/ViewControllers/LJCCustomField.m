@@ -53,6 +53,10 @@
     self.textField.secureTextEntry = YES;
 }
 
+-(void)setTextLenth{
+    
+}
+
 -(UITextField *)textField{
     if (!_textField) {
         UITextField *textField = [UITextField new];

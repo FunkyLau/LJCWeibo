@@ -30,7 +30,7 @@ static inline NSString* severURL(kSeverType sType) {
             /**
              * 开发环境---公网服务器地址
              */
-            url = @"http://218.2.208.50:57159/appInterface/";
+            url = @"http://10.1.1.123:8080/weibo2/";
         }
         else if(sType == kServer_InternalDev) {
             /**
@@ -73,11 +73,13 @@ static inline NSString* severURL(kSeverType sType) {
 
 static const int curSeverType = kServer_Dev;
 #else
-static const int curSeverType = kServer_Prodution;
+static const int curSeverType = kServer_Dev;
 #endif
 #define SeverURL severURL(curSeverType)
 
 #define kLoginWithTel [NSString stringWithFormat:@"%@loginWithTelnum", SeverURL]     //用户登录
+#define kRegistUser [NSString stringWithFormat:@"%@register", SeverURL]         //用户注册
+#define kImageCheck [NSString stringWithFormat:@"%@ImageCheck_execute.action",SeverURL]
 
 #define kINBInfo [NSString stringWithFormat:@"%@companyInfo",SeverURL] //工商信息
 #define kRealName [NSString stringWithFormat:@"%@certifyPro",SeverURL]   //网络实名

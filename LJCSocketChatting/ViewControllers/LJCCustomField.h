@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef void (^SetTextLength)(int);
 @interface LJCCustomField : UIView
 
+@property(nonatomic,strong)SetTextLength setTextLengthBlock;
 -(instancetype)initWithPlaceHolder:(NSString *)placeHolderStr;
 -(void)setSecurityMode;
+
+
 @end
