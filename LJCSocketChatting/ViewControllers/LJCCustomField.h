@@ -13,6 +13,6 @@ typedef void (^SetTextLength)(int);
 @property(nonatomic,strong)SetTextLength setTextLengthBlock;
 -(instancetype)initWithPlaceHolder:(NSString *)placeHolderStr;
 -(void)setSecurityMode;
-
+-(NSString *)getInputText;
 
 @end

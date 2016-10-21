@@ -57,6 +57,10 @@
     
 }
 
+-(NSString *)getInputText{
+    return self.textField.text;
+}
+
 -(UITextField *)textField{
     if (!_textField) {
         UITextField *textField = [UITextField new];

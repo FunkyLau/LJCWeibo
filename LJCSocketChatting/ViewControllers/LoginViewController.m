@@ -10,8 +10,12 @@
 #import "LJCCustomField.h"
 #import "UIButton+UIButtonImageWithLable.h"
 #import "RegistViewController.h"
+#import "UserManager.h"
 
-@interface LoginViewController ()
+
+@interface LoginViewController (){
+    UserManager *userManager;
+}
 
 @property (nonatomic,weak)UIImageView *headIcon;
 @property (nonatomic,weak)LJCCustomField *accountField;
@@ -25,6 +29,7 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    userManager = [UserManager sharedInstance];
     //self.topView.backgroundColor = CLEAR_COLOR;
     [self.topLeftButton setFrame:CGRectMake(10, 10, 30, 20)];
     [self.topLeftButton setImage:nil forState:UIControlStateNormal];
@@ -155,6 +160,7 @@
         loginBtn.layer.masksToBounds = YES;
         loginBtn.layer.cornerRadius = 4;
         loginBtn.backgroundColor = DEFAULT_COLOR;
+        [loginBtn addTarget:self action:@selector(loginBtnPressed) forControlEvents:UIControlEventTouchUpInside];
         return _loginBtn = loginBtn;
     }
     return _loginBtn;
@@ -181,6 +187,16 @@
 
 -(void)closeThisViewController{
     [self dismissControllerAnimated];
+}
+
+-(void)loginBtnPressed{
+    NSString *email = [_accountField getInputText];
+    NSString *password = [_passwordField getInputText];
+    [userManager userLogin:email password:password withCompletionHandler:^(BOOL succeeded, NSDictionary *dicData, NSMutableArray *dataArray) {
+        if (succeeded) {
+            
+        }
+    }];
 }
 
 /*

@@ -8,9 +8,11 @@
 
 #import "RegistViewController.h"
 #import "LJCCustomField.h"
+#import "UserManager.h"
 
-
-@interface RegistViewController ()
+@interface RegistViewController (){
+    UserManager *manager;
+}
 @property (nonatomic,weak)LJCCustomField *accountField;
 @property (nonatomic,weak)LJCCustomField *passwordField;
 @property (nonatomic,weak)LJCCustomField *enterField;
@@ -25,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"注册";
+    manager = [UserManager sharedInstance];
     [self.view addSubview:self.accountField];
     [self.view addSubview:self.passwordField];
     [self.view addSubview:self.enterField];
@@ -161,8 +164,16 @@
     if (!_verCodeImageView) {
         UIImageView *verView = [UIImageView new];
         NSURL *url = [NSURL URLWithString:kImageCheck];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        verView.image = [YYImage imageWithData:data];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            // 耗时的操作
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // 更新界面
+                verView.image = [YYImage imageWithData:data];
+            });
+        });
+        
         return _verCodeImageView = verView;
     }
     return _verCodeImageView;
@@ -176,8 +187,27 @@
         loginBtn.layer.masksToBounds = YES;
         loginBtn.layer.cornerRadius = 4;
         loginBtn.backgroundColor = DEFAULT_COLOR;
+        [loginBtn addTarget:self action:@selector(registBtnPressed) forControlEvents:UIControlEventTouchUpInside];
         return _loginBtn = loginBtn;
     }
     return _loginBtn;
 }
+//注册按钮点击
+-(void)registBtnPressed{
+    NSString *nickName = [self.nickNameField getInputText];
+    NSString *email = [self.accountField getInputText];
+    NSString *password = [self.passwordField getInputText];
+    NSString *verCode = [self.verCodeField getInputText];
+    NSLog(@"%@ %@ %@ %@",nickName,email,password,verCode);
+    [manager userRegistWithNickName:nickName andPhoneNum:email andPass:password andVerCode:verCode andCompletionHandler:^(BOOL succeeded, NSString *response) {
+        if (succeeded) {
+            NSLog(@"%@", response);
+            [self dismissControllerAnimated];
+        }else{
+            NSLog(@"%@", response);
+            [PhoneNotification autoHideWithText:response];
+        }
+    }];
+}
+
 @end

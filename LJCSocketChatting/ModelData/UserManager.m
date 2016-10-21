@@ -23,7 +23,7 @@
         sharedInstance = [UserManager new];
         sharedInstance.afManager = [AFHTTPSessionManager manager];
 //        [sharedInstance performSelector:@selector(deserializeUserInfo) afterDelay:0.1f];
-        
+        sharedInstance.afManager.responseSerializer = [AFHTTPResponseSerializer serializer];
         // 自动登录
         [sharedInstance autoLogin];
     });
@@ -74,32 +74,38 @@ withCompletionHandler:nil];
 - (BOOL)isLogined{
     return ([self loginedUser] != nil);
 }
-
+//注册
 -(void)userRegistWithNickName:(NSString *)nickName andPhoneNum:(NSString *)phoneNum andPass:(NSString *)passStr andVerCode:(NSString *)verCode andCompletionHandler:(void(^)(BOOL succeeded, NSString *response))handler
 {
     
     NSURLRequest *request=[RequestGenerator registerRequestWithNickName:nickName andPhoneNum:phoneNum andPass:passStr andVerCode:verCode];
-    NSURLSessionDataTask *dataTask = [_afManager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    NSURLSessionDataTask *dataTask = [_afManager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, NSData *_Nullable responseObject, NSError * _Nullable error) {
         [PhoneNotification hideNotification];
         [[NSURLCache sharedURLCache] removeAllCachedResponses];
         [[NSURLCache sharedURLCache] setDiskCapacity:0];
         [[NSURLCache sharedURLCache] setMemoryCapacity:0];
         BOOL sucess = NO;
-        NSString *responseStr = nil;
+        NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         if (error) {
             DJLog(@"Error: %@", error);
+            responseStr = @"failed";
+            handler(sucess,responseStr);
         }else{
-            NSDictionary *dic = [responseObject modelToJSONObject];
-            responseStr = dic[@"resDesc"];
-            NSUInteger retCode = [[dic objectForKey:@"resCode"] integerValue] ;
-            if (retCode == 0) {
-                sucess = YES;
-                handler(sucess, responseStr);
-            }else if(retCode == 1008){
-                sucess = NO;
-                handler(sucess, responseStr);
-                //NSLog(@"失败了，验证码失效");
-            }
+            sucess = YES;
+            handler(sucess, responseStr);
+            //NSData * data = [receiveStr dataUsingEncoding:NSUTF8StringEncoding];
+            
+            //NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+            
+            //responseStr = dic[@"resDesc"];
+            //NSUInteger retCode = [[dic objectForKey:@"resCode"] integerValue] ;
+//            if (retCode == 0) {
+//                sucess = YES;
+//                handler(sucess, responseStr);
+//            }else if(retCode == 1008){
+//                sucess = NO;
+//                handler(sucess, responseStr);
+//            }
         }
         
     }];
@@ -129,9 +135,7 @@ withCompletionHandler:nil];
                 DJLog(@"失败");
                 handler(sucess,responseStr);
             }
-
         }
-        
     }];
     [dataTask resume];
 }
@@ -193,13 +197,15 @@ withCompletionHandler:nil];
     NSURLRequest *request=[RequestGenerator loginRequest:phoneNum andPass:password];
     NSMutableArray* array = @[].mutableCopy;
     
-    NSURLSessionDataTask *dataTask = [_afManager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    NSURLSessionDataTask *dataTask = [_afManager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, NSData *_Nullable responseObject, NSError * _Nullable error) {
         [PhoneNotification hideNotification];
         [[NSURLCache sharedURLCache] removeAllCachedResponses];
         [[NSURLCache sharedURLCache] setDiskCapacity:0];
         [[NSURLCache sharedURLCache] setMemoryCapacity:0];
         BOOL sucess = NO;
         NSDictionary *dicData = nil;
+        NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        dicData = [responseStr modelToJSONObject];
         if (error) {
             DJLog(@"Error: %@", error);
         }else{
@@ -217,6 +223,7 @@ withCompletionHandler:nil];
                 
                 
                 self.loginedUser = user;
+                //将用户信息写入文件
                 [[UserManager sharedInstance] savePathOfUserInfo];
                 if(handler)
                     handler(sucess, dicData,array);

@@ -77,8 +77,8 @@ static const int curSeverType = kServer_Dev;
 #endif
 #define SeverURL severURL(curSeverType)
 
-#define kLoginWithTel [NSString stringWithFormat:@"%@loginWithTelnum", SeverURL]     //用户登录
-#define kRegistUser [NSString stringWithFormat:@"%@register", SeverURL]         //用户注册
+#define kLoginWithTel [NSString stringWithFormat:@"%@UsersAction_iosLogin.action", SeverURL]     //用户登录
+#define kRegistUser [NSString stringWithFormat:@"%@UsersAction_iosSaveRegister.action", SeverURL]         //用户注册
 #define kImageCheck [NSString stringWithFormat:@"%@ImageCheck_execute.action",SeverURL]
 
 #define kINBInfo [NSString stringWithFormat:@"%@companyInfo",SeverURL] //工商信息
