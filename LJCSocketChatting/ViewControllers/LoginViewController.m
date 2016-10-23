@@ -192,9 +192,9 @@
 -(void)loginBtnPressed{
     NSString *email = [_accountField getInputText];
     NSString *password = [_passwordField getInputText];
-    [userManager userLogin:email password:password withCompletionHandler:^(BOOL succeeded, NSDictionary *dicData, NSMutableArray *dataArray) {
+    [userManager userLogin:email password:password withCompletionHandler:^(BOOL succeeded, NSDictionary *dicData) {
         if (succeeded) {
-            
+            //[self dismissControllerAnimated];
         }
     }];
 }

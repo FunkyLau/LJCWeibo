@@ -28,7 +28,7 @@
 //注册
 - (void)userRegistWithNickName:(NSString *)nickName andPhoneNum:(NSString *)phoneNum andPass:(NSString *)passStr andVerCode:(NSString *)verCode andCompletionHandler:(void(^)(BOOL succeeded, NSString *response))handler;
 //用户登录
--(void)userLogin:(NSString *)phoneNum password:(NSString *)password withCompletionHandler:(void(^)(BOOL succeeded, NSDictionary *dicData, NSMutableArray* dataArray))handler;
+-(void)userLogin:(NSString *)phoneNum password:(NSString *)password withCompletionHandler:(void(^)(BOOL succeeded, NSDictionary *dicData))handler;
 //重置密码
 -(void)userResetPassword:(NSString *)phoneNum andPass:(NSString *)passStr andVerCode:(NSString *)verCode andCompletionHandler:(void(^)(BOOL succeeded, NSString *response))handler;
 //修改密码

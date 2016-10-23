@@ -57,8 +57,8 @@
         mainTableView.delegate = self;
         mainTableView.dataSource = self;
         
-        mainTableView.rowHeight = UITableViewAutomaticDimension;
-        mainTableView.estimatedRowHeight = 60;
+        mainTableView.rowHeight = 60.f;
+        //mainTableView.estimatedRowHeight = 60;
         //[mainTableView registerClass:[WeiboCell class] forCellReuseIdentifier:cellId];
         //mainTableView.backgroundColor = CLEAR_COLOR;
         return _mainTableView = mainTableView;
@@ -75,6 +75,8 @@
         UISegmentedControl *switcher = [[UISegmentedControl alloc] initWithItems:segmentArray];
         switcher.selectedSegmentIndex = 0;
         switcher.tintColor = [UIColor lightGrayColor];
+        switcher.layer.masksToBounds = YES;
+        switcher.layer.cornerRadius = 10;
         [switcher addTarget:self action:@selector(didClickSegmentedControlAction:)forControlEvents:UIControlEventValueChanged];
         return _switcher = switcher;
     }
@@ -84,7 +86,7 @@
 - (void)didClickSegmentedControlAction:(UISegmentedControl *)segmentControl
 {
     NSInteger idx = segmentControl.selectedSegmentIndex;
-    NSLog(@"%d", idx);
+    NSLog(@"%ld", (long)idx);
 }
 
 #pragma mark UITableViewDelegate
@@ -119,7 +121,7 @@
     
     [view addSubview:self.switcher];
     [self.switcher mas_makeConstraints:^(MASConstraintMaker *make) {
-        UIEdgeInsets inset = UIEdgeInsetsMake(3, 5, 3, 5);
+        UIEdgeInsets inset = UIEdgeInsetsMake(5, 10, 5, 10);
         make.edges.equalTo(view).insets(inset);
     }];
     return view;

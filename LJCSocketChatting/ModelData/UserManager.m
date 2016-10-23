@@ -192,10 +192,10 @@ withCompletionHandler:nil];
     }];
 }
 
--(void)userLogin:(NSString *)phoneNum password:(NSString *)password withCompletionHandler:(void(^)(BOOL succeeded, NSDictionary *dicData, NSMutableArray* dataArray))handler{
+-(void)userLogin:(NSString *)phoneNum password:(NSString *)password withCompletionHandler:(void(^)(BOOL succeeded, NSDictionary *dicData))handler{
     
     NSURLRequest *request=[RequestGenerator loginRequest:phoneNum andPass:password];
-    NSMutableArray* array = @[].mutableCopy;
+    //NSMutableArray* array = @[].mutableCopy;
     
     NSURLSessionDataTask *dataTask = [_afManager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, NSData *_Nullable responseObject, NSError * _Nullable error) {
         [PhoneNotification hideNotification];
@@ -205,40 +205,32 @@ withCompletionHandler:nil];
         BOOL sucess = NO;
         NSDictionary *dicData = nil;
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        dicData = [responseStr modelToJSONObject];
+        dicData = [responseStr jsonValueDecoded];
         if (error) {
+            handler(sucess,dicData);
             DJLog(@"Error: %@", error);
+            
         }else{
             // 保存用户名和密码
+            //登陆成功
+
             [AppSettings setString:phoneNum
                             forKey:StringKey_UserName];
             [AppSettings setString:password
                             forKey:StringKey_Password];
-            dicData = [responseObject modelToJSONObject];
-            if ([dicData[@"resCode"] integerValue] == 0) {
-                //登陆成功
-                NSDictionary *userInfoDic = dicData[@"result"];
-                sucess=YES;
-                Users *user = [Users modelWithDictionary:userInfoDic];
-                
-                
-                self.loginedUser = user;
-                //将用户信息写入文件
-                [[UserManager sharedInstance] savePathOfUserInfo];
-                if(handler)
-                    handler(sucess, dicData,array);
-            }else if([dicData[@"resCode"] integerValue] == 1007){
-                NSLog(@"密码错误");
-                sucess = NO;
-                if(handler)
-                    handler(sucess, dicData,array);
-                [PhoneNotification autoHideWithText:@"密码错误"];
-            }else if ([dicData[@"resCode"] integerValue] == 1006){
-                if(handler)
-                    handler(sucess, dicData,array);
-                [PhoneNotification autoHideWithText:@"用户不存在"];
-                
+            
+            sucess=YES;
+            Users *user = [Users modelWithDictionary:dicData];
+            
+            
+            self.loginedUser = user;
+            //将用户信息写入文件
+            [[UserManager sharedInstance] savePathOfUserInfo];
+            if(handler){
+                handler(sucess, dicData);
             }
+            //[PhoneNotification autoHideWithText:@"密码错误"];
+            //[PhoneNotification autoHideWithText:@"用户不存在"];
         }
     }];
     [dataTask resume];

@@ -28,16 +28,15 @@ static inline NSString* severURL(kSeverType sType) {
 
         if (sType == kServer_Dev) {
             /**
-             * 开发环境---公网服务器地址
+             * 开发环境---公司地址
              */
             url = @"http://10.1.1.123:8080/weibo2/";
         }
         else if(sType == kServer_InternalDev) {
             /**
-             * 开发环境---内网地址
+             * 开发环境---家里地址
              */
-            //url = @"http://192.168.200.246:8080/appInterface/";
-            url = @"http://192.168.201.136:8080/appInterface/";
+            url = @"http://10.0.1.6:8080/weibo2/";
             
         }
         else if(sType == kServer_Test) {
@@ -71,7 +70,7 @@ static inline NSString* severURL(kSeverType sType) {
 // 只要在下面修改对应的服务器就可以了
 #if DEBUG
 
-static const int curSeverType = kServer_Dev;
+static const int curSeverType = kServer_InternalDev;
 #else
 static const int curSeverType = kServer_Dev;
 #endif
