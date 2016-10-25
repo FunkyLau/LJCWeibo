@@ -70,7 +70,7 @@ static inline NSString* severURL(kSeverType sType) {
 // 只要在下面修改对应的服务器就可以了
 #if DEBUG
 
-static const int curSeverType = kServer_InternalDev;
+static const int curSeverType = kServer_Dev;
 #else
 static const int curSeverType = kServer_Dev;
 #endif

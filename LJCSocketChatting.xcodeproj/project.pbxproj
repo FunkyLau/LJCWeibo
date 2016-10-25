@@ -242,6 +242,9 @@
 		E02851351D28A60F00C4D28B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E02851341D28A60F00C4D28B /* libsqlite3.tbd */; };
 		E029F71D1D8984E500A84950 /* UIButton+UIButtonImageWithLable.m in Sources */ = {isa = PBXBuildFile; fileRef = E029F71C1D8984E400A84950 /* UIButton+UIButtonImageWithLable.m */; };
 		E05947CF1D82518100BEDAE0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E05947CE1D82518100BEDAE0 /* LoginViewController.m */; };
+		E05F276B1DBF4E7E007C1673 /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E05F27661DBF4E7E007C1673 /* BaseCollectionViewController.m */; };
+		E05F276C1DBF4E7E007C1673 /* BaseTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E05F27681DBF4E7E007C1673 /* BaseTabBarViewController.m */; };
+		E05F276D1DBF4E7E007C1673 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E05F276A1DBF4E7E007C1673 /* BaseTableViewController.m */; };
 		E06639091D82B275005717AF /* LJCCustomField.m in Sources */ = {isa = PBXBuildFile; fileRef = E06639081D82B275005717AF /* LJCCustomField.m */; };
 		E079BC5D1D7EB9A800737E12 /* about_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E079B6A31D7EB99E00737E12 /* about_button.png */; };
 		E079BC5E1D7EB9A800737E12 /* about_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E079B6A41D7EB99E00737E12 /* about_button@2x.png */; };
@@ -2194,6 +2197,12 @@
 		E029F71C1D8984E400A84950 /* UIButton+UIButtonImageWithLable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+UIButtonImageWithLable.m"; sourceTree = "<group>"; };
 		E05947CD1D82518100BEDAE0 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E05947CE1D82518100BEDAE0 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		E05F27651DBF4E7E007C1673 /* BaseCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewController.h; sourceTree = "<group>"; };
+		E05F27661DBF4E7E007C1673 /* BaseCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewController.m; sourceTree = "<group>"; };
+		E05F27671DBF4E7E007C1673 /* BaseTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTabBarViewController.h; sourceTree = "<group>"; };
+		E05F27681DBF4E7E007C1673 /* BaseTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTabBarViewController.m; sourceTree = "<group>"; };
+		E05F27691DBF4E7E007C1673 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
+		E05F276A1DBF4E7E007C1673 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		E06639071D82B275005717AF /* LJCCustomField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJCCustomField.h; sourceTree = "<group>"; };
 		E06639081D82B275005717AF /* LJCCustomField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJCCustomField.m; sourceTree = "<group>"; };
 		E079B6A31D7EB99E00737E12 /* about_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about_button.png; sourceTree = "<group>"; };
@@ -4596,6 +4605,12 @@
 		E02B50CA1DB5AEF30091F19A /* BaseClasses */ = {
 			isa = PBXGroup;
 			children = (
+				E05F27651DBF4E7E007C1673 /* BaseCollectionViewController.h */,
+				E05F27661DBF4E7E007C1673 /* BaseCollectionViewController.m */,
+				E05F27671DBF4E7E007C1673 /* BaseTabBarViewController.h */,
+				E05F27681DBF4E7E007C1673 /* BaseTabBarViewController.m */,
+				E05F27691DBF4E7E007C1673 /* BaseTableViewController.h */,
+				E05F276A1DBF4E7E007C1673 /* BaseTableViewController.m */,
 				E02851191D27D75900C4D28B /* SuperViewController.h */,
 				E028511A1D27D75900C4D28B /* SuperViewController.m */,
 			);
@@ -7790,6 +7805,7 @@
 				E02851141D27D44900C4D28B /* ZYQAssetPickerController.m in Sources */,
 				E02850C51D27D44900C4D28B /* UIView+YYAdd.m in Sources */,
 				E02850C81D27D44900C4D28B /* YYKVStorage.m in Sources */,
+				E05F276C1DBF4E7E007C1673 /* BaseTabBarViewController.m in Sources */,
 				E02850671D27D44900C4D28B /* MJRefreshGifHeader.m in Sources */,
 				E02850F41D27D44900C4D28B /* YYThreadSafeArray.m in Sources */,
 				E02850CD1D27D44900C4D28B /* UIButton+YYWebImage.m in Sources */,
@@ -7867,6 +7883,7 @@
 				E02850AF1D27D44900C4D28B /* NSNumber+YYAdd.m in Sources */,
 				E02850D71D27D44900C4D28B /* NSObject+YYModel.m in Sources */,
 				E02850BB1D27D44900C4D28B /* UIColor+YYAdd.m in Sources */,
+				E05F276D1DBF4E7E007C1673 /* BaseTableViewController.m in Sources */,
 				E028503E1D27D44900C4D28B /* UITableView+FDTemplateLayoutCell.m in Sources */,
 				E02850B11D27D44900C4D28B /* NSObject+YYAddForARC.m in Sources */,
 				E02850691D27D44900C4D28B /* MJRefreshStateHeader.m in Sources */,
@@ -7949,6 +7966,7 @@
 				E028503C1D27D44900C4D28B /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				E02850DF1D27D44900C4D28B /* YYTextLine.m in Sources */,
 				E02850A21D27D44900C4D28B /* UIButton+add.m in Sources */,
+				E05F276B1DBF4E7E007C1673 /* BaseCollectionViewController.m in Sources */,
 				E02850C21D27D44900C4D28B /* UIScrollView+YYAdd.m in Sources */,
 				E02850991D27D44900C4D28B /* UIImage+WebP.m in Sources */,
 				E02850AD1D27D44900C4D28B /* NSKeyedUnarchiver+YYAdd.m in Sources */,

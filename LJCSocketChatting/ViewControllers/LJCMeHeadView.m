@@ -85,6 +85,8 @@
 @property(strong,nonatomic)Users *localUser;
 @property(weak,nonatomic)UITableView *tableView;
 @property(assign,nonatomic)CGFloat initialHeight;
+@property(weak,nonatomic)UIVisualEffectView *visualEffectView;
+
 
 @end
 
@@ -154,7 +156,8 @@ static NSString * const ObservedKeyPath = @"contentOffset";
     [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
         make.edges.equalTo(self);
-        make.size.mas_equalTo(CGSizeMake(kScreenWidth, 200));
+        //make.height.mas_equalTo(_initialHeight);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth, _initialHeight));
     }];
     [self.profileView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
@@ -191,7 +194,6 @@ static NSString * const ObservedKeyPath = @"contentOffset";
             // Aligned background image view's bottom with bottom of its superview
             frame.origin.y = self.initialHeight - height;
             self.backgroundImageView.frame = frame;
-            //self.backgroundImageView
             
         }
     }
@@ -231,18 +233,26 @@ static NSString * const ObservedKeyPath = @"contentOffset";
     return _headImgView;
 }
 
+-(UIVisualEffectView *)visualEffectView{
+    if (!_visualEffectView) {
+        UIVisualEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+        return _visualEffectView = visualEffectView;
+    }
+    return _visualEffectView;
+}
+
 -(UIImageView *)backgroundImageView{
     if (!_backgroundImageView) {
         UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Stanford campus.jpg"]];
         //backgroundImageView.frame = self.bounds;
         backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-        UIVisualEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-        
-        [backgroundImageView addSubview:visualEffectView];
-        [visualEffectView mas_makeConstraints:^(MASConstraintMaker *make) {
+        /*
+        [backgroundImageView addSubview:self.visualEffectView];
+        [self.visualEffectView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(backgroundImageView);
         }];
+         */
         return _backgroundImageView = backgroundImageView;
     }
     return _backgroundImageView;

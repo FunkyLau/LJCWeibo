@@ -222,7 +222,6 @@ withCompletionHandler:nil];
             sucess=YES;
             Users *user = [Users modelWithDictionary:dicData];
             
-            
             self.loginedUser = user;
             //将用户信息写入文件
             [[UserManager sharedInstance] savePathOfUserInfo];

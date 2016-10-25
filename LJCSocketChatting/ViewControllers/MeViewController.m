@@ -15,6 +15,7 @@
 #import "Messages.h"
 #import "Userinfo.h"
 
+
 @interface MeViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSString *cellId;
     NSArray *messagesArr;
@@ -37,21 +38,11 @@
     //self.topView.backgroundColor = CLEAR_COLOR;
     //加载数据
     [self loadInfomation];
+    user = [[UserManager sharedInstance] loginedUser];
     //user = [Users new];
     //user.usersNikename = @"乐一游劉";
     //user.userinfos
-    if (!user) {
-        user = [[UserManager sharedInstance] loginedUser];
-        LoginViewController *loginVC = [LoginViewController new];
-        loginVC.controllerState = LoginControlerState;
-        [self presentController:loginVC];
-    }else{
-        self.title = user.usersNikename;
-        [self.topView addSubview:self.searchBtn];
-        [self.topView addSubview:self.settingBtn];
-        [self.view addSubview:self.mainTableView];
-        [self subviewLayouts];
-    }
+    
 }
 
 -(void)viewWillLayoutSubviews{
@@ -66,6 +57,16 @@
         UIEdgeInsets inset = UIEdgeInsetsMake(40,0,50,0);
         make.edges.equalTo(self.view).insets(inset);
         //make.edges.equalTo(self.view);
+        LJCMeHeadView *headView = [[LJCMeHeadView alloc] initWithTableView:self.mainTableView initialHeight:initialHeight];
+        [headView setLocalUser:user];
+        [self.mainTableView addSubview:headView];
+        
+        [headView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.mainTableView.mas_bottom).offset(-initialHeight);
+            make.left.equalTo(self.mainTableView.mas_left);
+            make.right.equalTo(self.mainTableView.mas_right);
+            make.bottom.equalTo(self.mainTableView.mas_top);
+        }];
     }];
     [self.settingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
@@ -84,7 +85,18 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    if (!user) {
+        user = [[UserManager sharedInstance] loginedUser];
+        LoginViewController *loginVC = [LoginViewController new];
+        loginVC.controllerState = LoginControlerState;
+        [self presentController:loginVC];
+    }else{
+        self.title = user.usersNikename;
+        [self.topView addSubview:self.searchBtn];
+        [self.topView addSubview:self.settingBtn];
+        [self.view addSubview:self.mainTableView];
+        [self subviewLayouts];
+    }
 }
 
 -(UITableView *)mainTableView{
@@ -97,16 +109,7 @@
         //mainTableView.backgroundColor = CLEAR_COLOR;
         mainTableView.contentInset = UIEdgeInsetsMake(initialHeight, 0, 0, 0);
         [mainTableView registerClass:[WeiboCell class] forCellReuseIdentifier:cellId];
-        LJCMeHeadView *headView = [[LJCMeHeadView alloc] initWithTableView:mainTableView initialHeight:initialHeight];
-        [headView setLocalUser:user];
-        [mainTableView addSubview:headView];
         
-        [headView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(mainTableView.mas_bottom).offset(-initialHeight);
-            make.left.equalTo(mainTableView.mas_left);
-            make.right.equalTo(mainTableView.mas_right);
-            make.bottom.equalTo(mainTableView.mas_top);
-        }];
         
         return _mainTableView = mainTableView;
     }

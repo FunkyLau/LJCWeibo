@@ -15,6 +15,8 @@
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSString *cellId;
     NSArray *messagesArr;
+    NSMutableArray *pullAnimationImages;
+    NSMutableArray *shakeAnimationImages;
 }
 @property (nonatomic,weak)UITableView *mainTableView;
 
@@ -27,6 +29,7 @@
     cellId = @"cell";
     //加载顶部按钮
     [self showTopBtn];
+    [self loadRefreshPics];
     Users *user = [[UserManager sharedInstance] loginedUser];
     if (!user) {
         user = [[Users alloc] init];
@@ -36,7 +39,6 @@
     //加载假数据
     [self loadInfomation];
     
-
     [self.navigationController setNavigationBarHidden:NO];
     
     [self.view addSubview:self.mainTableView];
@@ -103,6 +105,38 @@
     message2.messages_type = @"WEIBO_ONLY_TEXT";
     
     messagesArr = @[message1,message2];
+}
+
+-(void)loadRefreshPics{
+    pullAnimationImages = [NSMutableArray array];
+    shakeAnimationImages = [NSMutableArray array];
+    
+    NSArray *pullAnimationName = @[
+                                   @"icon_pull_animation_1",
+                                   @"icon_pull_animation_2",
+                                   @"icon_pull_animation_3",
+                                   @"icon_pull_animation_4",
+                                   @"icon_pull_animation_5"
+                                   ];
+    NSArray *shakeAnimationName = @[
+                                    @"icon_shake_animation_1",
+                                    @"icon_shake_animation_2",
+                                    @"icon_shake_animation_3",
+                                    @"icon_shake_animation_4",
+                                    @"icon_shake_animation_5",
+                                    @"icon_shake_animation_6",
+                                    @"icon_shake_animation_7",
+                                    @"icon_shake_animation_8"
+                                    ];
+    for (NSString *str in pullAnimationName) {
+        UIImage *image = [UIImage imageNamed:str];
+        [pullAnimationImages addObject:image];
+    }
+    
+    for (NSString *str in shakeAnimationName) {
+        UIImage *image = [UIImage imageNamed:str];
+        [shakeAnimationImages addObject:image];
+    }
 }
 
 #pragma mark UITableViewDelegate

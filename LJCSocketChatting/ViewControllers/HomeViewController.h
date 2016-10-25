@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeViewController : SuperViewController
+
+
+@interface HomeViewController :SuperViewController
 
 @end
