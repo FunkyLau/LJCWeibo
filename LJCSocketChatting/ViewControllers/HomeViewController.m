@@ -29,7 +29,7 @@
     cellId = @"cell";
     //加载顶部按钮
     [self showTopBtn];
-    [self loadRefreshPics];
+    //[self loadRefreshPics];
     Users *user = [[UserManager sharedInstance] loginedUser];
     if (!user) {
         user = [[Users alloc] init];

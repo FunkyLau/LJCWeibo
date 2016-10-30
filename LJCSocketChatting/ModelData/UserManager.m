@@ -207,7 +207,7 @@ withCompletionHandler:nil];
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         dicData = [responseStr jsonValueDecoded];
         if (error) {
-            handler(sucess,dicData);
+            //handler(sucess,dicData);
             DJLog(@"Error: %@", error);
             
         }else{

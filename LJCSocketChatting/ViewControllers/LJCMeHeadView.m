@@ -149,9 +149,9 @@ static NSString * const ObservedKeyPath = @"contentOffset";
 -(void)createSubviews{
     //self.backgroundColor = DEFAULT_COLOR;
     [self addSubview:self.backgroundImageView];
-    [self.backgroundImageView addSubview:self.sexAddrLabel];
-    [self.backgroundImageView addSubview:self.headImgView];
-    [self.backgroundImageView addSubview:self.profileView];
+    [self addSubview:self.sexAddrLabel];
+    [self addSubview:self.headImgView];
+    [self addSubview:self.profileView];
     @weakify(self)
     [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
@@ -161,22 +161,23 @@ static NSString * const ObservedKeyPath = @"contentOffset";
     }];
     [self.profileView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
-        make.left.equalTo(self.backgroundImageView.mas_left);
-        make.right.equalTo(self.backgroundImageView.mas_right);
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
         //make.top.equalTo(self.headImgView.mas_bottom).offset(10);
-        make.bottom.equalTo(self.backgroundImageView.mas_bottom).offset(-10);
+        make.bottom.equalTo(self.mas_bottom).offset(-10);
     }];
     [self.headImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
-        make.centerX.equalTo(self.backgroundImageView);
+        make.center.equalTo(self);
         //make.top.equalTo(self.sexAddrLabel.mas_bottom).offset(5);
         make.bottom.equalTo(self.profileView.mas_top).offset(-10);
+        make.size.mas_equalTo(CGSizeMake(40, 40));
     }];
     [self.sexAddrLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
-        make.centerX.equalTo(self.backgroundImageView);
-        make.bottom.equalTo(self.headImgView.mas_top).offset(-10);
-        make.top.equalTo(self.backgroundImageView.mas_top).offset(20);
+        make.centerX.equalTo(self);
+        //make.bottom.equalTo(self.headImgView.mas_top).offset(-10);
+        make.top.equalTo(self.mas_top).offset(20);
     }];
     
     

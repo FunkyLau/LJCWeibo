@@ -38,11 +38,24 @@
     //self.topView.backgroundColor = CLEAR_COLOR;
     //加载数据
     [self loadInfomation];
+    //取本地缓存信息
     user = [[UserManager sharedInstance] loginedUser];
-    //user = [Users new];
-    //user.usersNikename = @"乐一游劉";
+    //仅调试
+//    user = [Users new];
+//    user.usersNikename = @"乐一游劉";
     //user.userinfos
-    
+    if (!user) {
+        //user = [[UserManager sharedInstance] loginedUser];
+        LoginViewController *loginVC = [LoginViewController new];
+        loginVC.controllerState = LoginControlerState;
+        [self presentController:loginVC];
+    }else{
+        self.title = user.usersNikename;
+        [self.topView addSubview:self.searchBtn];
+        [self.topView addSubview:self.settingBtn];
+        [self.view addSubview:self.mainTableView];
+        [self subviewLayouts];
+    }
 }
 
 -(void)viewWillLayoutSubviews{
@@ -85,18 +98,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if (!user) {
-        user = [[UserManager sharedInstance] loginedUser];
-        LoginViewController *loginVC = [LoginViewController new];
-        loginVC.controllerState = LoginControlerState;
-        [self presentController:loginVC];
-    }else{
-        self.title = user.usersNikename;
-        [self.topView addSubview:self.searchBtn];
-        [self.topView addSubview:self.settingBtn];
-        [self.view addSubview:self.mainTableView];
-        [self subviewLayouts];
-    }
+    
 }
 
 -(UITableView *)mainTableView{
