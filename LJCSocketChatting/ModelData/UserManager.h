@@ -10,9 +10,6 @@
 @class AFURLSessionManager;
 @class Users;
 
-
-
-
 @interface UserManager : NSObject
 
 @property(nonatomic,strong)Users *loginedUser;

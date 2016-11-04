@@ -49,11 +49,6 @@
 //用户登录
 + (NSURLRequest *)loginRequest: (NSString *)phoneNumStr andPass:(NSString *)passStr{
     NSString *md5Pwd = [self md5HexDigest:passStr];
-//    NSString *urlStr = [NSString stringWithFormat:@"%@loginWithTelnum?telnum=%@&password=%@", SeverURL, phoneNumStr, md5Pwd];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
-//    [request setHTTPMethod:@"GET"];//POST
-//    request.timeoutInterval = kTimeoutInterval;
-//    return request;
     return
     [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST"
                                                   URLString:kLoginWithTel
@@ -65,13 +60,6 @@
 //注册
 + (NSURLRequest *)registerRequestWithNickName:(NSString *)nickName andPhoneNum: (NSString *)phoneNumStr andPass:(NSString *)passStr andVerCode:(NSString *)verCode{
     NSString *md5Pwd = [self md5HexDigest:passStr];
-    //NSString *urlStr = [[NSString stringWithFormat:@"%@register?telnum=%@&password=%@&nickname=%@&code=%@", SeverURL,phoneNumStr,md5Pwd, nickName,verCode] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    //NSString *urlStr = [[NSString stringWithFormat:@"%@register?telnum=%@&password=%@&nickname=%@&code=%@", SeverURL,phoneNumStr,md5Pwd, nickName,verCode] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];  //如仍不行则换上面的方法
-    //NSLog(@"%@",urlStr);
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
-//    [request setHTTPMethod:@"GET"];//POST
-//    request.timeoutInterval = kTimeoutInterval;
-    //NSString *urlStr = [[NSString stringWithFormat:@"%@register?telnum=%@&password=%@&nickname=%@&code=%@", SeverURL,phoneNumStr,md5Pwd, nickName,verCode] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     return
     [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST"
                                                   URLString:kRegistUser
@@ -80,7 +68,6 @@
                                                      @"nickname":nickName,
                                                      @"code":verCode}
                                                       error:nil];
-    //return request;
 }
 
 +(NSURLRequest *)userInfoChangeRequest:(NSString *)urlStr{
@@ -142,17 +129,6 @@
     NSString *urlStr = [NSString stringWithFormat:@"%@modifyPwd?telnum=%@&oldPwd=%@&newPwd=%@",SeverURL,userName,oldPassword,newPassword];
     return [self userInfoChangeRequest:urlStr];
 }
-//实名认证
-//+(NSURLRequest *)recognizeUsersTrueName:(NSString *)trueName andIdentityNumber:(NSString *)identityNumber andBankCardNumber:(NSString *)bankCardNum{
-//    NSString *telenum = [[UserManager sharedInstance] loginedUser].teleNum;
-//    //带中文编码
-//    NSString *urlStr = [[NSString stringWithFormat:@"%@appInterface/certifyPro?telnum=%@&name=%@&idNum=%@&bankNum=%@",Sever_URL,telenum,trueName,identityNumber,bankCardNum] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    NSMutableURLRequest *tempRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
-//
-//    [tempRequest setHTTPMethod:@"GET"];
-//    tempRequest.timeoutInterval = kTimeoutInterval;
-//    return tempRequest;
-//}
 
 //修改昵称(URL要修改)
 +(NSURLRequest *)changeNickName:(NSString *)nickName{
@@ -197,60 +173,6 @@
     [request setHTTPMethod:@"POST"];//POST
     request.timeoutInterval = kTimeoutInterval;
     return request;
-}
-
-//公安水纹
-+ (NSURLRequest *)policeWaveQueryWithName:(NSString *)queryName andIDNum:(NSString *)idNum{
-//    NSString *urlStr = [[NSString stringWithFormat:@"%@idCardWithPhoto?name=%@&idNum=%@",SeverURL,queryName,idNum] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    NSMutableURLRequest *tempRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
-//    [tempRequest setHTTPMethod:@"GET"];
-//    tempRequest.timeoutInterval = kTimeoutInterval;
-//    return tempRequest;
-    return
-    [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST"
-                                                  URLString:kGetPoliceWave
-                                                 parameters:@{@"name":queryName,@"idNum":idNum}
-                                                      error:nil];
-}
-//网络实名查询
-+ (NSURLRequest *)realNameQueryWithName:(NSDictionary *)realNameDict{
-//    NSString *urlStr = [NSString stringWithFormat:@"%@certifyPro?%@",SeverURL, [self dicToBody:realNameDict]] ;
-//    urlStr = [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-//    NSMutableURLRequest *tempRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
-//    [tempRequest setHTTPMethod:@"GET"];
-//    tempRequest.timeoutInterval = kTimeoutInterval;
-//    return tempRequest;
-    return
-    [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST"
-                                                  URLString:kRealName
-                                                 parameters:realNameDict
-                                                      error:nil];
-    
-}
-
-
-
-//个人对外投资
-+ (NSURLRequest *)queryPersonalInvestment:(NSDictionary *)dict{
-    NSMutableURLRequest *request =
-    [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
-                                                  URLString:[NSString stringWithFormat:@"%@personInvest",SeverURL]
-                                                 parameters:dict
-                                                      error:nil];
-    request.timeoutInterval = kTimeoutInterval;
-    return request;
-
-}
-
-
-
-//获取banner
-+(NSURLRequest *)bannerPictures{
-    NSString *urlStr = [NSString stringWithFormat:@"%@getBanner",SeverURL];
-    NSMutableURLRequest *tempRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
-    [tempRequest setHTTPMethod:@"POST"];
-    tempRequest.timeoutInterval = kTimeoutInterval;
-    return tempRequest;
 }
 
 /**
@@ -309,18 +231,26 @@
 }
 
 
-//查询消费记录
-+(NSURLRequest *)queryOrderPayList:(NSDictionary *)params{
+//获取新微博
++(NSURLRequest *)queryMessages:(NSDictionary *)params{
     NSMutableURLRequest *request =
     [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST"
-                URLString:[NSString stringWithFormat:@"%@queryProductUseInfoList",SeverURL]
+                URLString:kQueryMessages
             parameters:params
                 error:nil];
     return request;
-
 }
 
+//发新微博
++(NSURLRequest *)sendNewMessages:(NSDictionary *)params{
+    return
+    [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST"
+                                                         URLString:kSendMessages
+                                                        parameters:params
+                                                             error:nil];
+}
 
+//发送新微博
 
 
 +(NSURLRequest*)generalRequest:(NSString*)url

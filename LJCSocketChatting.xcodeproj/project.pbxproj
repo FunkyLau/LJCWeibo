@@ -11,6 +11,7 @@
 		E011D5FA1DB4713D00492815 /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E011D5F91DB4713D00492815 /* RegistViewController.m */; };
 		E01549A81DAA228900DD45D4 /* Stanford campus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E01549A71DAA228900DD45D4 /* Stanford campus.jpg */; };
 		E015BD0A1D59BE88002B898C /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = E015BD091D59BE88002B898C /* UIImage+RoundedCorner.m */; };
+		E01C34A61DCB170800992E41 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E01C34A51DCB170800992E41 /* MessageManager.m */; };
 		E0284D9C1D27D41400C4D28B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0284D9B1D27D41400C4D28B /* main.m */; };
 		E0284D9F1D27D41400C4D28B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0284D9E1D27D41400C4D28B /* AppDelegate.m */; };
 		E0284DA21D27D41400C4D28B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0284DA11D27D41400C4D28B /* ViewController.m */; };
@@ -245,6 +246,7 @@
 		E05F276B1DBF4E7E007C1673 /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E05F27661DBF4E7E007C1673 /* BaseCollectionViewController.m */; };
 		E05F276C1DBF4E7E007C1673 /* BaseTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E05F27681DBF4E7E007C1673 /* BaseTabBarViewController.m */; };
 		E05F276D1DBF4E7E007C1673 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E05F276A1DBF4E7E007C1673 /* BaseTableViewController.m */; };
+		E0642C311DC733C900F6EFBF /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0642C301DC733C900F6EFBF /* SettingsViewController.m */; };
 		E06639091D82B275005717AF /* LJCCustomField.m in Sources */ = {isa = PBXBuildFile; fileRef = E06639081D82B275005717AF /* LJCCustomField.m */; };
 		E079BC5D1D7EB9A800737E12 /* about_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E079B6A31D7EB99E00737E12 /* about_button.png */; };
 		E079BC5E1D7EB9A800737E12 /* about_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E079B6A41D7EB99E00737E12 /* about_button@2x.png */; };
@@ -1752,6 +1754,8 @@
 		E01549A71DAA228900DD45D4 /* Stanford campus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Stanford campus.jpg"; sourceTree = "<group>"; };
 		E015BD081D59BE88002B898C /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		E015BD091D59BE88002B898C /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		E01C34A41DCB170800992E41 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
+		E01C34A51DCB170800992E41 /* MessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageManager.m; sourceTree = "<group>"; };
 		E0284D971D27D41400C4D28B /* LJCSocketChatting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LJCSocketChatting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0284D9B1D27D41400C4D28B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E0284D9D1D27D41400C4D28B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -2203,6 +2207,8 @@
 		E05F27681DBF4E7E007C1673 /* BaseTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTabBarViewController.m; sourceTree = "<group>"; };
 		E05F27691DBF4E7E007C1673 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		E05F276A1DBF4E7E007C1673 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
+		E0642C2F1DC733C900F6EFBF /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		E0642C301DC733C900F6EFBF /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		E06639071D82B275005717AF /* LJCCustomField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJCCustomField.h; sourceTree = "<group>"; };
 		E06639081D82B275005717AF /* LJCCustomField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJCCustomField.m; sourceTree = "<group>"; };
 		E079B6A31D7EB99E00737E12 /* about_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about_button.png; sourceTree = "<group>"; };
@@ -4598,6 +4604,8 @@
 				E0BCCA661D4884B700E42BDA /* Users.m */,
 				E02851271D27DC7300C4D28B /* UserManager.h */,
 				E02851281D27DC7300C4D28B /* UserManager.m */,
+				E01C34A41DCB170800992E41 /* MessageManager.h */,
+				E01C34A51DCB170800992E41 /* MessageManager.m */,
 			);
 			path = ModelData;
 			sourceTree = "<group>";
@@ -6130,6 +6138,8 @@
 				E0BCC97A1D4714E800E42BDA /* MeViewController.m */,
 				E010D2D71D911029001DACA3 /* LJCMeHeadView.h */,
 				E010D2D81D911029001DACA3 /* LJCMeHeadView.m */,
+				E0642C2F1DC733C900F6EFBF /* SettingsViewController.h */,
+				E0642C301DC733C900F6EFBF /* SettingsViewController.m */,
 			);
 			name = "我";
 			sourceTree = "<group>";
@@ -7830,6 +7840,7 @@
 				E028508F1D27D44900C4D28B /* SDImageCache.m in Sources */,
 				E0BCCA581D48657500E42BDA /* WeiboCell.m in Sources */,
 				E02850961D27D44900C4D28B /* UIButton+WebCache.m in Sources */,
+				E0642C311DC733C900F6EFBF /* SettingsViewController.m in Sources */,
 				E02850EB1D27D44900C4D28B /* YYLabel.m in Sources */,
 				E028505D1D27D44900C4D28B /* MJRefreshBackFooter.m in Sources */,
 				E02850551D27D44900C4D28B /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
@@ -7979,6 +7990,7 @@
 				E0BCCA6A1D4884B700E42BDA /* Messages.m in Sources */,
 				E028504C1D27D44900C4D28B /* LXActionSheet.m in Sources */,
 				E02850381D27D44900C4D28B /* UIImage+Crop.m in Sources */,
+				E01C34A61DCB170800992E41 /* MessageManager.m in Sources */,
 				E028509C1D27D44900C4D28B /* UIView+WebCacheOperation.m in Sources */,
 				E02850661D27D44900C4D28B /* MJRefreshBackStateFooter.m in Sources */,
 				E028508D1D27D44900C4D28B /* MKAnnotationView+WebCache.m in Sources */,

@@ -58,7 +58,13 @@
     // 登录
     [self userLogin:userName
            password:password
-withCompletionHandler:nil];
+withCompletionHandler:^(BOOL succeeded, NSDictionary *dicData) {
+    if (succeeded) {
+        NSLog(@"自动登录成功");
+    }else{
+        
+    }
+}];
 
 }
 
@@ -80,7 +86,7 @@ withCompletionHandler:nil];
     
     NSURLRequest *request=[RequestGenerator registerRequestWithNickName:nickName andPhoneNum:phoneNum andPass:passStr andVerCode:verCode];
     NSURLSessionDataTask *dataTask = [_afManager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, NSData *_Nullable responseObject, NSError * _Nullable error) {
-        [PhoneNotification hideNotification];
+        //[PhoneNotification hideNotification];
         [[NSURLCache sharedURLCache] removeAllCachedResponses];
         [[NSURLCache sharedURLCache] setDiskCapacity:0];
         [[NSURLCache sharedURLCache] setMemoryCapacity:0];
@@ -93,19 +99,6 @@ withCompletionHandler:nil];
         }else{
             sucess = YES;
             handler(sucess, responseStr);
-            //NSData * data = [receiveStr dataUsingEncoding:NSUTF8StringEncoding];
-            
-            //NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-            
-            //responseStr = dic[@"resDesc"];
-            //NSUInteger retCode = [[dic objectForKey:@"resCode"] integerValue] ;
-//            if (retCode == 0) {
-//                sucess = YES;
-//                handler(sucess, responseStr);
-//            }else if(retCode == 1008){
-//                sucess = NO;
-//                handler(sucess, responseStr);
-//            }
         }
         
     }];
@@ -205,29 +198,35 @@ withCompletionHandler:nil];
         BOOL sucess = NO;
         NSDictionary *dicData = nil;
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        dicData = [responseStr jsonValueDecoded];
         if (error) {
             //handler(sucess,dicData);
             DJLog(@"Error: %@", error);
-            
         }else{
+            dicData = [responseStr jsonValueDecoded];
+            NSDictionary *resultDict = dicData[@"result"];
             // 保存用户名和密码
-            //登陆成功
-
-            [AppSettings setString:phoneNum
-                            forKey:StringKey_UserName];
-            [AppSettings setString:password
-                            forKey:StringKey_Password];
-            
-            sucess=YES;
-            Users *user = [Users modelWithDictionary:dicData];
-            
-            self.loginedUser = user;
-            //将用户信息写入文件
-            [[UserManager sharedInstance] savePathOfUserInfo];
-            if(handler){
-                handler(sucess, dicData);
+            if ([resultDict[@"resCode"] isEqualToString:@"0"]) {
+                //登陆成功
+                sucess=YES;
+                Users *user = [Users modelWithDictionary:dicData[@"object"]];
+                
+                self.loginedUser = user;
+                [AppSettings setString:phoneNum
+                                forKey:StringKey_UserName];
+                [AppSettings setString:password
+                                forKey:StringKey_Password];
+                //将用户信息写入文件
+                [[UserManager sharedInstance] savePathOfUserInfo];
+                if(handler){
+                    handler(sucess, dicData);
+                }
+            }else{
+                sucess = NO;
+                if (handler) {
+                    handler(sucess,dicData);
+                }
             }
+            
             //[PhoneNotification autoHideWithText:@"密码错误"];
             //[PhoneNotification autoHideWithText:@"用户不存在"];
         }

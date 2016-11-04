@@ -149,32 +149,36 @@ static NSString * const ObservedKeyPath = @"contentOffset";
 -(void)createSubviews{
     //self.backgroundColor = DEFAULT_COLOR;
     [self addSubview:self.backgroundImageView];
+    [self addSubview:self.visualEffectView];
     [self addSubview:self.sexAddrLabel];
     [self addSubview:self.headImgView];
     [self addSubview:self.profileView];
-    @weakify(self)
+    
     [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
+        
         make.edges.equalTo(self);
         //make.height.mas_equalTo(_initialHeight);
         make.size.mas_equalTo(CGSizeMake(kScreenWidth, _initialHeight));
     }];
+    [self.visualEffectView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self);
+    }];
     [self.profileView mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
+        
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
         //make.top.equalTo(self.headImgView.mas_bottom).offset(10);
         make.bottom.equalTo(self.mas_bottom).offset(-10);
     }];
     [self.headImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
+        
         make.center.equalTo(self);
         //make.top.equalTo(self.sexAddrLabel.mas_bottom).offset(5);
         make.bottom.equalTo(self.profileView.mas_top).offset(-10);
-        make.size.mas_equalTo(CGSizeMake(40, 40));
+        make.size.mas_equalTo(CGSizeMake(50, 50));
     }];
     [self.sexAddrLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
+        
         make.centerX.equalTo(self);
         //make.bottom.equalTo(self.headImgView.mas_top).offset(-10);
         make.top.equalTo(self.mas_top).offset(20);
@@ -214,10 +218,10 @@ static NSString * const ObservedKeyPath = @"contentOffset";
         sexAddrLabel.font = Font(12);
         sexAddrLabel.textColor = WHITE_COLOR;
         //Userinfo *userInfo = _localUser.userinfos[0];
-        Userinfo *userInfo = [Userinfo new];
-        userInfo.userinfo_sex = @"男";
-        userInfo.userinfo_address = @"江苏 南京";
-        sexAddrLabel.text = [NSString stringWithFormat:@"%@ %@",userInfo.userinfo_sex,userInfo.userinfo_address];
+//        Userinfo *userInfo = [Userinfo new];
+//        userInfo.userinfo_sex = @"男";
+//        userInfo.userinfo_address = @"江苏 南京";
+//        sexAddrLabel.text = [NSString stringWithFormat:@"%@ %@",userInfo.userinfo_sex,userInfo.userinfo_address];
         return _sexAddrLabel = sexAddrLabel;
     }
     return _sexAddrLabel;
@@ -228,7 +232,7 @@ static NSString * const ObservedKeyPath = @"contentOffset";
         UIImageView *headImgView = [UIImageView new];
         headImgView.layer.masksToBounds = YES;
         headImgView.layer.cornerRadius = 25;
-        headImgView.image = [YYImage imageNamed:@"mood_himonoonna_icon_no"];
+        //headImgView.image = [YYImage imageNamed:@"mood_himonoonna_icon_no"];
         return _headImgView = headImgView;
     }
     return _headImgView;
@@ -281,8 +285,20 @@ static NSString * const ObservedKeyPath = @"contentOffset";
     return _profileView;
 }
 
--(void)setImageWithImageName:(NSString *)imgName{
+-(void)setImageWithImageName:(NSString *)imgName {
     self.headImgView.image = [YYImage imageNamed:imgName];
+}
+
+-(void)loadUserInfo:(Users *)user{
+    Userinfo *userInfo = user.userinfos[0];
+    NSArray *headPics = user.pictureses;
+    if (headPics.count>0) {
+        self.headImgView.image = [YYImage imageNamed:headPics[0]];
+    }else{
+        self.headImgView.image = [YYImage imageNamed:@"mood_himonoonna_icon_no"];
+    }
+    
+    self.sexAddrLabel.text = [NSString stringWithFormat:@"%@ %@",userInfo.userinfo_sex,userInfo.userinfo_address];
 }
 
 - (void)dealloc {

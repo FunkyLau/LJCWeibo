@@ -21,6 +21,7 @@
     NSArray *messagesArr;
     Users *user;
     CGFloat initialHeight;
+    LJCMeHeadView *headView;
 }
 @property(nonatomic,weak)UITableView *mainTableView;
 //@property(nonatomic,weak)LJCMeHeadView *headView;
@@ -36,7 +37,7 @@
     cellId = @"cell";
     initialHeight = 200.f;
     //self.topView.backgroundColor = CLEAR_COLOR;
-    //加载数据
+    //加载微博假数据
     [self loadInfomation];
     //取本地缓存信息
     user = [[UserManager sharedInstance] loginedUser];
@@ -50,27 +51,10 @@
         loginVC.controllerState = LoginControlerState;
         [self presentController:loginVC];
     }else{
-        self.title = user.usersNikename;
         [self.topView addSubview:self.searchBtn];
         [self.topView addSubview:self.settingBtn];
         [self.view addSubview:self.mainTableView];
-        [self subviewLayouts];
-    }
-}
-
--(void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    
-}
-
--(void)subviewLayouts{
-    @weakify(self)
-    [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
-        UIEdgeInsets inset = UIEdgeInsetsMake(40,0,50,0);
-        make.edges.equalTo(self.view).insets(inset);
-        //make.edges.equalTo(self.view);
-        LJCMeHeadView *headView = [[LJCMeHeadView alloc] initWithTableView:self.mainTableView initialHeight:initialHeight];
+        headView = [[LJCMeHeadView alloc] initWithTableView:self.mainTableView initialHeight:initialHeight];
         [headView setLocalUser:user];
         [self.mainTableView addSubview:headView];
         
@@ -80,25 +64,47 @@
             make.right.equalTo(self.mainTableView.mas_right);
             make.bottom.equalTo(self.mainTableView.mas_top);
         }];
+        [self subviewLayouts];
+    }
+}
+
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //每次进入MeViewController都刷新user数据
+    if (!user) {
+        return;
+    }
+    self.title = user.usersNikename;
+    if (headView) {
+        [headView setLocalUser:user];
+        [headView loadUserInfo:user];
+    }
+}
+
+
+-(void)subviewLayouts{
+    [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        UIEdgeInsets inset = UIEdgeInsetsMake(40,0,50,0);
+        make.edges.equalTo(self.view).insets(inset);
+        //make.edges.equalTo(self.view);
+        
     }];
     [self.settingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
         make.top.equalTo(self.topView.mas_top).offset(5);
         make.right.equalTo(self.topView.mas_right).offset(-10);
         make.size.mas_equalTo(CGSizeMake(30, 30));
     }];
     [self.searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
         make.top.equalTo(self.topView.mas_top).offset(10);
         make.right.equalTo(self.settingBtn.mas_left).offset(-10);
         //make.left.equalTo(self.sexAddrLabel.mas_right);
         make.size.mas_equalTo(CGSizeMake(20, 20));
     }];
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
 }
 
 -(UITableView *)mainTableView{
@@ -111,7 +117,6 @@
         //mainTableView.backgroundColor = CLEAR_COLOR;
         mainTableView.contentInset = UIEdgeInsetsMake(initialHeight, 0, 0, 0);
         [mainTableView registerClass:[WeiboCell class] forCellReuseIdentifier:cellId];
-        
         
         return _mainTableView = mainTableView;
     }

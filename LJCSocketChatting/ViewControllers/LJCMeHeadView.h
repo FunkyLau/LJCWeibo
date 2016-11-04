@@ -13,6 +13,7 @@
 @interface LJCMeHeadView : UIView
 - (instancetype)initWithTableView:(UITableView *)tableView initialHeight:(CGFloat)height;
 -(void)setLocalUser:(Users *)localUser;
+-(void)loadUserInfo:(Users *)user;
 @end
 
 

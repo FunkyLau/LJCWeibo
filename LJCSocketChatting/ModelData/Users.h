@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+@class Userinfo;
+@class Messages;
+
 @interface Users : NSObject
 
 @property (nonatomic,assign) NSUInteger usersId;
@@ -15,8 +18,8 @@
 @property (nonatomic,copy) NSString *usersNikename;
 @property (nonatomic,strong) NSDateFormatter *usersTime;
 @property (nonatomic,assign) NSInteger *usersStatus;
-@property (nonatomic,strong) NSArray *userinfos;
-@property (nonatomic,strong) NSArray *messageses;
+@property (nonatomic,strong) NSArray<Userinfo *> *userinfos;
+@property (nonatomic,strong) NSArray<Messages *> *messageses;
 @property (nonatomic,strong) NSArray *pictureses;
 @property (nonatomic,strong) NSArray *collectionses;
 @property (nonatomic,strong) NSArray *commentses;

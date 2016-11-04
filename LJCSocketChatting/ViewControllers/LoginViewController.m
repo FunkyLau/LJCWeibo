@@ -194,7 +194,10 @@
     NSString *password = [_passwordField getInputText];
     [userManager userLogin:email password:password withCompletionHandler:^(BOOL succeeded, NSDictionary *dicData) {
         if (succeeded) {
+            
             [self dismissControllerAnimated];
+        }else{
+            [PhoneNotification autoHideWithText:dicData[@"result"]];
         }
     }];
 }
