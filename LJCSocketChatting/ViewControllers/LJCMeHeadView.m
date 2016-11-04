@@ -290,6 +290,7 @@ static NSString * const ObservedKeyPath = @"contentOffset";
 }
 
 -(void)loadUserInfo:(Users *)user{
+    //bug userinfo里是NSDictionary
     Userinfo *userInfo = user.userinfos[0];
     NSArray *headPics = user.pictureses;
     if (headPics.count>0) {

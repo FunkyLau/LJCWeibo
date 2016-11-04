@@ -45,25 +45,14 @@
 //    user = [Users new];
 //    user.usersNikename = @"乐一游劉";
     //user.userinfos
+    [self.topView addSubview:self.searchBtn];
+    [self.topView addSubview:self.settingBtn];
     if (!user) {
-        //user = [[UserManager sharedInstance] loginedUser];
         LoginViewController *loginVC = [LoginViewController new];
         loginVC.controllerState = LoginControlerState;
         [self presentController:loginVC];
     }else{
-        [self.topView addSubview:self.searchBtn];
-        [self.topView addSubview:self.settingBtn];
-        [self.view addSubview:self.mainTableView];
-        headView = [[LJCMeHeadView alloc] initWithTableView:self.mainTableView initialHeight:initialHeight];
-        [headView setLocalUser:user];
-        [self.mainTableView addSubview:headView];
-        
-        [headView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.mainTableView.mas_bottom).offset(-initialHeight);
-            make.left.equalTo(self.mainTableView.mas_left);
-            make.right.equalTo(self.mainTableView.mas_right);
-            make.bottom.equalTo(self.mainTableView.mas_top);
-        }];
+        [self showMainTableView];
         [self subviewLayouts];
     }
 }
@@ -76,8 +65,12 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     //每次进入MeViewController都刷新user数据
+    user = [[UserManager sharedInstance] loginedUser];
     if (!user) {
         return;
+    }
+    if (!self.mainTableView) {
+        [self showMainTableView];
     }
     self.title = user.usersNikename;
     if (headView) {
@@ -104,6 +97,20 @@
         make.right.equalTo(self.settingBtn.mas_left).offset(-10);
         //make.left.equalTo(self.sexAddrLabel.mas_right);
         make.size.mas_equalTo(CGSizeMake(20, 20));
+    }];
+}
+
+-(void)showMainTableView{
+    [self.view addSubview:self.mainTableView];
+    headView = [[LJCMeHeadView alloc] initWithTableView:self.mainTableView initialHeight:initialHeight];
+    [headView setLocalUser:user];
+    [self.mainTableView addSubview:headView];
+    
+    [headView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mainTableView.mas_bottom).offset(-initialHeight);
+        make.left.equalTo(self.mainTableView.mas_left);
+        make.right.equalTo(self.mainTableView.mas_right);
+        make.bottom.equalTo(self.mainTableView.mas_top);
     }];
 }
 
