@@ -18,7 +18,7 @@
 @property (nonatomic,copy) NSString *usersNikename;
 @property (nonatomic,strong) NSDateFormatter *usersTime;
 @property (nonatomic,assign) NSInteger *usersStatus;
-@property (nonatomic,strong) NSArray<Userinfo *> *userinfos;
+@property (nonatomic,strong) NSArray<NSDictionary *> *userinfos;
 @property (nonatomic,strong) NSArray<Messages *> *messageses;
 @property (nonatomic,strong) NSArray *pictureses;
 @property (nonatomic,strong) NSArray *collectionses;

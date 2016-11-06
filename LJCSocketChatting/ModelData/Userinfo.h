@@ -10,23 +10,23 @@
 
 @interface Userinfo : NSObject
 
-@property (nonatomic,copy) NSString *userinfo_id;
-@property (nonatomic,copy) NSString *userinfo_truename;
-@property (nonatomic,copy) NSString *userinfo_address;
-@property (nonatomic,copy) NSString *userinfo_sex;//性别
-@property (nonatomic,copy) NSString *userinfo_sexual;//性向
-@property (nonatomic,copy) NSString *userinfo_feeling;//是否已婚
-@property (nonatomic,copy) NSString *userinfo_birthday;
-@property (nonatomic,copy) NSString *userinfo_bloodtype;
-@property (nonatomic,copy) NSString *userinfo_blogurl;
-@property (nonatomic,copy) NSString *userinfo_realname;
-@property (nonatomic,copy) NSString *userinfo_intro;
-@property (nonatomic,copy) NSString *userinfo_email;
-@property (nonatomic,copy) NSString *userinfo_qqnumber;
-@property (nonatomic,copy) NSString *userinfo_messenger;//MSN
-@property (nonatomic,copy) NSString *userinfo_profession;//职业
-@property (nonatomic,copy) NSString *userinfo_label;//标签
-@property (nonatomic,assign) NSUInteger usersId;//对应用户ID
+@property (nonatomic,copy) NSString *userinfoId;
+@property (nonatomic,copy) NSString *userinfoTruename;
+@property (nonatomic,copy) NSString *userinfoAddress;
+@property (nonatomic,copy) NSString *userinfoSex;//性别
+@property (nonatomic,copy) NSString *userinfoSexual;//性向
+@property (nonatomic,copy) NSString *userinfoFeeling;//是否已婚
+@property (nonatomic,copy) NSString *userinfoBirthday;
+@property (nonatomic,copy) NSString *userinfoBloodtype;
+@property (nonatomic,copy) NSString *userinfoBlogurl;
+@property (nonatomic,copy) NSString *userinfoRealname;
+@property (nonatomic,copy) NSString *userinfoIntro;
+@property (nonatomic,copy) NSString *userinfoEmail;
+@property (nonatomic,copy) NSString *userinfoQqnumber;
+@property (nonatomic,copy) NSString *userinfoMessenger;//MSN
+@property (nonatomic,copy) NSString *userinfoProfession;//职业
+@property (nonatomic,copy) NSString *userinfoLabel;//标签
+@property (nonatomic,copy) NSString *users;//对应用户ID
 
 
 @end

@@ -291,7 +291,8 @@ static NSString * const ObservedKeyPath = @"contentOffset";
 
 -(void)loadUserInfo:(Users *)user{
     //bug userinfo里是NSDictionary
-    Userinfo *userInfo = user.userinfos[0];
+    NSDictionary *dict = user.userinfos[0];
+    Userinfo *userInfo = [Userinfo modelWithDictionary:dict];
     NSArray *headPics = user.pictureses;
     if (headPics.count>0) {
         self.headImgView.image = [YYImage imageNamed:headPics[0]];
@@ -299,7 +300,7 @@ static NSString * const ObservedKeyPath = @"contentOffset";
         self.headImgView.image = [YYImage imageNamed:@"mood_himonoonna_icon_no"];
     }
     
-    self.sexAddrLabel.text = [NSString stringWithFormat:@"%@ %@",userInfo.userinfo_sex,userInfo.userinfo_address];
+    self.sexAddrLabel.text = [NSString stringWithFormat:@"%@ %@",userInfo.userinfoSex,userInfo.userinfoAddress];
 }
 
 - (void)dealloc {

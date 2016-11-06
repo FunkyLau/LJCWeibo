@@ -69,7 +69,7 @@
     if (!user) {
         return;
     }
-    if (!self.mainTableView) {
+    if (!_mainTableView) {
         [self showMainTableView];
     }
     self.title = user.usersNikename;
