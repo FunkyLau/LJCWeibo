@@ -11,12 +11,17 @@
 #import "Messages.h"
 #import "Users.h"
 #import "UserManager.h"
+#import "SendWeiboViewController.h"
+#import "MessageManager.h"
+
 
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSString *cellId;
-    NSArray *messagesArr;
+    NSMutableArray *messagesArr;
     NSMutableArray *pullAnimationImages;
     NSMutableArray *shakeAnimationImages;
+    MessageManager *messageManager;
+    Users *user;
 }
 @property (nonatomic,weak)UITableView *mainTableView;
 
@@ -29,22 +34,23 @@
     cellId = @"cell";
     //加载顶部按钮
     [self showTopBtn];
+    messagesArr = [NSMutableArray array];
+    UserManager *userManager = [UserManager sharedInstance];
+    [userManager autoLogin];
+    
+//    if (!user) {
+//        user = [[Users alloc] init];
+//        user.usersNikename = @"乐一游劉";
+//    }
+    //[self setTitle:user.usersNikename];
+    
     //[self loadRefreshPics];
-    Users *user = [[UserManager sharedInstance] loginedUser];
-    if (!user) {
-        user = [[Users alloc] init];
-    }
-    user.usersNikename = @"乐一游劉";
-    [self setTitle:user.usersNikename];
-    //加载假数据
-    [self loadInfomation];
-    
     [self.navigationController setNavigationBarHidden:NO];
-    
     [self.view addSubview:self.mainTableView];
     [self.mainTableView registerClass:[WeiboCell class] forCellReuseIdentifier:cellId];
     //[self.mainTableView layoutIfNeeded];
     //[self.mainTableView reloadData];
+    [self loadRefreshPics];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -54,10 +60,7 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    @weakify(self)
     [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
-        
         UIEdgeInsets inset = UIEdgeInsetsMake(40,0,50,0);
         make.edges.equalTo(self.view).insets(inset);
         //make.edges.equalTo(self.view);
@@ -85,11 +88,13 @@
     }];
     
     [self.topRightButton setImage:btnImage forState:UIControlStateNormal];
+    [self.topRightButton addTarget:self action:@selector(forwardToSendMessage) forControlEvents:UIControlEventTouchUpInside];
     //button_icon_group   timeline_setting_lineheight_decrement_icon
     [self.topLeftButton setImage:[UIImage imageNamed:@"button_icon_group"] forState:UIControlStateNormal];
 }
 
 -(void)loadInfomation{
+    /*
     Messages * message1 = [Messages new];
     message1.users = [Users new];
     message1.users.usersNikename = @"大话西游";
@@ -103,8 +108,24 @@
     message2.messages_time = @"3小时前";
     message2.messages_info = @"本文不会花太长篇幅来描述这些 controller 的实现细节，只会重点关注在收发信息的过程，游戏状态和数据是怎么变化的。关于具体实现，请自行阅读 Github 上的源码。我们的插件刚启动的时候处于compact状态。这点空间并不够展示游戏的棋盘，在 iPhone 上尤其不够。我们可以简单粗暴地立即切换成expanded状态，但是苹果官方警告不要这么做，毕竟还是应该把控制权交给用户。";
     message2.messages_type = @"WEIBO_ONLY_TEXT";
-    
     messagesArr = @[message1,message2];
+    */
+    if (!messageManager) {
+        messageManager = [MessageManager sharedInstance];
+    }
+    NSString *from = @"0";
+    user = [[UserManager sharedInstance] loginedUser];
+
+    [messageManager queryNewMessageWithUserId:[NSString stringWithFormat:@"%lu",(unsigned long)user.usersId] andFromIndex:from andCompletionHandler:^(BOOL succeeded, NSArray *messages) {
+        if (succeeded) {
+            for (NSDictionary *messageDict in messages) {
+                Messages *message = [Messages modelWithDictionary:messageDict];
+                [messagesArr addObject:message];
+            }
+            
+            [self.mainTableView reloadData];
+        }
+    }];
 }
 
 -(void)loadRefreshPics{
@@ -137,6 +158,35 @@
         UIImage *image = [UIImage imageNamed:str];
         [shakeAnimationImages addObject:image];
     }
+    [self shouldAddPullToRefresh:YES];
+}
+
+
+- (void)shouldAddPullToRefresh:(BOOL)isAdd
+{
+    if (isAdd) {
+        MJRefreshGifHeader *header =
+        [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadInfomation)];
+        // 设置普通状态的动画图片
+        [header setImages:@[ [UIImage imageNamed:@"icon_transform_animation"] ] forState:MJRefreshStateIdle];
+        // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+        [header setImages:pullAnimationImages forState:MJRefreshStatePulling];
+        // 设置正在刷新状态的动画图片
+        [header setImages:shakeAnimationImages forState:MJRefreshStateRefreshing];
+        
+        header.lastUpdatedTimeLabel.hidden = YES;
+        header.stateLabel.hidden = YES;
+        // 设置header
+        self.mainTableView.mj_header = header;
+    } else {
+        self.mainTableView.mj_header = nil;
+    }
+}
+
+-(void)forwardToSendMessage{
+    SendWeiboViewController *sendingVC = [SendWeiboViewController new];
+    sendingVC.controllerState = LoginControlerState;
+    [self presentController:sendingVC];
 }
 
 #pragma mark UITableViewDelegate

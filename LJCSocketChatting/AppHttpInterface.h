@@ -70,7 +70,7 @@ static inline NSString* severURL(kSeverType sType) {
 // 只要在下面修改对应的服务器就可以了
 #if DEBUG
 
-static const int curSeverType = kServer_InternalDev;
+static const int curSeverType = kServer_Dev;
 #else
 static const int curSeverType = kServer_Dev;
 #endif
@@ -90,8 +90,8 @@ static const int curSeverType = kServer_Dev;
 #define kUpdateMyFollowCp [NSString stringWithFormat:@"%@updateMyFollowCp",SeverURL]    //变更我的关注
 
 // 我的产品
-#define kQueryMessages [NSString stringWithFormat:@"%@iosQueryMessages",SeverURL]    //获取全部订单
-#define kSendMessages [NSString stringWithFormat:@"%@iosSaveMessages",SeverURL]  //取消订单
+#define kQueryMessages [NSString stringWithFormat:@"%@MessagesAction_iosQueryMessages.action",SeverURL]    //获取全部订单
+#define kSendMessages [NSString stringWithFormat:@"%@MessagesAction_iosSaveMessages.action",SeverURL]  //取消订单
 #define kMyProduct [NSString stringWithFormat:@"%@queryMyProduct",SeverURL]
 #define kSaveProductOrder [NSString stringWithFormat:@"%@saveOrder",SeverURL]           // 保存产品订单
 #define kGetEntpriseComment [NSString stringWithFormat:@"%@getComment",SeverURL]            // 企业评论

@@ -10,6 +10,7 @@
 #import "RequestGenerator.h"
 #import "AFURLSessionManager.h"
 #import "Messages.h"
+#import "MJRefresh.h"
 
 @implementation MessageManager
 
@@ -53,8 +54,8 @@
     }];
     [task resume];
 }
-- (void)queryNewMessageWithUserId:(NSString *)userId andCompletionHandler:(void(^)(BOOL succeeded, NSString *response))handler{
-    NSDictionary *params = @{@"usersId":userId};
+- (void)queryNewMessageWithUserId:(NSString *)userId andFromIndex:(NSString *)from andCompletionHandler:(void(^)(BOOL succeeded, NSArray *messages))handler{
+    NSDictionary *params = @{@"usersId":userId,@"from":from};
     NSURLRequest *request = [RequestGenerator queryMessages:params];
     NSURLSessionTask *task = [_afManager dataTaskWithRequest:request
                                            completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error)
@@ -63,14 +64,18 @@
                                   [[NSURLCache sharedURLCache] setDiskCapacity:0];
                                   [[NSURLCache sharedURLCache] setMemoryCapacity:0];
                                   BOOL success = NO;
-                                  NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                                  NSDictionary *dicData = nil;
+                                  
+                                  //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                                   if (error) {
                                       DJLog(@"Error: %@", error);
-                                      responseStr = @"failed";
-                                      handler(success,responseStr);
+                                      [PhoneNotification autoHideWithText:@"网络异常，请检查网络"];
                                   }else{
                                       success = YES;
-                                      handler(success, responseStr);
+                                      dicData = [responseObject jsonValueDecoded];
+                                      NSDictionary *tempDict = dicData[@"object"];
+                                      NSArray *messagesArr = tempDict[@"messages"];
+                                      handler(success, messagesArr);
                                   }
                               }];
     [task resume];

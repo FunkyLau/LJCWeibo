@@ -155,6 +155,12 @@
         [settingBtn setImage:[UIImage imageNamed:@"button_icon_setting"] forState:UIControlStateNormal];
         return _settingBtn = settingBtn;
     }
+    
+//    if (!_settingBtn) {
+//        self.settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [self.settingBtn setImage:[UIImage imageNamed:@"button_icon_setting"] forState:UIControlStateNormal];
+//        
+//    }
     return _settingBtn;
 }
 

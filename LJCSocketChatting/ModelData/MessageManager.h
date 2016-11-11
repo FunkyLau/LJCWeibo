@@ -19,5 +19,5 @@
 //发送微博
 - (void)sendMessageWithUserId:(NSString *)userId andMessageInfo:(NSString *)messageInfo andCompletionHandler:(void(^)(BOOL succeeded, NSString *response))handler;
 //获取新微博
-- (void)queryNewMessageWithUserId:(NSString *)userId andCompletionHandler:(void(^)(BOOL succeeded, NSString *response))handler;
+- (void)queryNewMessageWithUserId:(NSString *)userId andFromIndex:(NSString *)from andCompletionHandler:(void(^)(BOOL succeeded, NSArray *messages))handler;
 @end

@@ -24,7 +24,8 @@
     self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 20, windowFrame.size.width, windowFrame.size.height-20)];
     //
     //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
+    //创建沙盒必要目录
+    [PathUtil ensureLocalDirsPresent];
     HomeViewController *homeVC = [HomeViewController new];
     DiscoverViewController *discoverVC = [DiscoverViewController new];
     MessageBoxViewController *msgBoxVC = [MessageBoxViewController new];

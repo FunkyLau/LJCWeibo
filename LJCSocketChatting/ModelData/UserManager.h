@@ -18,6 +18,8 @@
 +(UserManager *)sharedInstance;
 - (Users *)loginedUser;
 
+//自动登录
+-(void)autoLogin;
 // 是否登录
 - (BOOL)isLogined;
 - (void)savePathOfUserInfo;

@@ -242,6 +242,20 @@
 		E02851331D28A5FE00C4D28B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E02851321D28A5FE00C4D28B /* SystemConfiguration.framework */; };
 		E02851351D28A60F00C4D28B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E02851341D28A60F00C4D28B /* libsqlite3.tbd */; };
 		E029F71D1D8984E500A84950 /* UIButton+UIButtonImageWithLable.m in Sources */ = {isa = PBXBuildFile; fileRef = E029F71C1D8984E400A84950 /* UIButton+UIButtonImageWithLable.m */; };
+		E054F5C31DD1D0200024B273 /* icon_pull_animation_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E054F5B51DD1D0200024B273 /* icon_pull_animation_1@2x.png */; };
+		E054F5C41DD1D0200024B273 /* icon_pull_animation_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E054F5B61DD1D0200024B273 /* icon_pull_animation_2@2x.png */; };
+		E054F5C51DD1D0200024B273 /* icon_pull_animation_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E054F5B71DD1D0200024B273 /* icon_pull_animation_3@2x.png */; };
+		E054F5C61DD1D0200024B273 /* icon_pull_animation_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E054F5B81DD1D0200024B273 /* icon_pull_animation_4@2x.png */; };
+		E054F5C71DD1D0200024B273 /* icon_pull_animation_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E054F5B91DD1D0200024B273 /* icon_pull_animation_5@2x.png */; };
+		E054F5C81DD1D0200024B273 /* icon_shake_animation_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E054F5BA1DD1D0200024B273 /* icon_shake_animation_1@2x.png */; };
+		E054F5C91DD1D0200024B273 /* icon_shake_animation_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E054F5BB1DD1D0200024B273 /* icon_shake_animation_2@2x.png */; };
+		E054F5CA1DD1D0200024B273 /* icon_shake_animation_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E054F5BC1DD1D0200024B273 /* icon_shake_animation_3@2x.png */; };
+		E054F5CB1DD1D0200024B273 /* icon_shake_animation_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E054F5BD1DD1D0200024B273 /* icon_shake_animation_4@2x.png */; };
+		E054F5CC1DD1D0200024B273 /* icon_shake_animation_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E054F5BE1DD1D0200024B273 /* icon_shake_animation_5@2x.png */; };
+		E054F5CD1DD1D0200024B273 /* icon_shake_animation_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E054F5BF1DD1D0200024B273 /* icon_shake_animation_6@2x.png */; };
+		E054F5CE1DD1D0200024B273 /* icon_shake_animation_7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E054F5C01DD1D0200024B273 /* icon_shake_animation_7@2x.png */; };
+		E054F5CF1DD1D0200024B273 /* icon_shake_animation_8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E054F5C11DD1D0200024B273 /* icon_shake_animation_8@2x.png */; };
+		E054F5D01DD1D0200024B273 /* icon_transform_animation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E054F5C21DD1D0200024B273 /* icon_transform_animation@2x.png */; };
 		E05947CF1D82518100BEDAE0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E05947CE1D82518100BEDAE0 /* LoginViewController.m */; };
 		E05F276B1DBF4E7E007C1673 /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E05F27661DBF4E7E007C1673 /* BaseCollectionViewController.m */; };
 		E05F276C1DBF4E7E007C1673 /* BaseTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E05F27681DBF4E7E007C1673 /* BaseTabBarViewController.m */; };
@@ -2199,6 +2213,20 @@
 		E02851341D28A60F00C4D28B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E029F71B1D8984E400A84950 /* UIButton+UIButtonImageWithLable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+UIButtonImageWithLable.h"; sourceTree = "<group>"; };
 		E029F71C1D8984E400A84950 /* UIButton+UIButtonImageWithLable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+UIButtonImageWithLable.m"; sourceTree = "<group>"; };
+		E054F5B51DD1D0200024B273 /* icon_pull_animation_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pull_animation_1@2x.png"; sourceTree = "<group>"; };
+		E054F5B61DD1D0200024B273 /* icon_pull_animation_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pull_animation_2@2x.png"; sourceTree = "<group>"; };
+		E054F5B71DD1D0200024B273 /* icon_pull_animation_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pull_animation_3@2x.png"; sourceTree = "<group>"; };
+		E054F5B81DD1D0200024B273 /* icon_pull_animation_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pull_animation_4@2x.png"; sourceTree = "<group>"; };
+		E054F5B91DD1D0200024B273 /* icon_pull_animation_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pull_animation_5@2x.png"; sourceTree = "<group>"; };
+		E054F5BA1DD1D0200024B273 /* icon_shake_animation_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_shake_animation_1@2x.png"; sourceTree = "<group>"; };
+		E054F5BB1DD1D0200024B273 /* icon_shake_animation_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_shake_animation_2@2x.png"; sourceTree = "<group>"; };
+		E054F5BC1DD1D0200024B273 /* icon_shake_animation_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_shake_animation_3@2x.png"; sourceTree = "<group>"; };
+		E054F5BD1DD1D0200024B273 /* icon_shake_animation_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_shake_animation_4@2x.png"; sourceTree = "<group>"; };
+		E054F5BE1DD1D0200024B273 /* icon_shake_animation_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_shake_animation_5@2x.png"; sourceTree = "<group>"; };
+		E054F5BF1DD1D0200024B273 /* icon_shake_animation_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_shake_animation_6@2x.png"; sourceTree = "<group>"; };
+		E054F5C01DD1D0200024B273 /* icon_shake_animation_7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_shake_animation_7@2x.png"; sourceTree = "<group>"; };
+		E054F5C11DD1D0200024B273 /* icon_shake_animation_8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_shake_animation_8@2x.png"; sourceTree = "<group>"; };
+		E054F5C21DD1D0200024B273 /* icon_transform_animation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_transform_animation@2x.png"; sourceTree = "<group>"; };
 		E05947CD1D82518100BEDAE0 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E05947CE1D82518100BEDAE0 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E05F27651DBF4E7E007C1673 /* BaseCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewController.h; sourceTree = "<group>"; };
@@ -4625,6 +4653,27 @@
 			name = BaseClasses;
 			sourceTree = "<group>";
 		};
+		E054F5B41DD1D0200024B273 /* meituan */ = {
+			isa = PBXGroup;
+			children = (
+				E054F5B51DD1D0200024B273 /* icon_pull_animation_1@2x.png */,
+				E054F5B61DD1D0200024B273 /* icon_pull_animation_2@2x.png */,
+				E054F5B71DD1D0200024B273 /* icon_pull_animation_3@2x.png */,
+				E054F5B81DD1D0200024B273 /* icon_pull_animation_4@2x.png */,
+				E054F5B91DD1D0200024B273 /* icon_pull_animation_5@2x.png */,
+				E054F5BA1DD1D0200024B273 /* icon_shake_animation_1@2x.png */,
+				E054F5BB1DD1D0200024B273 /* icon_shake_animation_2@2x.png */,
+				E054F5BC1DD1D0200024B273 /* icon_shake_animation_3@2x.png */,
+				E054F5BD1DD1D0200024B273 /* icon_shake_animation_4@2x.png */,
+				E054F5BE1DD1D0200024B273 /* icon_shake_animation_5@2x.png */,
+				E054F5BF1DD1D0200024B273 /* icon_shake_animation_6@2x.png */,
+				E054F5C01DD1D0200024B273 /* icon_shake_animation_7@2x.png */,
+				E054F5C11DD1D0200024B273 /* icon_shake_animation_8@2x.png */,
+				E054F5C21DD1D0200024B273 /* icon_transform_animation@2x.png */,
+			);
+			path = meituan;
+			sourceTree = "<group>";
+		};
 		E05947CC1D824CB600BEDAE0 /* 登录注册 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4641,6 +4690,7 @@
 		E079B6A21D7EB99E00737E12 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				E054F5B41DD1D0200024B273 /* meituan */,
 				E01549A71DAA228900DD45D4 /* Stanford campus.jpg */,
 				E079B6A31D7EB99E00737E12 /* about_button.png */,
 				E079B6A41D7EB99E00737E12 /* about_button@2x.png */,
@@ -6315,6 +6365,7 @@
 				E079BDAC1D7EB9A800737E12 /* compose_photo_jigsaw@2x.png in Resources */,
 				E079BCE61D7EB9A800737E12 /* cam_button_camera@2x.png in Resources */,
 				E079C03E1D7EB9A800737E12 /* profile_icon_nearby@2x.png in Resources */,
+				E054F5C41DD1D0200024B273 /* icon_pull_animation_2@2x.png in Resources */,
 				E079C1251D7EB9A800737E12 /* timeline_more_button_comment@2x.png in Resources */,
 				E079C00F1D7EB9A800737E12 /* photo_icon_more@2x.png in Resources */,
 				E079BCE31D7EB9A800737E12 /* cam_button_cam_face.png in Resources */,
@@ -6430,6 +6481,7 @@
 				E079C0B91D7EB9A800737E12 /* sidebar_left_video_icon@2x.png in Resources */,
 				E079C1ED1D7EB9A800737E12 /* video_top_icon.png in Resources */,
 				E079BCB41D7EB9A800737E12 /* button_taobao@2x.png in Resources */,
+				E054F5C61DD1D0200024B273 /* icon_pull_animation_4@2x.png in Resources */,
 				E079C13E1D7EB9A800737E12 /* timeline_relationship_icon_addattention@3x.png in Resources */,
 				E079BD1A1D7EB9A800737E12 /* camera_icon_brightness@2x.png in Resources */,
 				E079BE0E1D7EB9A800737E12 /* detail_comment_input_shadow@2x.png in Resources */,
@@ -6453,6 +6505,7 @@
 				E079C1A81D7EB9A800737E12 /* trimRight.png in Resources */,
 				E079BD491D7EB9A800737E12 /* channel_icon_like_select.png in Resources */,
 				E079C0B61D7EB9A800737E12 /* sidebar_left_video_button.png in Resources */,
+				E054F5CE1DD1D0200024B273 /* icon_shake_animation_7@2x.png in Resources */,
 				E079BFE81D7EB9A800737E12 /* notify_like_photo_none@2x.png in Resources */,
 				E079BF2F1D7EB9A800737E12 /* lovemoment3_home_tab_icon_5@2x.png in Resources */,
 				E079C1CB1D7EB9A800737E12 /* user_verified_organization@3x.png in Resources */,
@@ -6780,11 +6833,13 @@
 				E079C0B71D7EB9A800737E12 /* sidebar_left_video_button@2x.png in Resources */,
 				E079C0761D7EB9A800737E12 /* search_icon@2x.png in Resources */,
 				E079BD871D7EB9A800737E12 /* compose_more_draft@3x.png in Resources */,
+				E054F5C51DD1D0200024B273 /* icon_pull_animation_3@2x.png in Resources */,
 				E079BC761D7EB9A800737E12 /* avatar_more.png in Resources */,
 				E079BECD1D7EB9A800737E12 /* Icon@2x.png in Resources */,
 				E079BF011D7EB9A800737E12 /* keyboard_segment_selected@x.png in Resources */,
 				E079BE791D7EB9A800737E12 /* download_normal_app.png in Resources */,
 				E079BDB31D7EB9A800737E12 /* compose_section_sp.png in Resources */,
+				E054F5CB1DD1D0200024B273 /* icon_shake_animation_4@2x.png in Resources */,
 				E079BF261D7EB9A800737E12 /* login_logo@3x.png in Resources */,
 				E079BE0A1D7EB9A800737E12 /* detail_comment_input_field.png in Resources */,
 				E079BD861D7EB9A800737E12 /* compose_more_draft@2x.png in Resources */,
@@ -6947,6 +7002,7 @@
 				E079BE7A1D7EB9A800737E12 /* download_normal_app@2x.png in Resources */,
 				E079C0B11D7EB9A800737E12 /* sidebar_left_theme@3x.png in Resources */,
 				E079C1C61D7EB9A800737E12 /* user_verified_daren.png in Resources */,
+				E054F5CF1DD1D0200024B273 /* icon_shake_animation_8@2x.png in Resources */,
 				E079BEC71D7EB9A800737E12 /* home_tab_icon_4@2x.png in Resources */,
 				E079C0691D7EB9A800737E12 /* right_arrow@2x.png in Resources */,
 				E079BD231D7EB9A800737E12 /* camera_icon_play.png in Resources */,
@@ -7044,6 +7100,7 @@
 				E079BC9C1D7EB9A800737E12 /* button_jd@2x.png in Resources */,
 				E079C0931D7EB9A800737E12 /* sidebar_icon_night.png in Resources */,
 				E079BCAD1D7EB9A800737E12 /* button_plus.png in Resources */,
+				E054F5CA1DD1D0200024B273 /* icon_shake_animation_3@2x.png in Resources */,
 				E079BF571D7EB9A800737E12 /* message_new_icon@2x.png in Resources */,
 				E079BC711D7EB9A800737E12 /* avatar_default.png in Resources */,
 				E079BCA21D7EB9A800737E12 /* button_music@2x.png in Resources */,
@@ -7251,6 +7308,7 @@
 				E079BF3A1D7EB9A800737E12 /* mask_navbar_shadow@2x.png in Resources */,
 				E079C08A1D7EB9A800737E12 /* setting_wifi_line@2x.png in Resources */,
 				E079BDA71D7EB9A800737E12 /* compose_photo_entrance_icon_pinco.png in Resources */,
+				E054F5CD1DD1D0200024B273 /* icon_shake_animation_6@2x.png in Resources */,
 				E079BD681D7EB9A800737E12 /* common_button_white.png in Resources */,
 				E079C12A1D7EB9A800737E12 /* timeline_more_button_fav_1.png in Resources */,
 				E079C20F1D7EB9A800737E12 /* weibo_map_toolbar_bt_locate_default.png in Resources */,
@@ -7353,6 +7411,7 @@
 				E079C00E1D7EB9A800737E12 /* photo_icon_more.png in Resources */,
 				E079BD421D7EB9A800737E12 /* Channel_FullScreen_Ad_320.png in Resources */,
 				E079BD581D7EB9A800737E12 /* channel_qrcode@3x.png in Resources */,
+				E054F5CC1DD1D0200024B273 /* icon_shake_animation_5@2x.png in Resources */,
 				E079BE141D7EB9A800737E12 /* detail_comment_pic_sp@2x.png in Resources */,
 				E079BD8B1D7EB9A800737E12 /* compose_more_input_method.png in Resources */,
 				E079BF141D7EB9A800737E12 /* login_back@2x.png in Resources */,
@@ -7385,6 +7444,7 @@
 				E079BFEE1D7EB9A800737E12 /* onepassword-button@2x.png in Resources */,
 				E079C0F31D7EB9A800737E12 /* timeline_avatar_home_mask.png in Resources */,
 				E079C1F91D7EB9A800737E12 /* web_icon_instapaper_ios6.png in Resources */,
+				E054F5C31DD1D0200024B273 /* icon_pull_animation_1@2x.png in Resources */,
 				E079BCD91D7EB9A800737E12 /* cam_button_0_1_icon_568h@2x.png in Resources */,
 				E079BC931D7EB9A800737E12 /* button_icon_setting@2x.png in Resources */,
 				E079BEAE1D7EB9A800737E12 /* guide_share_ select@2x.png in Resources */,
@@ -7393,6 +7453,7 @@
 				E079BDC01D7EB9A800737E12 /* compose_toolbar_4@3x.png in Resources */,
 				E079BFEA1D7EB9A800737E12 /* onepassword-button-light.png in Resources */,
 				E01549A81DAA228900DD45D4 /* Stanford campus.jpg in Resources */,
+				E054F5C81DD1D0200024B273 /* icon_shake_animation_1@2x.png in Resources */,
 				E079BC9D1D7EB9A800737E12 /* button_jd@3x.png in Resources */,
 				E079BC751D7EB9A800737E12 /* avatar_list_mask@3x.png in Resources */,
 				E079BFF31D7EB9A800737E12 /* onepassword-extension-light~compact.png in Resources */,
@@ -7569,6 +7630,7 @@
 				E079BCA31D7EB9A800737E12 /* button_music@3x.png in Resources */,
 				E079C0D31D7EB9A800737E12 /* theme_button@2x.png in Resources */,
 				E079BDEB1D7EB9A800737E12 /* darkknight3_home_tab_icon_5_selected@2x.png in Resources */,
+				E054F5C71DD1D0200024B273 /* icon_pull_animation_5@2x.png in Resources */,
 				E079BD031D7EB9A800737E12 /* cam_progress_bar_select.png in Resources */,
 				E079BE011D7EB9A800737E12 /* detail_button_like_on.png in Resources */,
 				E079BDC61D7EB9A800737E12 /* compose_toolbar_5_on@3x.png in Resources */,
@@ -7620,6 +7682,7 @@
 				E079BCF61D7EB9A800737E12 /* cam_button_video@2x.png in Resources */,
 				E079BD3D1D7EB9A800737E12 /* channel_add_button@2x.png in Resources */,
 				E079BFD81D7EB9A800737E12 /* nf_1_1.png in Resources */,
+				E054F5C91DD1D0200024B273 /* icon_shake_animation_2@2x.png in Resources */,
 				E079BD3C1D7EB9A800737E12 /* channel_add_button.png in Resources */,
 				E079BCFF1D7EB9A800737E12 /* cam_lomo_selected.png in Resources */,
 				E079BC851D7EB9A800737E12 /* button_clear_image@2x.png in Resources */,
@@ -7640,6 +7703,7 @@
 				E079BD571D7EB9A800737E12 /* channel_qrcode@2x.png in Resources */,
 				E079C0181D7EB9A800737E12 /* plus_banner_more@2x.png in Resources */,
 				E079BF621D7EB9A800737E12 /* mood_himonoonna_icon_no.png in Resources */,
+				E054F5D01DD1D0200024B273 /* icon_transform_animation@2x.png in Resources */,
 				E079C1951D7EB9A800737E12 /* toolbar_close@2x.png in Resources */,
 				E079BD301D7EB9A800737E12 /* camera_navbar_bg@2x.png in Resources */,
 				E079C1641D7EB9A800737E12 /* timeline_setting_full_screen_mood_disabled_icon.png in Resources */,

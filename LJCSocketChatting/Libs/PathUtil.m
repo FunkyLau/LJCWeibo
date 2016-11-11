@@ -121,15 +121,6 @@
     return [[self rootPathOfUser] stringByAppendingPathComponent:[NSString stringWithFormat:@"JUS%@.txt",queryName]];
 }
 
-
-// 司法信息查询历史记录
-+(NSString *)pathOfSearchHistory {
-    
-    return [[self rootPathOfUser] stringByAppendingPathComponent:@"seachHistory.txt"];
-}
-
-
-
 #pragma mark- Lib Banner path
 // Library/Banners/
 + (NSString*)rootPathOfBanner {

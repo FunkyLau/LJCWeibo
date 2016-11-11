@@ -25,7 +25,7 @@
 //        [sharedInstance performSelector:@selector(deserializeUserInfo) afterDelay:0.1f];
         sharedInstance.afManager.responseSerializer = [AFHTTPResponseSerializer serializer];
         // 自动登录
-        [sharedInstance autoLogin];
+        
     });
     return sharedInstance;
 }
@@ -70,10 +70,14 @@ withCompletionHandler:^(BOOL succeeded, NSDictionary *dicData) {
 
 - (Users *)loginedUser
 {
+    NSString *userFileStr = [PathUtil pathOfUserInfo];
+    NSString *userJSONStr = [[NSString alloc] initWithContentsOfFile:userFileStr encoding:NSUTF8StringEncoding error:nil];
+    Users *localUser = [Users modelWithJSON:userJSONStr];
+    
     if (_loginedUser && ![_loginedUser.usersEmail isEmptyOrBlank]) {
         return _loginedUser;
     }
-    return nil;
+    return _loginedUser = localUser;;
 }
 
 // 是否登录
@@ -170,7 +174,12 @@ withCompletionHandler:^(BOOL succeeded, NSDictionary *dicData) {
 {
     NSString *str = [PathUtil pathOfUserInfo];
     NSLog(@"%@",str);
-    [[_loginedUser modelToJSONString] writeToFile:str atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    NSString *modelStr = [_loginedUser modelToJSONString];
+    if ([modelStr writeToFile:str atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
+        NSLog(@"success");
+    }else{
+        NSLog(@"failed");
+    }
 }
 
 - (void)removeUserInfo:(void(^)(BOOL))result
