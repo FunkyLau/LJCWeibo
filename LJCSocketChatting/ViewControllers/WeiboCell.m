@@ -168,7 +168,7 @@
 -(UIView *)onlyTextView{
     UIView *contentsView = [UIView new];
     UILabel *contentTextView = [UILabel new];
-    contentTextView.text = _message.messages_info;
+    contentTextView.text = _message.messagesInfo;
     contentTextView.numberOfLines = 0;
     contentTextView.font = Font(12);
     [contentsView addSubview:contentTextView];
@@ -184,7 +184,7 @@
 -(UIView *)textPicView{
     UIView *contentsView = [UIView new];
     UILabel *contentTextView = [UILabel new];
-    contentTextView.text = _message.messages_info;
+    contentTextView.text = _message.messagesInfo;
     contentTextView.numberOfLines = 0;
     contentTextView.font = Font(12);
     [contentsView addSubview:contentTextView];
@@ -260,12 +260,11 @@
     
     self.headPicView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:_message.users.avatarImageURL]];
     self.nickNameLabel.text = _message.users.usersNikename;
-    self.timeLabel.text = _message.messages_time;
-    @weakify(self)
+    self.timeLabel.text = _message.messagesTime;
+    
     [self.contentView addSubview:self.contentsView];
     
     [self.headPicView mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
         make.left.equalTo(self.contentView.mas_left).offset(5);
         make.top.equalTo(self.contentView.mas_top).offset(10);
         make.size.mas_equalTo(CGSizeMake(40, 40));
@@ -273,21 +272,18 @@
     }];
     
     [self.nickNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
         make.left.equalTo(self.headPicView.mas_right).offset(10);
         make.top.equalTo(self.contentView.mas_top).offset(12);
         make.size.mas_equalTo(self.nickNameLabel.intrinsicContentSize);
     }];
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
         make.right.equalTo(self.contentView.mas_right).offset(-10);
         make.top.equalTo(self.contentView.mas_top).offset(10);
         make.size.mas_equalTo(self.timeLabel.intrinsicContentSize);
     }];
     
     [self.contentsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
         make.left.equalTo(self.headPicView.mas_right).offset(10);
         make.right.equalTo(self.contentView.mas_right).offset(-10);
         make.top.equalTo(self.nickNameLabel.mas_bottom).offset(5);
@@ -295,7 +291,6 @@
     }];
     
     [self.bottomBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
         make.left.equalTo(self.nickNameLabel);
         make.right.equalTo(self.contentView.mas_right).offset(-20);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);

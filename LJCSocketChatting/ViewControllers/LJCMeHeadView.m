@@ -161,7 +161,7 @@ static NSString * const ObservedKeyPath = @"contentOffset";
         make.size.mas_equalTo(CGSizeMake(kScreenWidth, _initialHeight));
     }];
     [self.visualEffectView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self);
+        make.edges.equalTo(self.backgroundImageView);
     }];
     [self.profileView mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -175,13 +175,13 @@ static NSString * const ObservedKeyPath = @"contentOffset";
         make.center.equalTo(self);
         //make.top.equalTo(self.sexAddrLabel.mas_bottom).offset(5);
         make.bottom.equalTo(self.profileView.mas_top).offset(-10);
-        make.size.mas_equalTo(CGSizeMake(50, 50));
+        make.size.mas_equalTo(CGSizeMake(60, 60));
     }];
     [self.sexAddrLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.centerX.equalTo(self);
         //make.bottom.equalTo(self.headImgView.mas_top).offset(-10);
-        make.top.equalTo(self.mas_top).offset(20);
+        make.top.equalTo(self.mas_top).offset(60);
     }];
     
     
@@ -199,7 +199,7 @@ static NSString * const ObservedKeyPath = @"contentOffset";
             // Aligned background image view's bottom with bottom of its superview
             frame.origin.y = self.initialHeight - height;
             self.backgroundImageView.frame = frame;
-            
+            self.visualEffectView.frame = frame;
         }
     }
     else {
@@ -231,7 +231,9 @@ static NSString * const ObservedKeyPath = @"contentOffset";
     if (!_headImgView) {
         UIImageView *headImgView = [UIImageView new];
         headImgView.layer.masksToBounds = YES;
-        headImgView.layer.cornerRadius = 25;
+        headImgView.layer.cornerRadius = 30;
+        headImgView.layer.borderWidth = 1;
+        headImgView.layer.borderColor = [WHITE_COLOR CGColor];
         //headImgView.image = [YYImage imageNamed:@"mood_himonoonna_icon_no"];
         return _headImgView = headImgView;
     }

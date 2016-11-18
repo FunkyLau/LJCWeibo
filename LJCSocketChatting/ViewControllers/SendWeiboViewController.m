@@ -11,12 +11,12 @@
 #import "Users.h"
 #import "UserManager.h"
 
-@interface SendWeiboViewController ()<UITextFieldDelegate>{
+@interface SendWeiboViewController ()<UITextViewDelegate>{
     NSInteger typeNum;
     MessageManager *messageManager;
 }
-
-@property (nonatomic,weak)UITextField *inputField;
+@property (nonatomic,weak)UITextView *inputTextView;
+//@property (nonatomic,weak)UITextField *inputField;
 @property (nonatomic,weak)UIStackView *inputToolsStackView;
 @property (nonatomic,weak)UILabel *typeNumLabel;
 @end
@@ -31,6 +31,14 @@
     [self.topRightButton setTitle:@"发送" forState:UIControlStateNormal];
     [self.topRightButton addTarget:self action:@selector(sendWeibo) forControlEvents:UIControlEventTouchUpInside];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeContentViewPoint:) name:UIKeyboardWillShowNotification object:nil];
+    [self.inputTextView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.top.equalTo(self.topView.mas_bottom);
+        make.height.mas_equalTo(100);
+        //make.bottom.equalTo(self.inputToolsStackView);
+    }];
+    /*
     [self.inputField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
@@ -38,6 +46,7 @@
         make.height.mas_equalTo(100);
         //make.bottom.equalTo(self.inputToolsStackView);
     }];
+     */
     [self.inputToolsStackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
@@ -58,18 +67,32 @@
     [super viewWillLayoutSubviews];
     
 }
-
+/*
 - (UITextField *)inputField{
     if (!_inputField) {
         UITextField *inputField = [UITextField new];
         inputField.placeholder = @"写微博...";
         inputField.delegate = self;
+        //inputField.borderStyle = UITextBorderStyleRoundedRect;
         [self.view addSubview:inputField];
         self.inputField = inputField;
     }
     return _inputField;
 }
+*/
 
+-(UITextView *)inputTextView{
+    if (!_inputTextView) {
+        UITextView *inputView = [UITextView new];
+        inputView.font = Font(14);
+        inputView.textColor = GRAY_COLOR;
+        inputView.delegate = self;
+        [self.view addSubview:inputView];
+        self.inputTextView = inputView;
+    }
+    return _inputTextView;
+}
+ 
 - (UIStackView *)inputToolsStackView{
     if (!_inputToolsStackView) {
         UIButton *cameraBtn = [self createInputToolWithImageName:@"compose_toolbar_1"];
@@ -125,7 +148,6 @@
         [UIView setAnimationBeginsFromCurrentState:YES];
         [UIView setAnimationCurve:[curve intValue]];
         self.inputToolsStackView.center = CGPointMake(self.inputToolsStackView.centerX, keyBoardEndY-self.topBarHeight-self.inputToolsStackView.bounds.size.height/2.0);//keyBoardEndY的坐标包含了状态栏的高度，要减去
-        
     }];
 }
 
@@ -137,16 +159,25 @@
     Users *loginUser = [[UserManager sharedInstance] loginedUser];
     NSString *userIdStr = [NSString stringWithFormat:@"%ld",loginUser.usersId];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [messageManager sendMessageWithUserId:userIdStr andMessageInfo:self.inputTextView.text andCompletionHandler:^(BOOL succeeded, NSString *response) {
+        if (succeeded) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self closeSendingWindow];
+        }
+    }];
+    
+    /*
     [messageManager sendMessageWithUserId:userIdStr andMessageInfo:self.inputField.text andCompletionHandler:^(BOOL succeeded, NSString *response) {
         if (succeeded) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self closeSendingWindow];
         }
     }];
+     */
 }
 
 #pragma mark UITextFieldDelegate
-
+/*
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     
     return YES;
@@ -166,4 +197,23 @@
     }
     return inputLength < 140;
 }
+
+*/
+#pragma mark UITextViewDelegate
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if (range.length + range.location > textView.text.length) {
+        
+        return NO;
+    }
+    NSUInteger inputLength = [textView.text length] + [text length] - range.length;
+    typeNum = 140-inputLength;
+    self.typeNumLabel.text = [NSString stringWithFormat:@"%ld",(unsigned long)typeNum];
+    if (typeNum <= 0) {
+        [PhoneNotification autoHideWithText:@"不可以再输入了哦~"];
+    }
+    return inputLength < 140;
+    
+}
+
 @end

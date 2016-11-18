@@ -98,6 +98,11 @@
 + (NSString*)rootPathOfUser {
     return [[self documentsPath] stringByAppendingPathComponent:kUserDir];
 }
+
++(NSString *)pathOfCacheMessages{
+    return [[self rootPathOfUser] stringByAppendingPathComponent:@"messages.txt"];
+}
+
 // document/User/
 + (NSString*)pathOfUserInfo
 {

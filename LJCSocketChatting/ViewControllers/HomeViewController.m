@@ -18,8 +18,7 @@
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSString *cellId;
     NSMutableArray *messagesArr;
-    NSMutableArray *pullAnimationImages;
-    NSMutableArray *shakeAnimationImages;
+    
     MessageManager *messageManager;
     Users *user;
 }
@@ -34,7 +33,7 @@
     cellId = @"cell";
     //加载顶部按钮
     [self showTopBtn];
-    messagesArr = [NSMutableArray array];
+    
     UserManager *userManager = [UserManager sharedInstance];
     [userManager autoLogin];
     
@@ -48,9 +47,12 @@
     [self.navigationController setNavigationBarHidden:NO];
     [self.view addSubview:self.mainTableView];
     [self.mainTableView registerClass:[WeiboCell class] forCellReuseIdentifier:cellId];
+    self.tableView = self.mainTableView;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     //[self.mainTableView layoutIfNeeded];
     //[self.mainTableView reloadData];
     [self loadRefreshPics];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -76,21 +78,28 @@
         tableView.dataSource = self;
         //tableView.rowHeight = UITableViewAutomaticDimension;
         tableView.estimatedRowHeight = 120.f;
+        tableView.tableFooterView = [UIView new];
         return _mainTableView = tableView;
     }
     return _mainTableView;
 }
 
 -(void)showTopBtn{
-    UIImage *btnImage = [YYImage imageNamed:@"mask_timeline_top_icon_2"];
-    btnImage = [UIImage imageWithSize:CGSizeMake(34, 34) drawBlock:^(CGContextRef context) {
-        [btnImage drawInRect:CGRectMake(0, 0, 34, 34) withContentMode:UIViewContentModeScaleAspectFill clipsToBounds:YES];
+    UIImage *rtBtnImage = [YYImage imageNamed:@"sendweibo@2x"];
+    rtBtnImage = [YYImage imageWithSize:CGSizeMake(34, 36) drawBlock:^(CGContextRef context) {
+        [rtBtnImage drawInRect:CGRectMake(0, 0, 34, 36) withContentMode:UIViewContentModeScaleAspectFill clipsToBounds:YES];
     }];
     
-    [self.topRightButton setImage:btnImage forState:UIControlStateNormal];
+    [self.topRightButton setImage:rtBtnImage forState:UIControlStateNormal];
     [self.topRightButton addTarget:self action:@selector(forwardToSendMessage) forControlEvents:UIControlEventTouchUpInside];
     //button_icon_group   timeline_setting_lineheight_decrement_icon
-    [self.topLeftButton setImage:[UIImage imageNamed:@"button_icon_group"] forState:UIControlStateNormal];
+    
+    
+    UIImage *ltBtnImage = [YYImage imageNamed:@"menu@2x"];
+    ltBtnImage = [YYImage imageWithSize:CGSizeMake(20, 34) drawBlock:^(CGContextRef context) {
+        [ltBtnImage drawInRect:CGRectMake(0, 0, 20, 34) withContentMode:UIViewContentModeScaleAspectFit clipsToBounds:YES];
+    }];
+    [self.topLeftButton setImage:ltBtnImage forState:UIControlStateNormal];
 }
 
 -(void)loadInfomation{
@@ -118,70 +127,51 @@
 
     [messageManager queryNewMessageWithUserId:[NSString stringWithFormat:@"%lu",(unsigned long)user.usersId] andFromIndex:from andCompletionHandler:^(BOOL succeeded, NSArray *messages) {
         if (succeeded) {
+            messagesArr = [NSMutableArray array];
             for (NSDictionary *messageDict in messages) {
                 Messages *message = [Messages modelWithDictionary:messageDict];
                 [messagesArr addObject:message];
             }
             
+            [self endRefresh];
             [self.mainTableView reloadData];
+            //[self cacheTheLatestMessages];
+//            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//                
+//                dispatch_sync(dispatch_get_main_queue(), ^{
+//                    
+//                });
+//            });
+            
+            
         }
     }];
 }
 
--(void)loadRefreshPics{
-    pullAnimationImages = [NSMutableArray array];
-    shakeAnimationImages = [NSMutableArray array];
-    
-    NSArray *pullAnimationName = @[
-                                   @"icon_pull_animation_1",
-                                   @"icon_pull_animation_2",
-                                   @"icon_pull_animation_3",
-                                   @"icon_pull_animation_4",
-                                   @"icon_pull_animation_5"
-                                   ];
-    NSArray *shakeAnimationName = @[
-                                    @"icon_shake_animation_1",
-                                    @"icon_shake_animation_2",
-                                    @"icon_shake_animation_3",
-                                    @"icon_shake_animation_4",
-                                    @"icon_shake_animation_5",
-                                    @"icon_shake_animation_6",
-                                    @"icon_shake_animation_7",
-                                    @"icon_shake_animation_8"
-                                    ];
-    for (NSString *str in pullAnimationName) {
-        UIImage *image = [UIImage imageNamed:str];
-        [pullAnimationImages addObject:image];
-    }
-    
-    for (NSString *str in shakeAnimationName) {
-        UIImage *image = [UIImage imageNamed:str];
-        [shakeAnimationImages addObject:image];
-    }
-    [self shouldAddPullToRefresh:YES];
-}
-
-
-- (void)shouldAddPullToRefresh:(BOOL)isAdd
-{
-    if (isAdd) {
-        MJRefreshGifHeader *header =
-        [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadInfomation)];
-        // 设置普通状态的动画图片
-        [header setImages:@[ [UIImage imageNamed:@"icon_transform_animation"] ] forState:MJRefreshStateIdle];
-        // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
-        [header setImages:pullAnimationImages forState:MJRefreshStatePulling];
-        // 设置正在刷新状态的动画图片
-        [header setImages:shakeAnimationImages forState:MJRefreshStateRefreshing];
+-(void) cacheTheLatestMessages{
+    if (messagesArr) {
+        NSDictionary *dict = @{@"messages":messagesArr};
+        NSError *error;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:&error];//crashes
+        NSString *dictStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         
-        header.lastUpdatedTimeLabel.hidden = YES;
-        header.stateLabel.hidden = YES;
-        // 设置header
-        self.mainTableView.mj_header = header;
-    } else {
-        self.mainTableView.mj_header = nil;
+        NSLog(@"%@",[PathUtil pathOfCacheMessages]);
+        if ([dictStr writeToFile:[PathUtil pathOfCacheMessages] atomically:YES encoding:NSUTF8StringEncoding error:&error]) {
+            NSLog(@"success");
+            
+        }else{
+            NSLog(@"write cache failed");
+        }
+        
     }
 }
+
+
+-(void)endRefresh{
+    [self.tableView.mj_header endRefreshing];
+    //[self.mainTableView.mj_footer endRefreshing];
+}
+
 
 -(void)forwardToSendMessage{
     SendWeiboViewController *sendingVC = [SendWeiboViewController new];
@@ -216,8 +206,8 @@
      */
     Messages *message = messagesArr[indexPath.row];
     
-    if ([message.messages_type isEqualToString:@"WEIBO_TEXT_PIC"]) {
-        cell.weiboType = WEIBO_TEXT_PIC;
+    if (message.pictureses.count == 0) {
+        cell.weiboType = WEIBO_ONLY_TEXT;
     }
     
     [cell bindCellDataWithMessage:message];

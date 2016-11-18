@@ -9,18 +9,23 @@
 #import <Foundation/Foundation.h>
 @class Users;
 @interface Messages : NSObject
-@property(nonatomic,assign)NSUInteger messages_id;
-@property (nonatomic, strong) NSString *messages_type;
-@property (nonatomic, strong) NSString *messages_contentType;
-@property (nonatomic, strong) NSString *messages_info;
-@property (nonatomic, strong) NSString *messages_time;
-@property (nonatomic, strong) NSString *messages_collectnum;
-@property (nonatomic, strong) NSString *messages_commentnum;
-@property (nonatomic, strong) NSString *messages_transpondnum;
-@property (nonatomic, strong) NSString *messages_agreenum;
-@property (nonatomic, strong) NSString *messages_readnum;
-@property (nonatomic, strong) NSString *messages_label;
+@property(nonatomic,copy)NSString *messagesId;
+@property (nonatomic, copy) NSString *messagesType;
+//@property (nonatomic, strong) NSString *messages_contentType;
+@property (nonatomic, copy) NSString *messagesInfo;
+@property (nonatomic, copy) NSString *messagesTime;
+@property (nonatomic, copy) NSString *messagesCollectnum;
+@property (nonatomic, copy) NSString *messagesCommentnum;
+@property (nonatomic, copy) NSString *messagesTranspondnum;
+@property (nonatomic, copy) NSString *messagesAgreenum;
+@property (nonatomic, copy) NSString *messagesReadnum;
+@property (nonatomic, copy) NSString *messagesLabel;
 @property (nonatomic, strong) Users *users;
+@property (nonatomic, strong) NSArray *pictureses;
+@property (nonatomic, strong) NSArray *commentses;
+@property (nonatomic, strong) NSArray *collectionses;
+@property (nonatomic, strong) NSArray *atuserses;
+
 
 - (instancetype)initWithAttributes:(NSDictionary *)attributes;
 

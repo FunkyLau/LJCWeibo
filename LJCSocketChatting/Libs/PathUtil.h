@@ -27,6 +27,8 @@
 
 + (NSString*)rootPathOfUser;
 
+//首页缓存messages
++(NSString *)pathOfCacheMessages;
 //用户信息列表
 + (NSString*)pathOfUserInfo;
 

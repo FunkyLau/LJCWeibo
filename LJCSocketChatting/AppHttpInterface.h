@@ -41,9 +41,9 @@ static inline NSString* severURL(kSeverType sType) {
         }
         else if(sType == kServer_Test) {
             /**
-             * 测试环境
+             * 公司公网
              */
-            url = @"http://218.2.208.50:55289/appInterface/";
+            url = @"http://58.213.74.122/weibo2/";
         }
         else if(sType == kServer_OLTest) {
             /**

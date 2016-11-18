@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E00E1B5F1DDC36160048C170 /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E00E1B5E1DDC36160048C170 /* menu@2x.png */; };
+		E00E1B611DDC37100048C170 /* sendweibo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E00E1B601DDC37100048C170 /* sendweibo@2x.png */; };
+		E00E1B641DDC44C90048C170 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E00E1B621DDC44C90048C170 /* search@2x.png */; };
+		E00E1B651DDC44C90048C170 /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E00E1B631DDC44C90048C170 /* settings@2x.png */; };
 		E010D2D91D911029001DACA3 /* LJCMeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = E010D2D81D911029001DACA3 /* LJCMeHeadView.m */; };
 		E011D5FA1DB4713D00492815 /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E011D5F91DB4713D00492815 /* RegistViewController.m */; };
 		E01549A81DAA228900DD45D4 /* Stanford campus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E01549A71DAA228900DD45D4 /* Stanford campus.jpg */; };
@@ -262,6 +266,7 @@
 		E05F276D1DBF4E7E007C1673 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E05F276A1DBF4E7E007C1673 /* BaseTableViewController.m */; };
 		E0642C311DC733C900F6EFBF /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0642C301DC733C900F6EFBF /* SettingsViewController.m */; };
 		E06639091D82B275005717AF /* LJCCustomField.m in Sources */ = {isa = PBXBuildFile; fileRef = E06639081D82B275005717AF /* LJCCustomField.m */; };
+		E073AC6A1DDF029A006283CB /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E073AC691DDF029A006283CB /* LeftViewController.m */; };
 		E079BC5D1D7EB9A800737E12 /* about_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E079B6A31D7EB99E00737E12 /* about_button.png */; };
 		E079BC5E1D7EB9A800737E12 /* about_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E079B6A41D7EB99E00737E12 /* about_button@2x.png */; };
 		E079BC5F1D7EB9A800737E12 /* about_button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E079B6A51D7EB99E00737E12 /* about_button@3x.png */; };
@@ -1761,6 +1766,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E00E1B5E1DDC36160048C170 /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@2x.png"; sourceTree = "<group>"; };
+		E00E1B601DDC37100048C170 /* sendweibo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sendweibo@2x.png"; sourceTree = "<group>"; };
+		E00E1B621DDC44C90048C170 /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
+		E00E1B631DDC44C90048C170 /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		E010D2D71D911029001DACA3 /* LJCMeHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJCMeHeadView.h; sourceTree = "<group>"; };
 		E010D2D81D911029001DACA3 /* LJCMeHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJCMeHeadView.m; sourceTree = "<group>"; };
 		E011D5F81DB4713D00492815 /* RegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistViewController.h; sourceTree = "<group>"; };
@@ -2239,6 +2248,8 @@
 		E0642C301DC733C900F6EFBF /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		E06639071D82B275005717AF /* LJCCustomField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJCCustomField.h; sourceTree = "<group>"; };
 		E06639081D82B275005717AF /* LJCCustomField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJCCustomField.m; sourceTree = "<group>"; };
+		E073AC681DDF029A006283CB /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
+		E073AC691DDF029A006283CB /* LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
 		E079B6A31D7EB99E00737E12 /* about_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about_button.png; sourceTree = "<group>"; };
 		E079B6A41D7EB99E00737E12 /* about_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about_button@2x.png"; sourceTree = "<group>"; };
 		E079B6A51D7EB99E00737E12 /* about_button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about_button@3x.png"; sourceTree = "<group>"; };
@@ -4690,6 +4701,10 @@
 		E079B6A21D7EB99E00737E12 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				E00E1B621DDC44C90048C170 /* search@2x.png */,
+				E00E1B631DDC44C90048C170 /* settings@2x.png */,
+				E00E1B601DDC37100048C170 /* sendweibo@2x.png */,
+				E00E1B5E1DDC36160048C170 /* menu@2x.png */,
 				E054F5B41DD1D0200024B273 /* meituan */,
 				E01549A71DAA228900DD45D4 /* Stanford campus.jpg */,
 				E079B6A31D7EB99E00737E12 /* about_button.png */,
@@ -6218,6 +6233,8 @@
 				E0BCCA551D48654400E42BDA /* 微博cell */,
 				E0CB1BFE1D4700D4009D33FF /* HomeViewController.h */,
 				E0CB1BFF1D4700D4009D33FF /* HomeViewController.m */,
+				E073AC681DDF029A006283CB /* LeftViewController.h */,
+				E073AC691DDF029A006283CB /* LeftViewController.m */,
 			);
 			name = "首页";
 			sourceTree = "<group>";
@@ -6855,6 +6872,7 @@
 				E079BCB11D7EB9A800737E12 /* button_plus_zhHans@2x.png in Resources */,
 				E079C02A1D7EB9A800737E12 /* profile_avatar_photo.png in Resources */,
 				E079BCD11D7EB9A800737E12 /* cam_button_0_1_568h@2x.png in Resources */,
+				E00E1B5F1DDC36160048C170 /* menu@2x.png in Resources */,
 				E079BEC51D7EB9A800737E12 /* home_tab_icon_3_selected@3x.png in Resources */,
 				E079C12B1D7EB9A800737E12 /* timeline_more_button_fav_1@2x.png in Resources */,
 				E079BEEF1D7EB9A800737E12 /* keyboard_del_pressed@3x.png in Resources */,
@@ -7088,6 +7106,7 @@
 				E079C0511D7EB9A800737E12 /* profile_toolbar_1.png in Resources */,
 				E079BDF51D7EB9A800737E12 /* detail_button_fav.png in Resources */,
 				E079C1161D7EB9A800737E12 /* timeline_item_like_icon.png in Resources */,
+				E00E1B651DDC44C90048C170 /* settings@2x.png in Resources */,
 				E079BE501D7EB9A800737E12 /* discover_video_cached@3x.png in Resources */,
 				E079C1961D7EB9A800737E12 /* toolbar_close@3x.png in Resources */,
 				E079BE491D7EB9A800737E12 /* discover_video_button_fav@2x.png in Resources */,
@@ -7429,6 +7448,7 @@
 				E079BFFE1D7EB9A800737E12 /* onepassword-navbar@2x.png in Resources */,
 				E02851061D27D44900C4D28B /* addImage@2x.png in Resources */,
 				E079BECC1D7EB9A800737E12 /* Icon.png in Resources */,
+				E00E1B641DDC44C90048C170 /* search@2x.png in Resources */,
 				E079BD741D7EB9A800737E12 /* compose_icon_1.png in Resources */,
 				E079C1A11D7EB9A800737E12 /* toolbar_refresh@2x.png in Resources */,
 				E079C0E91D7EB9A800737E12 /* theme_item_button_2.png in Resources */,
@@ -7722,6 +7742,7 @@
 				E079BF061D7EB9A800737E12 /* keyboard_switch@2x.png in Resources */,
 				E079C1E01D7EB9A800737E12 /* video_player_out@3x.png in Resources */,
 				E079BFF21D7EB9A800737E12 /* onepassword-extension-light@3x~compact.png in Resources */,
+				E00E1B611DDC37100048C170 /* sendweibo@2x.png in Resources */,
 				E079C0B21D7EB9A800737E12 /* sidebar_left_timeline_setting.png in Resources */,
 				E079BE8D1D7EB9A800737E12 /* group_popover_blue_arrow_down@2x.png in Resources */,
 				E079C0CA1D7EB9A800737E12 /* texture_1.png in Resources */,
@@ -7917,6 +7938,7 @@
 				E02850391D27D44900C4D28B /* UIImage+Resize.m in Sources */,
 				E0BCCA6D1D4884B700E42BDA /* Users.m in Sources */,
 				E02850D21D27D44900C4D28B /* YYImageCache.m in Sources */,
+				E073AC6A1DDF029A006283CB /* LeftViewController.m in Sources */,
 				E02850981D27D44900C4D28B /* UIImage+MultiFormat.m in Sources */,
 				E02850511D27D44900C4D28B /* MASLayoutConstraint.m in Sources */,
 				E02850B71D27D44900C4D28B /* YYCGUtilities.m in Sources */,

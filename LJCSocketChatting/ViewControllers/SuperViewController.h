@@ -83,6 +83,8 @@ static NSInteger const topToolBarHeight = 40;
 @property (nonatomic, readonly) CGFloat       height;     /**< controller View 高度  */
 @property (nonatomic, readonly) CGFloat       centerX;
 @property (nonatomic, readonly) CGFloat       centerY;
+@property(nonatomic,strong) UITableView *tableView;
+@property (nonatomic, assign) BOOL shouldInitPullToRefresh;
 
 
 
@@ -100,4 +102,9 @@ static NSInteger const topToolBarHeight = 40;
 -(void)showLoadingUI:(BOOL)show;
 -(void)setTitileFont:(UIFont*)font;
 
+//下拉刷新(子类重写)
+-(void)loadRefreshPics;
+- (void)shouldAddPullToRefresh:(BOOL)isAdd;
+-(void)loadInfomation;
+-(void)endRefresh;
 @end
