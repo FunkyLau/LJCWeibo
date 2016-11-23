@@ -121,7 +121,7 @@
     self.drawerController = rootVC;
     [rootVC setShowsShadow:NO];
     [rootVC setRestorationIdentifier:@"MMDrawer"];
-    [rootVC setMaximumLeftDrawerWidth:kScreenWidth];
+    [rootVC setMaximumLeftDrawerWidth:kScreenWidth/2];
     [rootVC setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [rootVC setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     [rootVC setDrawerVisualStateBlock:^(MMDrawerController *drawerController, MMDrawerSide drawerSide, CGFloat percentVisible) {

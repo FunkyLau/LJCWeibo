@@ -13,7 +13,8 @@
 #import "UserManager.h"
 #import "SendWeiboViewController.h"
 #import "MessageManager.h"
-
+#import "MMDrawerController.h"
+#import "UIViewController+MMDrawerController.h"
 
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSString *cellId;
@@ -177,6 +178,15 @@
     SendWeiboViewController *sendingVC = [SendWeiboViewController new];
     sendingVC.controllerState = LoginControlerState;
     [self presentController:sendingVC];
+}
+
+- (void)topToolsBarLeftButtonClick {
+    if (self.controllerState & DHCtrlState_TopBar_LBtn_Menu) {
+        //呼出侧滑菜单
+        //    SlideViewController *slideVC = [SlideViewController new];
+        //    slideVC.controllerState = ControllerStateWithBothButton;
+        [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+    }
 }
 
 #pragma mark UITableViewDelegate

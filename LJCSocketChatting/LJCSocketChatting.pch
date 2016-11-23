@@ -51,14 +51,19 @@ _Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"")
 
 //主题默认色值
 //#define DEFAULT_BTN_COLOR   [UIColor colorWithRed:20/255.f green:130/255.f blue:198/255.f alpha:1]//原蓝色
-#define DEFAULT_BTN_COLOR UIColorHex(3db6e6)
+#define DEFAULT_BTN_COLOR UIColorHex(f8b195)
 //UIColorHex(3db6e6)
-#define DEFAULT_COLOR   [UIColor colorWithRed:49/255.f green:133/255.f blue:241/255.f alpha:1]
+//#define DEFAULT_COLOR   [UIColor colorWithRed:49/255.f green:133/255.f blue:241/255.f alpha:1]
+#define DEFAULT_COLOR UIColorHex(355c7d)
+
 
 //背景色
 #define DEFAULT_BACKGROUND_COLOR [UIColor colorWithRed:241/255.f green:241/255.f blue:241/255.f alpha:1]
 
 #define UIColorRGBA(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+
+//侧边栏背景色
+#define LEFT_COLOR UIColorHex(c06c84)
 
 //白色
 #define WHITE_COLOR [UIColor whiteColor]
