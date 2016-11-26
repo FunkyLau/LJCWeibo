@@ -14,7 +14,7 @@
 #import "WeiboCell.h"
 #import "Messages.h"
 #import "Userinfo.h"
-
+#import "SettingsViewController.h"
 
 @interface MeViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSString *cellId;
@@ -109,6 +109,7 @@
     [self.view addSubview:self.mainTableView];
     headView = [[LJCMeHeadView alloc] initWithTableView:self.mainTableView initialHeight:initialHeight];
     [headView setLocalUser:user];
+    [headView createSubviews];
     [self.mainTableView addSubview:headView];
     
     [headView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -160,6 +161,7 @@
     if (!_settingBtn) {
         UIButton *settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [settingBtn setImage:[UIImage imageNamed:@"settings@2x"] forState:UIControlStateNormal];
+        [settingBtn addTarget:self action:@selector(forwardToSettings) forControlEvents:UIControlEventTouchUpInside];
         return _settingBtn = settingBtn;
     }
     
@@ -196,6 +198,12 @@
     }
     
     
+}
+//跳转到设置页面
+-(void)forwardToSettings{
+    SettingsViewController *settingsVC = [SettingsViewController new];
+    settingsVC.controllerState = ControllerStateOnlyLeftButton;
+    [self presentController:settingsVC];
 }
 
 #pragma mark UITableViewDelegate

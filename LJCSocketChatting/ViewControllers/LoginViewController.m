@@ -72,16 +72,13 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    @weakify(self)
     [self.headIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
         make.centerX.equalTo(self.view);
         make.centerY.equalTo(self.view).dividedBy(3);
         CGSize headSize = CGSizeMake(40, 40);
         make.size.mas_equalTo(headSize);
     }];
     [self.accountField mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
         make.top.equalTo(self.headIcon.mas_bottom).offset(30);
         make.left.equalTo(self.view.mas_left).offset(20);
         make.right.equalTo(self.view.mas_right).offset(-20);
@@ -89,7 +86,6 @@
         make.height.equalTo(@30);
     }];
     [self.passwordField mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
         make.top.equalTo(self.accountField.mas_bottom).offset(20);
         make.left.equalTo(self.view.mas_left).offset(20);
         make.right.equalTo(self.view.mas_right).offset(-20);
@@ -97,7 +93,6 @@
         make.height.equalTo(@30);
     }];
     [self.loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
         make.top.equalTo(self.passwordField.mas_bottom).offset(30);
         make.left.equalTo(self.view.mas_left).offset(20);
         make.right.equalTo(self.view.mas_right).offset(-20);

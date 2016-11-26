@@ -8,7 +8,10 @@
 
 #import "SettingsViewController.h"
 
-@interface SettingsViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface SettingsViewController ()<UITableViewDelegate,UITableViewDataSource>{
+    NSString *cellId;
+    NSArray *titlesArr;
+}
 @property (nonatomic,weak)UITableView *mainTableView;
 @end
 
@@ -16,7 +19,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.title = @"设置";
+    cellId = @"cell";
+    titlesArr = @[@"账号管理",@"清除缓存",@"关于Weico",@"登出",@"感谢使用"];
+    [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        UIEdgeInsets insect = UIEdgeInsetsMake(40,0,0,0);
+        make.edges.equalTo(self.view).insets(insect);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -26,16 +35,39 @@
 
 -(UITableView *)mainTableView{
     if (!_mainTableView) {
-        UITableView *mainTableView = [UITableView new];
+        UITableView *mainTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         mainTableView.delegate = self;
         mainTableView.dataSource = self;
-        mainTableView.rowHeight = UITableViewAutomaticDimension;
-        mainTableView.estimatedRowHeight = 120.f;
-        //[mainTableView registerClass:[WeiboCell class] forCellReuseIdentifier:cellId];
+        mainTableView.rowHeight = 40;
+        //mainTableView.rowHeight = UITableViewAutomaticDimension;
+        //mainTableView.estimatedRowHeight = 120.f;
+        [mainTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
         //mainTableView.backgroundColor = CLEAR_COLOR;
-        return _mainTableView = mainTableView;
+        [self.view addSubview:mainTableView];
+        self.mainTableView = mainTableView;
     }
     return _mainTableView;
 }
 
+#pragma mark UITableViewDataSource
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return titlesArr.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    cell.textLabel.text = titlesArr[indexPath.section];
+    cell.textLabel.font = Font(14);
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
 @end

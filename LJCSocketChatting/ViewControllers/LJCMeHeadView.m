@@ -140,7 +140,7 @@ static NSString * const ObservedKeyPath = @"contentOffset";
         _initialHeight = height;
         //添加观察者
         [_tableView addObserver:self forKeyPath:ObservedKeyPath options:NSKeyValueObservingOptionNew context:nil];
-        [self createSubviews];
+        //[self createSubviews];
     }
     
     return self;
@@ -303,6 +303,7 @@ static NSString * const ObservedKeyPath = @"contentOffset";
     }
     
     self.sexAddrLabel.text = [NSString stringWithFormat:@"%@ %@",userInfo.userinfoSex,userInfo.userinfoAddress];
+    [self.profileView reloadInputViews];
 }
 
 - (void)dealloc {

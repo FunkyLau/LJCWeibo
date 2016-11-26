@@ -24,6 +24,8 @@
 
 @end
 
+
+
 @implementation LeftViewController
 
 - (void)viewDidLoad {
@@ -92,21 +94,34 @@
         leftScrollView.showsVerticalScrollIndicator = NO;
         UIStackView *channelStackView = [UIStackView new];
         channelStackView.axis = UILayoutConstraintAxisVertical;
-        channelStackView.alignment = UIStackViewAlignmentFill;
+        channelStackView.alignment = UIStackViewAlignmentCenter;
         channelStackView.distribution = UIStackViewDistributionFill;
-        channelStackView.spacing = 10;
+        channelStackView.spacing = 5;
+        //channelStackView.layoutMarginsRelativeArrangement = YES;
         [leftScrollView addSubview:channelStackView];
-        [channelArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            UIButton *channelBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            //channelBtn.frame = CGRectMake(0, 0, 180, 50);
-            channelBtn.titleLabel.text = obj;
-            channelBtn.layer.masksToBounds = YES;
-            channelBtn.layer.cornerRadius = channelBtn.frame.size.height/2;
-            channelBtn.backgroundColor = BLACK_COLOR;
-            [channelStackView addArrangedSubview:channelBtn];
-            
+        [channelStackView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(leftScrollView);
         }];
-        
+        [channelArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            UIButton *channelBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            //channelBtn.frame = CGRectMake(10, 0, 180, 50);
+            //channelBtn.height = 50;
+            channelBtn.titleLabel.font = Font(18);
+            [channelBtn setTitleColor:WHITE_COLOR forState:UIControlStateNormal];
+            [channelBtn setTitle:obj forState:UIControlStateNormal];
+            channelBtn.backgroundColor = CLEAR_COLOR;
+            [channelBtn addTarget:self action:@selector(searchGroupWeibo:) forControlEvents:UIControlEventTouchUpInside];
+            [channelStackView addArrangedSubview:channelBtn];
+            [channelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(channelStackView.mas_left).offset(10);
+                make.right.equalTo(channelStackView.mas_right).offset(-10);
+                make.height.mas_equalTo(40);
+                make.width.mas_equalTo(kScreenWidth/2-20);
+                channelBtn.layer.masksToBounds = YES;
+                channelBtn.layer.cornerRadius = 20;
+            }];
+        }];
         
         [self.view addSubview:leftScrollView];
         self.leftScrollView = leftScrollView;
@@ -128,6 +143,13 @@
     return _headImageView;
 }
 
-
+- (void)searchGroupWeibo:(UIButton *)pressedBtn{
+    //将点按的button置为模糊
+    pressedBtn.backgroundColor = LEFT_BTN_COLOR;
+    UIVisualEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    [pressedBtn addSubview:visualEffectView];
+    
+}
 
 @end

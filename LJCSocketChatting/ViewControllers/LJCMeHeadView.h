@@ -14,6 +14,7 @@
 - (instancetype)initWithTableView:(UITableView *)tableView initialHeight:(CGFloat)height;
 -(void)setLocalUser:(Users *)localUser;
 -(void)loadUserInfo:(Users *)user;
+-(void)createSubviews;
 @end
 
 
