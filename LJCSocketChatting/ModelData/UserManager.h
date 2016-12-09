@@ -34,6 +34,11 @@
 -(void)changePasswordWithOldPwd:(NSString *)oldPwd andNewPwd:(NSString *)newPwd ifSucceed:(void(^)(BOOL))handler;
 //修改昵称
 -(void)changeNickName:(NSString *)nickName ifSucceed:(void(^)(BOOL succeed))handler;
+
+//搜索用户
+-(void)searchUsers:(NSString *)nickName ifSucceed:(void(^)(BOOL succeed,NSArray *searchUsersArr))handler;
+
+
 //保存头像和问题图片到本地
 - (void)saveImage:(UIImage *)tempImage WithName:(NSString *)imageName;
 //上传头像

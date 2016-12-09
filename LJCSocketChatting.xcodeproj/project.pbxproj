@@ -241,8 +241,10 @@
 		E02851331D28A5FE00C4D28B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E02851321D28A5FE00C4D28B /* SystemConfiguration.framework */; };
 		E02851351D28A60F00C4D28B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E02851341D28A60F00C4D28B /* libsqlite3.tbd */; };
 		E029F71D1D8984E500A84950 /* UIButton+UIButtonImageWithLable.m in Sources */ = {isa = PBXBuildFile; fileRef = E029F71C1D8984E400A84950 /* UIButton+UIButtonImageWithLable.m */; };
+		E02CD7B01DEFF07500B0666A /* SearchUserCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E02CD7AF1DEFF07500B0666A /* SearchUserCollectionViewCell.m */; };
 		E057342C1DE44BA5003D6555 /* hi.png in Resources */ = {isa = PBXBuildFile; fileRef = E057342B1DE44BA5003D6555 /* hi.png */; };
 		E05947CF1D82518100BEDAE0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E05947CE1D82518100BEDAE0 /* LoginViewController.m */; };
+		E05ED0E81DEE685A00B9DA78 /* TemplateFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E05ED0E71DEE685A00B9DA78 /* TemplateFlowLayout.m */; };
 		E05F276B1DBF4E7E007C1673 /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E05F27661DBF4E7E007C1673 /* BaseCollectionViewController.m */; };
 		E05F276C1DBF4E7E007C1673 /* BaseTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E05F27681DBF4E7E007C1673 /* BaseTabBarViewController.m */; };
 		E05F276D1DBF4E7E007C1673 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E05F276A1DBF4E7E007C1673 /* BaseTableViewController.m */; };
@@ -2197,9 +2199,13 @@
 		E02851341D28A60F00C4D28B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E029F71B1D8984E400A84950 /* UIButton+UIButtonImageWithLable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+UIButtonImageWithLable.h"; sourceTree = "<group>"; };
 		E029F71C1D8984E400A84950 /* UIButton+UIButtonImageWithLable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+UIButtonImageWithLable.m"; sourceTree = "<group>"; };
+		E02CD7AE1DEFF07500B0666A /* SearchUserCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchUserCollectionViewCell.h; sourceTree = "<group>"; };
+		E02CD7AF1DEFF07500B0666A /* SearchUserCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchUserCollectionViewCell.m; sourceTree = "<group>"; };
 		E057342B1DE44BA5003D6555 /* hi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hi.png; sourceTree = "<group>"; };
 		E05947CD1D82518100BEDAE0 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E05947CE1D82518100BEDAE0 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		E05ED0E61DEE685A00B9DA78 /* TemplateFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateFlowLayout.h; sourceTree = "<group>"; };
+		E05ED0E71DEE685A00B9DA78 /* TemplateFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateFlowLayout.m; sourceTree = "<group>"; };
 		E05F27651DBF4E7E007C1673 /* BaseCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewController.h; sourceTree = "<group>"; };
 		E05F27661DBF4E7E007C1673 /* BaseCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewController.m; sourceTree = "<group>"; };
 		E05F27671DBF4E7E007C1673 /* BaseTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTabBarViewController.h; sourceTree = "<group>"; };
@@ -4642,6 +4648,10 @@
 			children = (
 				E0BCC9711D47146D00E42BDA /* DiscoverViewController.h */,
 				E0BCC9721D47146D00E42BDA /* DiscoverViewController.m */,
+				E05ED0E61DEE685A00B9DA78 /* TemplateFlowLayout.h */,
+				E05ED0E71DEE685A00B9DA78 /* TemplateFlowLayout.m */,
+				E02CD7AE1DEFF07500B0666A /* SearchUserCollectionViewCell.h */,
+				E02CD7AF1DEFF07500B0666A /* SearchUserCollectionViewCell.m */,
 			);
 			name = "发现";
 			sourceTree = "<group>";
@@ -7859,6 +7869,7 @@
 				E02850D21D27D44900C4D28B /* YYImageCache.m in Sources */,
 				E073AC6A1DDF029A006283CB /* LeftViewController.m in Sources */,
 				E02850981D27D44900C4D28B /* UIImage+MultiFormat.m in Sources */,
+				E02CD7B01DEFF07500B0666A /* SearchUserCollectionViewCell.m in Sources */,
 				E02850511D27D44900C4D28B /* MASLayoutConstraint.m in Sources */,
 				E02850B71D27D44900C4D28B /* YYCGUtilities.m in Sources */,
 				E02850C71D27D44900C4D28B /* YYDiskCache.m in Sources */,
@@ -7998,6 +8009,7 @@
 				E01C34A61DCB170800992E41 /* MessageManager.m in Sources */,
 				E028509C1D27D44900C4D28B /* UIView+WebCacheOperation.m in Sources */,
 				E02850661D27D44900C4D28B /* MJRefreshBackStateFooter.m in Sources */,
+				E05ED0E81DEE685A00B9DA78 /* TemplateFlowLayout.m in Sources */,
 				E028508D1D27D44900C4D28B /* MKAnnotationView+WebCache.m in Sources */,
 				E02851021D27D44900C4D28B /* ZLNavTabBarController.m in Sources */,
 				E02850911D27D44900C4D28B /* SDWebImageDecoder.m in Sources */,

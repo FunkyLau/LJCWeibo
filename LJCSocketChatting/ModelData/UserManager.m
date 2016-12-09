@@ -243,6 +243,61 @@ withCompletionHandler:^(BOOL succeeded, NSDictionary *dicData) {
     [dataTask resume];
 }
 
+//搜索用户
+-(void)searchUsers:(NSString *)nickName ifSucceed:(void(^)(BOOL succeed,NSArray *searchUsersArr))handler{
+    Users * user = [self loginedUser];
+    if (!user) {
+        [PhoneNotification autoHideWithText:@"请先登录"];
+        handler(NO,nil);
+        return;
+    }
+    NSURLRequest *request = [RequestGenerator searchUsers:@{@"userId":[NSString stringWithFormat:@"%lu",(unsigned long)user.usersId],@"nickName":nickName}];
+    NSURLSessionDataTask *dataTask = [_afManager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        [PhoneNotification hideNotification];
+        [[NSURLCache sharedURLCache] removeAllCachedResponses];
+        [[NSURLCache sharedURLCache] setDiskCapacity:0];
+        [[NSURLCache sharedURLCache] setMemoryCapacity:0];
+        BOOL sucess = NO;
+        NSMutableArray *searchUsersArr = [NSMutableArray array];
+        if (error) {
+            DJLog(@"Error: %@", error);
+        }else{
+            //NSDictionary *dic = [responseObject modelToJSONObject];
+            NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            NSDictionary *dic = [responseStr jsonValueDecoded];
+            NSDictionary *dicData = dic[@"object"];
+            NSArray *tempArr = dicData[@"showUsersInfo"];
+            for (NSDictionary *tempDict in tempArr) {
+                Users *user = [[Users alloc] init];
+                user.usersNikename = tempDict[@"sUsersNikeName"];
+                user.usersId = [tempDict[@"sUsersId"] integerValue];
+                NSString *picUrl = tempDict[@"sUsersHeadPicUrl"];
+                if (!picUrl) {
+                    picUrl = @"";
+                }
+                NSArray *headPics = @[picUrl];
+                user.pictureses = headPics;
+                //user.userinfos
+                [searchUsersArr addObject:user];
+            }
+            
+            
+            NSUInteger retCode = [[dic objectForKey:@"resCode"] integerValue] ;
+            if (retCode == 0) {
+                sucess = YES;
+                handler(sucess,searchUsersArr);
+            }else{
+                //sucess = NO;
+                DJLog(@"失败");
+                handler(sucess,searchUsersArr);
+            }
+            
+        }
+    }];
+    [dataTask resume];
+}
+
+
 //更改密码
 -(void)changePasswordWithOldPwd:(NSString *)oldPwd andNewPwd:(NSString *)newPwd ifSucceed:(void(^)(BOOL))handler
 {

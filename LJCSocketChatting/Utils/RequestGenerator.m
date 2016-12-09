@@ -144,6 +144,16 @@
 }
 
 
+//搜索用户
++(NSURLRequest *)searchUsers:(NSDictionary *)params{
+    return
+    [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST"
+                                                  URLString:kSearchUser
+                                                 parameters:params
+                                                      error:nil];
+}
+
+
 //上传头像
 + (NSURLRequest *)UpdateImageRequest:(NSString *)imagePath andImgType:(NSInteger)type andRegistTel:(NSString *)registTel{
     Users *user = [[UserManager sharedInstance] loginedUser];

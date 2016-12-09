@@ -157,6 +157,7 @@
     }
     // 中间为搜索栏
     if (_controllerState & DHCtrlState_SearchBar) {
+        /*
         UIView *searchView = [UIView new];
         searchView.frame = CGRectMake(20, 10, kScreenWidth-40, 25);
         //searchView.size = CGSizeMake(kScreenWidth-80, 25);
@@ -172,9 +173,9 @@
         searchView.layer.masksToBounds = YES;
         searchView.layer.cornerRadius = 12.5;
         _searchView = searchView;
-        
         searchView.backgroundColor = UIColorRGBA(40, 102, 194, 1);
         [topToolsV addSubview:searchView];
+         */
     }
     
 }

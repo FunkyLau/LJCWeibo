@@ -40,6 +40,8 @@
 //意见反馈
 //+ (NSURLRequest *)userFeedbackWithContent:(NSString *)content andImgUrl:(NSString *)imgUrl andPhoneNum:(NSString *)phone;
 
++(NSURLRequest *)searchUsers:(NSDictionary *)params;
+
 //获取新微博
 +(NSURLRequest *)queryMessages:(NSDictionary *)params;
 //发新微博
