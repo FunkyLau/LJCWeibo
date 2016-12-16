@@ -35,7 +35,7 @@
 
 -(UITableView *)mainTableView{
     if (!_mainTableView) {
-        UITableView *mainTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        UITableView *mainTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         mainTableView.delegate = self;
         mainTableView.dataSource = self;
         mainTableView.rowHeight = 40;

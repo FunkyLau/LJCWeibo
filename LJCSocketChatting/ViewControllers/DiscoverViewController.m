@@ -78,7 +78,7 @@ static NSString * const kImageCollectionViewCellID = @"kImageCollectionViewCellI
     if (!_mainCollectionView) {
         TemplateFlowLayout *layout = [[TemplateFlowLayout alloc] init];
         UICollectionView *mainCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        mainCollectionView.backgroundColor = DEFAULT_BACKGROUND_COLOR;
+        mainCollectionView.backgroundColor = UIColorRGBA(98, 108, 127, 1);
         mainCollectionView.delegate = self;
         mainCollectionView.dataSource = self;
         [mainCollectionView registerClass:[SearchUserCollectionViewCell class] forCellWithReuseIdentifier:kImageCollectionViewCellID];

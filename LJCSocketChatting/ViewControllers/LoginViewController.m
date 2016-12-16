@@ -11,7 +11,7 @@
 #import "UIButton+UIButtonImageWithLable.h"
 #import "RegistViewController.h"
 #import "UserManager.h"
-
+#import "PersonalProfileViewController.h"
 
 @interface LoginViewController (){
     UserManager *userManager;
@@ -175,9 +175,13 @@
 }
 
 -(void)forwardToRegistView{
-    RegistViewController *registVC = [RegistViewController new];
-    registVC.controllerState = ControllerStateOnlyLeftButton;
-    [self presentController:registVC];
+//    RegistViewController *registVC = [RegistViewController new];
+//    registVC.controllerState = ControllerStateOnlyLeftButton;
+//    [self presentController:registVC];
+    
+    PersonalProfileViewController *profileVC = [PersonalProfileViewController new];
+    profileVC.controllerState = ControllerStateOnlyLeftButton;
+    [self presentController:profileVC];
 }
 
 -(void)closeThisViewController{

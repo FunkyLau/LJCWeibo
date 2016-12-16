@@ -9,6 +9,7 @@
 #import "RegistViewController.h"
 #import "LJCCustomField.h"
 #import "UserManager.h"
+#import "PersonalProfileViewController.h"
 
 @interface RegistViewController (){
     UserManager *manager;
@@ -202,7 +203,11 @@
     [manager userRegistWithNickName:nickName andPhoneNum:email andPass:password andVerCode:verCode andCompletionHandler:^(BOOL succeeded, NSString *response) {
         if (succeeded) {
             NSLog(@"%@", response);
-            [self dismissControllerAnimated];
+            //原本是直接返回主界面，现调整为跳转到填写个人资料页
+            //[self dismissControllerAnimated];
+            PersonalProfileViewController *profileVC = [PersonalProfileViewController new];
+            profileVC.controllerState = ControllerStateOnlyLeftButton;
+            [self presentController:profileVC];
         }else{
             NSLog(@"%@", response);
             [PhoneNotification autoHideWithText:response];

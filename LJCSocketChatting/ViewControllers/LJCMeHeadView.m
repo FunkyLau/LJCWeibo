@@ -15,30 +15,34 @@
 @interface LJCProfileView ()
 @property(nonatomic,weak)UILabel *numberLabel;
 @property(nonatomic,weak)UILabel *titleLabel;
+@property(nonatomic,weak)UIView *lineView;
 @end
 
 @implementation LJCProfileView
 
 -(instancetype)init{
     if (self = [super init]) {
-        [self addSubview:self.numberLabel];
-        [self addSubview:self.titleLabel];
         
         
-        @weakify(self)
+        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.08];
         [self.numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            @strongify(self)
             make.left.equalTo(self.mas_left);
             make.right.equalTo(self.mas_right);
             make.top.equalTo(self.mas_top);
+            make.bottom.equalTo(self.mas_centerY);
             //make.height.mas_equalTo(self.intrinsicContentSize.height);
         }];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            @strongify(self)
             make.centerX.equalTo(self.numberLabel);
             make.right.equalTo(self.mas_right);
-            make.top.equalTo(self.numberLabel.mas_bottom).offset(3);
+            make.top.equalTo(self.numberLabel.mas_bottom);
             make.bottom.equalTo(self.mas_bottom);
+        }];
+        [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.mas_top).offset(10);
+            make.bottom.equalTo(self.mas_bottom).offset(-10);
+            make.left.equalTo(self.mas_left);
+            make.width.mas_equalTo(1);
         }];
     }
     return self;
@@ -49,10 +53,11 @@
 -(UILabel *)titleLabel{
     if (!_titleLabel) {
         UILabel *titleLabel = [UILabel new];
-        titleLabel.font = [UIFont boldSystemFontOfSize:11];
-        titleLabel.textColor = WHITE_COLOR;
+        titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        titleLabel.textColor = UIColorHex(42474B);//42474B
         titleLabel.textAlignment = NSTextAlignmentCenter;
-        return _titleLabel = titleLabel;
+        [self addSubview:titleLabel];
+        self.titleLabel = titleLabel;
     }
     return _titleLabel;
 }
@@ -60,12 +65,23 @@
 -(UILabel *)numberLabel{
     if (!_numberLabel) {
         UILabel *numberLabel = [UILabel new];
-        numberLabel.font = [UIFont boldSystemFontOfSize:13];
+        numberLabel.font = [UIFont boldSystemFontOfSize:18];
         numberLabel.textColor = WHITE_COLOR;
         numberLabel.textAlignment = NSTextAlignmentCenter;
-        return _numberLabel = numberLabel;
+        [self addSubview:numberLabel];
+        self.numberLabel = numberLabel;
     }
     return _numberLabel;
+}
+
+-(UIView *)lineView{
+    if (!_lineView) {
+        UIView *lineView = [UIView new];
+        lineView.backgroundColor = [UIColor darkGrayColor];
+        [self addSubview:lineView];
+        self.lineView = lineView;
+    }
+    return _lineView;
 }
 
 -(void)setLabelTitle:(NSString *)title andNumber:(NSString *)number{
@@ -168,20 +184,21 @@ static NSString * const ObservedKeyPath = @"contentOffset";
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
         //make.top.equalTo(self.headImgView.mas_bottom).offset(10);
-        make.bottom.equalTo(self.mas_bottom).offset(-10);
+        make.bottom.equalTo(self.mas_bottom);
+        make.height.mas_equalTo(50);
     }];
     [self.headImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.center.equalTo(self);
         //make.top.equalTo(self.sexAddrLabel.mas_bottom).offset(5);
-        make.bottom.equalTo(self.profileView.mas_top).offset(-10);
-        make.size.mas_equalTo(CGSizeMake(60, 60));
+        make.bottom.equalTo(self.profileView.mas_top).offset(-20);
+        make.size.mas_equalTo(CGSizeMake(100, 100));
     }];
     [self.sexAddrLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.centerX.equalTo(self);
         //make.bottom.equalTo(self.headImgView.mas_top).offset(-10);
-        make.top.equalTo(self.mas_top).offset(60);
+        make.top.equalTo(self.mas_top).offset(40);
     }];
     
     
@@ -231,9 +248,9 @@ static NSString * const ObservedKeyPath = @"contentOffset";
     if (!_headImgView) {
         UIImageView *headImgView = [UIImageView new];
         headImgView.layer.masksToBounds = YES;
-        headImgView.layer.cornerRadius = 30;
-        headImgView.layer.borderWidth = 1;
-        headImgView.layer.borderColor = [WHITE_COLOR CGColor];
+        headImgView.layer.cornerRadius = 50;
+        headImgView.layer.borderWidth = 2;
+        headImgView.layer.borderColor = WHITE_COLOR.CGColor;
         //headImgView.image = [YYImage imageNamed:@"mood_himonoonna_icon_no"];
         return _headImgView = headImgView;
     }
@@ -251,9 +268,12 @@ static NSString * const ObservedKeyPath = @"contentOffset";
 
 -(UIImageView *)backgroundImageView{
     if (!_backgroundImageView) {
-        UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Stanford campus.jpg"]];
+        UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IMG_0176.jpg"]];
+        //UIImageView *backgroundImageView = [[UIImageView alloc] init];
+        //backgroundImageView.backgroundColor = UIColorRGBA(0, 101, 68, 1);  //rothko green
+        backgroundImageView.backgroundColor = UIColorHex(27b6a4);
         //backgroundImageView.frame = self.bounds;
-        backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+        backgroundImageView.contentMode = UIViewContentModeScaleToFill;
         /*
         [backgroundImageView addSubview:self.visualEffectView];
         [self.visualEffectView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -299,7 +319,7 @@ static NSString * const ObservedKeyPath = @"contentOffset";
     if (headPics.count>0) {
         self.headImgView.image = [YYImage imageNamed:headPics[0]];
     }else{
-        self.headImgView.image = [YYImage imageNamed:@"mood_himonoonna_icon_no"];
+        self.headImgView.image = [YYImage imageNamed:@"hi"];
     }
     
     self.sexAddrLabel.text = [NSString stringWithFormat:@"%@ %@",userInfo.userinfoSex,userInfo.userinfoAddress];

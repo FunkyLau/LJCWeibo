@@ -264,6 +264,8 @@
 		E0BCCA6C1D4884B700E42BDA /* Userinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E0BCCA641D4884B700E42BDA /* Userinfo.m */; };
 		E0BCCA6D1D4884B700E42BDA /* Users.m in Sources */ = {isa = PBXBuildFile; fileRef = E0BCCA661D4884B700E42BDA /* Users.m */; };
 		E0CB1C001D4700D4009D33FF /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0CB1BFF1D4700D4009D33FF /* HomeViewController.m */; };
+		E0F772721DFF89B200BAA925 /* PersonalProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F772711DFF89B200BAA925 /* PersonalProfileViewController.m */; };
+		E0F7727A1DFFF8BF00BAA925 /* IMG_0176.JPG in Resources */ = {isa = PBXBuildFile; fileRef = E0F772791DFFF8BF00BAA925 /* IMG_0176.JPG */; };
 		E0FBC2C71DE2E758001D0576 /* about_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E0FBBD0E1DE2E74C001D0576 /* about_button.png */; };
 		E0FBC2C81DE2E758001D0576 /* about_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0FBBD0F1DE2E74C001D0576 /* about_button@2x.png */; };
 		E0FBC2C91DE2E758001D0576 /* about_button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0FBBD101DE2E74C001D0576 /* about_button@3x.png */; };
@@ -2244,6 +2246,9 @@
 		E0BCCA661D4884B700E42BDA /* Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Users.m; sourceTree = "<group>"; };
 		E0CB1BFE1D4700D4009D33FF /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		E0CB1BFF1D4700D4009D33FF /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		E0F772701DFF89B200BAA925 /* PersonalProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileViewController.h; sourceTree = "<group>"; };
+		E0F772711DFF89B200BAA925 /* PersonalProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileViewController.m; sourceTree = "<group>"; };
+		E0F772791DFFF8BF00BAA925 /* IMG_0176.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0176.JPG; sourceTree = "<group>"; };
 		E0FBBD0E1DE2E74C001D0576 /* about_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about_button.png; sourceTree = "<group>"; };
 		E0FBBD0F1DE2E74C001D0576 /* about_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about_button@2x.png"; sourceTree = "<group>"; };
 		E0FBBD101DE2E74C001D0576 /* about_button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about_button@3x.png"; sourceTree = "<group>"; };
@@ -4639,6 +4644,8 @@
 				E06639081D82B275005717AF /* LJCCustomField.m */,
 				E011D5F81DB4713D00492815 /* RegistViewController.h */,
 				E011D5F91DB4713D00492815 /* RegistViewController.m */,
+				E0F772701DFF89B200BAA925 /* PersonalProfileViewController.h */,
+				E0F772711DFF89B200BAA925 /* PersonalProfileViewController.m */,
 			);
 			name = "登录注册";
 			sourceTree = "<group>";
@@ -4711,6 +4718,7 @@
 		E0FBBD0D1DE2E74C001D0576 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				E0F772791DFFF8BF00BAA925 /* IMG_0176.JPG */,
 				E057342B1DE44BA5003D6555 /* hi.png */,
 				E0FBBD0E1DE2E74C001D0576 /* about_button.png */,
 				E0FBBD0F1DE2E74C001D0576 /* about_button@2x.png */,
@@ -7117,6 +7125,7 @@
 				E0FBC6CC1DE2E75A001D0576 /* right_arrow.png in Resources */,
 				E0FBC33D1DE2E758001D0576 /* cam_button_0_1_blue@2x.png in Resources */,
 				E0FBC4731DE2E758001D0576 /* detail_comment_input_bar@3x.png in Resources */,
+				E0F7727A1DFFF8BF00BAA925 /* IMG_0176.JPG in Resources */,
 				E0FBC7691DE2E75B001D0576 /* timeline_hot_ad_arrow@3x.png in Resources */,
 				E0FBC4021DE2E758001D0576 /* compose_nav_arrow@3x.png in Resources */,
 				E0FBC65C1DE2E75A001D0576 /* onepassword-extension~compact.png in Resources */,
@@ -7835,6 +7844,7 @@
 				E02850CD1D27D44900C4D28B /* UIButton+YYWebImage.m in Sources */,
 				E02850541D27D44900C4D28B /* NSArray+MASAdditions.m in Sources */,
 				E02850581D27D44900C4D28B /* MBProgressHUD.m in Sources */,
+				E0F772721DFF89B200BAA925 /* PersonalProfileViewController.m in Sources */,
 				E028503D1D27D44900C4D28B /* UITableView+FDKeyedHeightCache.m in Sources */,
 				E02850601D27D44900C4D28B /* MJRefreshHeader.m in Sources */,
 				E02850561D27D44900C4D28B /* View+MASAdditions.m in Sources */,
