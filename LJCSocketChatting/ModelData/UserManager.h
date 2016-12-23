@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 @class AFURLSessionManager;
 @class Users;
+@class Userinfo;
 
 @interface UserManager : NSObject
 
@@ -25,7 +26,7 @@
 - (void)savePathOfUserInfo;
 - (void)removeUserInfo:(void(^)(BOOL))result;
 //注册
-- (void)userRegistWithNickName:(NSString *)nickName andPhoneNum:(NSString *)phoneNum andPass:(NSString *)passStr andVerCode:(NSString *)verCode andCompletionHandler:(void(^)(BOOL succeeded, NSString *response))handler;
+- (void)userRegistWithNickName:(NSString *)nickName andPhoneNum:(NSString *)phoneNum andPass:(NSString *)passStr andVerCode:(NSString *)verCode andCompletionHandler:(void(^)(BOOL succeeded, NSDictionary *dictData))handler;
 //用户登录
 -(void)userLogin:(NSString *)phoneNum password:(NSString *)password withCompletionHandler:(void(^)(BOOL succeeded, NSDictionary *dicData))handler;
 //重置密码
@@ -37,8 +38,8 @@
 
 //搜索用户
 -(void)searchUsers:(NSString *)nickName ifSucceed:(void(^)(BOOL succeed,NSArray *searchUsersArr))handler;
-
-
+//填写用户资料
+-(void)userProfileWithUserInfo:(Userinfo *)userInfo ifSucceed:(void(^)(BOOL succeed,NSString *responseStr))handler;
 //保存头像和问题图片到本地
 - (void)saveImage:(UIImage *)tempImage WithName:(NSString *)imageName;
 //上传头像

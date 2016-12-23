@@ -56,7 +56,7 @@ typedef enum {
     
 } ControllerState;
 
-static NSInteger const topToolBarHeight = 40;
+static NSInteger const topToolBarHeight = 68;
 
 @interface SuperViewController : UIViewController
 {

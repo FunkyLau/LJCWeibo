@@ -10,6 +10,7 @@
 #import "RequestGenerator.h"
 #import "AFURLSessionManager.h"
 #import "Users.h"
+#import "Userinfo.h"
 
 @implementation UserManager
 @synthesize loginedUser = _loginedUser;
@@ -85,7 +86,7 @@ withCompletionHandler:^(BOOL succeeded, NSDictionary *dicData) {
     return ([self loginedUser] != nil);
 }
 //注册
--(void)userRegistWithNickName:(NSString *)nickName andPhoneNum:(NSString *)phoneNum andPass:(NSString *)passStr andVerCode:(NSString *)verCode andCompletionHandler:(void(^)(BOOL succeeded, NSString *response))handler
+-(void)userRegistWithNickName:(NSString *)nickName andPhoneNum:(NSString *)phoneNum andPass:(NSString *)passStr andVerCode:(NSString *)verCode andCompletionHandler:(void(^)(BOOL succeeded, NSDictionary *dictData))handler
 {
     
     NSURLRequest *request=[RequestGenerator registerRequestWithNickName:nickName andPhoneNum:phoneNum andPass:passStr andVerCode:verCode];
@@ -96,13 +97,14 @@ withCompletionHandler:^(BOOL succeeded, NSDictionary *dicData) {
         [[NSURLCache sharedURLCache] setMemoryCapacity:0];
         BOOL sucess = NO;
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSDictionary *dictData = [responseStr jsonValueDecoded];
         if (error) {
             DJLog(@"Error: %@", error);
             responseStr = @"failed";
-            handler(sucess,responseStr);
+            handler(sucess,dictData);
         }else{
             sucess = YES;
-            handler(sucess, responseStr);
+            handler(sucess, dictData);
         }
         
     }];
@@ -333,6 +335,35 @@ withCompletionHandler:^(BOOL succeeded, NSDictionary *dicData) {
     [dataTask resume];
 }
 
+//填写用户资料
+-(void)userProfileWithUserInfo:(Userinfo *)userInfo ifSucceed:(void(^)(BOOL succeed,NSString *responseStr))handler{
+    NSDictionary *params = @{@"userId":userInfo.usersId,@"userName":userInfo.userinfoRealname,@"introStr":userInfo.userinfoIntro,@"addrStr":userInfo.userinfoAddress,@"birthDate":userInfo.userinfoBirthday};
+    NSURLRequest *request = [RequestGenerator userProfileRequest:params];
+    NSURLSessionTask *dataTask = [_afManager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, NSData * _Nullable responseObject, NSError * _Nullable error) {
+        [[NSURLCache sharedURLCache] removeAllCachedResponses];
+        [[NSURLCache sharedURLCache] setDiskCapacity:0];
+        [[NSURLCache sharedURLCache] setMemoryCapacity:0];
+        BOOL sucess = NO;
+        if (error) {
+            DJLog(@"Error: %@", error);
+        }else{
+            NSString *response = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            NSDictionary *dic = [response jsonValueDecoded];
+            NSDictionary *responseDict = dic[@"result"];
+            NSString *responseStr = responseDict[@"resDesc"];
+            NSUInteger retCode = [[dic objectForKey:@"resCode"] integerValue] ;
+            if (retCode == 0) {
+                sucess = YES;
+                handler(sucess,responseStr);
+            }else{
+                //sucess = NO;
+                DJLog(@"失败");
+                handler(sucess,responseStr);
+            }
+        }
+    }];
+    [dataTask resume];
+}
 
 //修改昵称
 -(void)changeNickName:(NSString *)nickName ifSucceed:(void(^)(BOOL succeed))handler{

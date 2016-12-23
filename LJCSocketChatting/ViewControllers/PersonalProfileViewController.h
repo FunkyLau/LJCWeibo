@@ -7,9 +7,15 @@
 //
 
 #import "SuperViewController.h"
+#import "RegistViewController.h"
 
+@class Users;
 
 
 @interface PersonalProfileViewController : SuperViewController
+
+@property(nonatomic,strong)Users *user;
+@property(nonatomic,strong)id<JumpToLoginDelegate> jumpDelegate;
+
 
 @end

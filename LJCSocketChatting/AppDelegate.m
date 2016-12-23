@@ -27,16 +27,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     CGRect windowFrame = [UIScreen mainScreen].bounds;
-    self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 20, windowFrame.size.width, windowFrame.size.height-20)];
+    self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, windowFrame.size.width, windowFrame.size.height)];
     //
     //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     //创建沙盒必要目录
     [PathUtil ensureLocalDirsPresent];
     //监听网络状态
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
-    
-    
-    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [[UINavigationBar appearance] setBarTintColor:DEFAULT_COLOR];
     
     [self initMainController];
     //self.window.rootViewController = rootNavController;
@@ -164,6 +163,5 @@
     
     return rootNavController;
 }
-
 
 @end

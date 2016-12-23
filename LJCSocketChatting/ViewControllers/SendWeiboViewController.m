@@ -26,9 +26,10 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     //atypeNum = 140;
-    [self.topLeftButton setTitle:@"取消" forState:UIControlStateNormal];
+    //[self.topLeftButton setTitle:@"取消" forState:UIControlStateNormal];
     [self.topLeftButton addTarget:self action:@selector(closeSendingWindow) forControlEvents:UIControlEventTouchUpInside];
     [self.topRightButton setTitle:@"发送" forState:UIControlStateNormal];
+    self.topRightButton.titleLabel.font = Font(14);
     [self.topRightButton addTarget:self action:@selector(sendWeibo) forControlEvents:UIControlEventTouchUpInside];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeContentViewPoint:) name:UIKeyboardWillShowNotification object:nil];
     [self.inputTextView mas_makeConstraints:^(MASConstraintMaker *make) {

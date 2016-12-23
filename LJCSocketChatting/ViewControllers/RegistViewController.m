@@ -10,8 +10,9 @@
 #import "LJCCustomField.h"
 #import "UserManager.h"
 #import "PersonalProfileViewController.h"
+#import "Users.h"
 
-@interface RegistViewController (){
+@interface RegistViewController ()<JumpToLoginDelegate>{
     UserManager *manager;
 }
 @property (nonatomic,weak)LJCCustomField *accountField;
@@ -200,19 +201,32 @@
     NSString *password = [self.passwordField getInputText];
     NSString *verCode = [self.verCodeField getInputText];
     NSLog(@"%@ %@ %@ %@",nickName,email,password,verCode);
-    [manager userRegistWithNickName:nickName andPhoneNum:email andPass:password andVerCode:verCode andCompletionHandler:^(BOOL succeeded, NSString *response) {
+    [manager userRegistWithNickName:nickName andPhoneNum:email andPass:password andVerCode:verCode andCompletionHandler:^(BOOL succeeded, NSDictionary *dictData) {
         if (succeeded) {
-            NSLog(@"%@", response);
             //原本是直接返回主界面，现调整为跳转到填写个人资料页
             //[self dismissControllerAnimated];
+            NSDictionary *userDict = dictData[@"object"];
+            Users *user = [Users modelWithDictionary:userDict];
             PersonalProfileViewController *profileVC = [PersonalProfileViewController new];
             profileVC.controllerState = ControllerStateOnlyLeftButton;
+            profileVC.jumpDelegate = self;
+            profileVC.user = user;
             [self presentController:profileVC];
         }else{
-            NSLog(@"%@", response);
-            [PhoneNotification autoHideWithText:response];
+            NSDictionary *dict = dictData[@"result"];
+            NSString *responseStr = dict[@"resDesc"];
+            [PhoneNotification autoHideWithText:responseStr];
         }
     }];
 }
+
+#pragma mark JumpToLoginDelegate
+-(void)jumpToLogin{
+    if ([self isKindOfClass:[RegistViewController class]]) {
+        [self dismissControllerAnimated];
+    }
+    
+}
+
 
 @end

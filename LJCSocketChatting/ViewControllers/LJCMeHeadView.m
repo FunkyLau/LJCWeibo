@@ -198,7 +198,7 @@ static NSString * const ObservedKeyPath = @"contentOffset";
         
         make.centerX.equalTo(self);
         //make.bottom.equalTo(self.headImgView.mas_top).offset(-10);
-        make.top.equalTo(self.mas_top).offset(40);
+        make.top.equalTo(self.mas_top).offset(45);
     }];
     
     
@@ -271,7 +271,7 @@ static NSString * const ObservedKeyPath = @"contentOffset";
         UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IMG_0176.jpg"]];
         //UIImageView *backgroundImageView = [[UIImageView alloc] init];
         //backgroundImageView.backgroundColor = UIColorRGBA(0, 101, 68, 1);  //rothko green
-        backgroundImageView.backgroundColor = UIColorHex(27b6a4);
+        //backgroundImageView.backgroundColor = UIColorHex(27b6a4);
         //backgroundImageView.frame = self.bounds;
         backgroundImageView.contentMode = UIViewContentModeScaleToFill;
         /*

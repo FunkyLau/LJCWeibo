@@ -44,9 +44,6 @@
     
     //取本地缓存信息
     user = [[UserManager sharedInstance] loginedUser];
-    //仅调试
-//    user = [Users new];
-//    user.usersNikename = @"乐一游劉";
     //user.userinfos
     [self.topView addSubview:self.searchBtn];
     [self.topView addSubview:self.settingBtn];
@@ -73,11 +70,15 @@
     if (!user) {
         return;
     }
-    if (!_mainTableView) {
-        [self showMainTableView];
-    }
+    [self showMainTableView];
+//    if (!_mainTableView) {
+//        
+//    }else{
+//        
+//    }
+    
     self.title = user.usersNikename;
-    [self setTitileFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
+    //[self setTitileFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
     if (headView) {
         [headView setLocalUser:user];
         [headView loadUserInfo:user];
@@ -93,12 +94,12 @@
         
     }];
     [self.settingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.topView.mas_top).offset(10);
+        make.top.equalTo(self.topView.mas_top).offset(30);
         make.right.equalTo(self.topView.mas_right).offset(-10);
         make.size.mas_equalTo(CGSizeMake(20, 20));
     }];
     [self.searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.topView.mas_top).offset(10);
+        make.top.equalTo(self.topView.mas_top).offset(30);
         make.right.equalTo(self.settingBtn.mas_left).offset(-10);
         //make.left.equalTo(self.sexAddrLabel.mas_right);
         make.size.mas_equalTo(CGSizeMake(20, 20));

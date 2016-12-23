@@ -8,6 +8,8 @@
 
 #import "PersonalProfileViewController.h"
 #import "Userinfo.h"
+#import "UserManager.h"
+#import "Users.h"
 
 static CGFloat const FieldHeight = 60.0;
 static CGFloat const DatePickerHeight = 120.0;
@@ -180,6 +182,7 @@ static CGFloat const DatePickerHeight = 120.0;
         commitBtn.layer.masksToBounds = YES;
         commitBtn.layer.cornerRadius = 22;
         commitBtn.backgroundColor = DEFAULT_BTN_COLOR;
+        [commitBtn addTarget:self action:@selector(commitProfile) forControlEvents:UIControlEventTouchUpInside];
         [self.mainScrollView addSubview:commitBtn];
         self.commitBtn = commitBtn;
     }
@@ -193,23 +196,48 @@ static CGFloat const DatePickerHeight = 120.0;
 }
 
 - (void)commitProfile{
+
     NSString *firstName = self.firstNameField.text;
     NSString *lastName = self.lastNameField.text;
     NSString *introStr = self.introField.text;
     NSString *addrStr = self.addressNameField.text;
+    NSString *userId = [NSString stringWithFormat:@"%lu",(unsigned long)_user.usersId];
     if (!firstName || [firstName isEmptyOrBlank]) {
         [PhoneNotification autoHideWithText:@"请输入名字"];
+        return;
     }
     if (!lastName || [lastName isEmptyOrBlank]) {
         [PhoneNotification autoHideWithText:@"请输入姓氏"];
+        return;
     }
     if (!introStr || [introStr isEmptyOrBlank]) {
         [PhoneNotification autoHideWithText:@"请输入一句话简介"];
+        return;
     }
     if (!addrStr || [addrStr isEmptyOrBlank]) {
         [PhoneNotification autoHideWithText:@"请输入地址"];
+        return;
     }
-    
+    if (!birthStr || [birthStr isEmptyOrBlank]) {
+        [PhoneNotification autoHideWithText:@"请选择您的生日"];
+        return;
+    }
+    Userinfo *userInfo = [[Userinfo alloc] init];
+    userInfo.usersId = userId;
+    userInfo.userinfoRealname = [NSString stringWithFormat:@"%@%@",lastName,firstName];
+    userInfo.userinfoIntro = introStr.trim;
+    userInfo.userinfoAddress = addrStr.trim;
+    userInfo.userinfoBirthday = [birthStr substringToIndex:10];
+    [[UserManager sharedInstance] userProfileWithUserInfo:userInfo ifSucceed:^(BOOL succeed, NSString *responseStr) {
+        if (succeed) {
+            NSLog(@"%@", responseStr);
+            [PhoneNotification autoHideWithText:responseStr];
+            [self dismissControllerAnimated];
+            if ([self.jumpDelegate respondsToSelector:@selector(jumpToLogin)]) {
+                [self.jumpDelegate jumpToLogin];
+            }
+        }
+    }];
 }
 
 

@@ -14,7 +14,7 @@
 #define kAnimateTime 0.4f
 #define kStartX -200                // 背景视图起始frame.x
 #define kTopToolsBtnWidthArea 80.f  // 工具栏按钮宽度区域
-#define DHLabelFont [UIFont systemFontOfSize:18]
+#define DHLabelFont [UIFont fontWithName:@"Helvetica-Bold" size:16]
 
 
 
@@ -99,12 +99,13 @@
         
         UIButton *leftBtn = [UIButton new];
         _topLeftButton = leftBtn;
+        [leftBtn setSize:CGSizeMake(30, 30)];
         [leftBtn setImage:btnImage forState:UIControlStateNormal];
         [leftBtn addTarget:self
                     action:@selector(topToolsBarLeftButtonClick)
           forControlEvents:UIControlEventTouchUpInside];
-        [leftBtn sizeToFit];
-        leftBtn.center = CGPointMake(kTopToolsBtnWidthArea/2.f-15, _topBarCenterY);
+        //[leftBtn sizeToFit];
+        leftBtn.center = CGPointMake(kTopToolsBtnWidthArea/2.f-15, _topBarCenterY+10);
         
  
         // 设置按钮点击扩大范围
@@ -145,9 +146,9 @@
         messageBt.backgroundColor = [UIColor clearColor];
         [messageBt setTitle:@"" forState:UIControlStateNormal];
         //[messageBt.titleLabel setFont:[UIFont systemFontOfSize:12]];
-        [messageBt sizeToFit];
-        
-        messageBt.center = CGPointMake(self.width-kTopToolsBtnWidthArea/2.f+15, _topBarCenterY);
+        //[messageBt sizeToFit];
+        [messageBt setSize:CGSizeMake(30, 30)];
+        messageBt.center = CGPointMake(self.width-kTopToolsBtnWidthArea/2.f+15, _topBarCenterY+10);
         [messageBt setEnlargeEdgeWithTop:messageBt.frame.origin.y
                                    right:fabs(kTopToolsBtnWidthArea-messageBt.width)/2
                                   bottom:topToolsV.height-messageBt.frame.origin.y-messageBt.height

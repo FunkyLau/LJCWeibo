@@ -26,7 +26,7 @@
 @property (nonatomic,copy) NSString *userinfoMessenger;//MSN
 @property (nonatomic,copy) NSString *userinfoProfession;//职业
 @property (nonatomic,copy) NSString *userinfoLabel;//标签
-@property (nonatomic,copy) NSString *users;//对应用户ID
+@property (nonatomic,copy) NSString *usersId;//对应用户ID
 
 
 @end

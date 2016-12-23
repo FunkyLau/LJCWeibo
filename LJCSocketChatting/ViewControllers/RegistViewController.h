@@ -8,6 +8,13 @@
 
 #import "SuperViewController.h"
 
+@protocol JumpToLoginDelegate <NSObject>
+
+-(void)jumpToLogin;
+
+@end
+
+
 @interface RegistViewController : SuperViewController
 
 @end

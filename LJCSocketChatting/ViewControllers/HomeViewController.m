@@ -37,12 +37,10 @@
     
     UserManager *userManager = [UserManager sharedInstance];
     [userManager autoLogin];
-    
-//    if (!user) {
-//        user = [[Users alloc] init];
-//        user.usersNikename = @"乐一游劉";
-//    }
-    //[self setTitle:user.usersNikename];
+    if (!user) {
+        user = [[UserManager sharedInstance] loginedUser];
+    }
+    [self setTitle:user.usersNikename];
     
     //[self loadRefreshPics];
     [self.navigationController setNavigationBarHidden:NO];
@@ -64,7 +62,7 @@
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        UIEdgeInsets inset = UIEdgeInsetsMake(40,0,50,0);
+        UIEdgeInsets inset = UIEdgeInsetsMake(self.topBarHeight,0,50,0);
         make.edges.equalTo(self.view).insets(inset);
         //make.edges.equalTo(self.view);
     }];
@@ -87,8 +85,8 @@
 
 -(void)showTopBtn{
     UIImage *rtBtnImage = [YYImage imageNamed:@"sendweibo@2x"];
-    rtBtnImage = [YYImage imageWithSize:CGSizeMake(34, 36) drawBlock:^(CGContextRef context) {
-        [rtBtnImage drawInRect:CGRectMake(0, 0, 34, 36) withContentMode:UIViewContentModeScaleAspectFill clipsToBounds:YES];
+    rtBtnImage = [YYImage imageWithSize:CGSizeMake(34, 34) drawBlock:^(CGContextRef context) {
+        [rtBtnImage drawInRect:CGRectMake(0, 0, 34, 34) withContentMode:UIViewContentModeScaleAspectFit clipsToBounds:YES];
     }];
     
     [self.topRightButton setImage:rtBtnImage forState:UIControlStateNormal];
@@ -97,8 +95,8 @@
     
     
     UIImage *ltBtnImage = [YYImage imageNamed:@"menu@2x"];
-    ltBtnImage = [YYImage imageWithSize:CGSizeMake(20, 34) drawBlock:^(CGContextRef context) {
-        [ltBtnImage drawInRect:CGRectMake(0, 0, 20, 34) withContentMode:UIViewContentModeScaleAspectFit clipsToBounds:YES];
+    ltBtnImage = [YYImage imageWithSize:CGSizeMake(23, 34) drawBlock:^(CGContextRef context) {
+        [ltBtnImage drawInRect:CGRectMake(0, 0, 23, 34) withContentMode:UIViewContentModeScaleAspectFit clipsToBounds:YES];
     }];
     [self.topLeftButton setImage:ltBtnImage forState:UIControlStateNormal];
 }
@@ -124,7 +122,10 @@
         messageManager = [MessageManager sharedInstance];
     }
     NSString *from = @"0";
-    user = [[UserManager sharedInstance] loginedUser];
+    if (!user) {
+        user = [[UserManager sharedInstance] loginedUser];
+    }
+    
 
     [messageManager queryNewMessageWithUserId:[NSString stringWithFormat:@"%lu",(unsigned long)user.usersId] andFromIndex:from andCompletionHandler:^(BOOL succeeded, NSArray *messages) {
         if (succeeded) {

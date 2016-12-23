@@ -79,6 +79,9 @@ static const int curSeverType = kServer_Dev;
 #define kLoginWithTel [NSString stringWithFormat:@"%@UsersAction_iosLogin.action", SeverURL]     //用户登录
 #define kRegistUser [NSString stringWithFormat:@"%@UsersAction_iosSaveRegister.action", SeverURL]         //用户注册
 #define kImageCheck [NSString stringWithFormat:@"%@ImageCheck_execute.action",SeverURL]  //验证码
+//用户注册
+#define kUserProfile [NSString stringWithFormat:@"%@UserinfoAction_iosUpdateUserInfo.action",SeverURL]
+
 
 #define kSearchUser [NSString stringWithFormat:@"%@UsersAction_iosSearchUsers.action",SeverURL]  //搜索用户
 

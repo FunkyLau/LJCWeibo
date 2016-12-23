@@ -21,12 +21,15 @@
 
 //注册
 + (NSURLRequest *)registerRequestWithNickName:(NSString *)nickName andPhoneNum: (NSString *)phoneNumStr andPass:(NSString *)passStr andVerCode:(NSString *)verCode;
-
+//发送验证码
 + (NSURLRequest *)sendVerifyCodeRequest:(NSString *)phoneNum;
 //上传头像或问题报告
 + (NSURLRequest *)UpdateImageRequest:(NSString *)imagePath andImgType:(NSInteger)type andRegistTel:(NSString *)registTel;
 //重置密码
 +(NSURLRequest *)resetPasswordRequest:(NSString *)phoneNumStr andPass:(NSString *)passStr andVerCode:(NSString *)verCode;
+//填写用户资料
++(NSURLRequest *)userProfileRequest:(NSDictionary *)params;
+
 
 
 //修改密码

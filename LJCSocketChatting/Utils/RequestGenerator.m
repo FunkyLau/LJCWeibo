@@ -143,7 +143,13 @@
     return tempRequest;
 }
 
-
+//填写用户资料
++(NSURLRequest *)userProfileRequest:(NSDictionary *)params{
+    return [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST"
+                                                         URLString:kUserProfile
+                                                        parameters:params
+                                                             error:nil];
+}
 //搜索用户
 +(NSURLRequest *)searchUsers:(NSDictionary *)params{
     return

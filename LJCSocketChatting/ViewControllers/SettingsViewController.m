@@ -23,7 +23,7 @@
     cellId = @"cell";
     titlesArr = @[@"账号管理",@"清除缓存",@"关于Weico",@"登出",@"感谢使用"];
     [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        UIEdgeInsets insect = UIEdgeInsetsMake(40,0,0,0);
+        UIEdgeInsets insect = UIEdgeInsetsMake(self.topBarHeight,0,0,0);
         make.edges.equalTo(self.view).insets(insect);
     }];
 }
@@ -35,10 +35,11 @@
 
 -(UITableView *)mainTableView{
     if (!_mainTableView) {
-        UITableView *mainTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        UITableView *mainTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         mainTableView.delegate = self;
         mainTableView.dataSource = self;
         mainTableView.rowHeight = 40;
+        mainTableView.tableFooterView = [UIView new];
         //mainTableView.rowHeight = UITableViewAutomaticDimension;
         //mainTableView.estimatedRowHeight = 120.f;
         [mainTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
@@ -70,4 +71,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return 0;
+    }
+    return 20;
+}
+
 @end

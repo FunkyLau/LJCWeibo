@@ -31,15 +31,14 @@
     [super viewDidLoad];
     userManager = [UserManager sharedInstance];
     //self.topView.backgroundColor = CLEAR_COLOR;
-    [self.topLeftButton setFrame:CGRectMake(10, 10, 30, 20)];
+    //[self.topLeftButton setFrame:CGRectMake(10, 10, 30, 20)];
     [self.topLeftButton setImage:nil forState:UIControlStateNormal];
     [self.topLeftButton setTitle:@"关闭" forState:UIControlStateNormal];
+    self.topLeftButton.titleLabel.font = Font(14);
     [self.topLeftButton addTarget:self action:@selector(closeThisViewController) forControlEvents:UIControlEventTouchUpInside];
     
-    self.topLeftButton.titleLabel.font = Font(11);
-    
     [self.topRightButton setTitle:@"注册" forState:UIControlStateNormal];
-    self.topRightButton.titleLabel.font = Font(11);
+    self.topRightButton.titleLabel.font = Font(14);
     [self.topRightButton addTarget:self action:@selector(forwardToRegistView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.headIcon];
     [self.view addSubview:self.accountField];
@@ -175,13 +174,13 @@
 }
 
 -(void)forwardToRegistView{
-//    RegistViewController *registVC = [RegistViewController new];
-//    registVC.controllerState = ControllerStateOnlyLeftButton;
-//    [self presentController:registVC];
+    RegistViewController *registVC = [RegistViewController new];
+    registVC.controllerState = ControllerStateOnlyLeftButton;
+    [self presentController:registVC];
     
-    PersonalProfileViewController *profileVC = [PersonalProfileViewController new];
-    profileVC.controllerState = ControllerStateOnlyLeftButton;
-    [self presentController:profileVC];
+//    PersonalProfileViewController *profileVC = [PersonalProfileViewController new];
+//    profileVC.controllerState = ControllerStateOnlyLeftButton;
+//    [self presentController:profileVC];
 }
 
 -(void)closeThisViewController{
@@ -196,7 +195,8 @@
             
             [self dismissControllerAnimated];
         }else{
-            [PhoneNotification autoHideWithText:dicData[@"result"]];
+            NSDictionary *resultDict = dicData[@"result"];
+            [PhoneNotification autoHideWithText:resultDict[@"resDesc"]];
         }
     }];
 }
