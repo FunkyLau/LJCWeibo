@@ -179,6 +179,22 @@ static NSString * const ObservedKeyPath = @"contentOffset";
     [self.visualEffectView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.backgroundImageView);
     }];
+    
+    [self.sexAddrLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.centerX.equalTo(self);
+        make.height.mas_equalTo(20);
+        //make.top.equalTo(self.mas_top).offset(68);
+        make.bottom.equalTo(self.headImgView.mas_top).offset(-10);
+        
+    }];
+    [self.headImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.centerX.equalTo(self);
+        make.top.equalTo(self.sexAddrLabel.mas_bottom).offset(10).with.priorityLow();
+        make.bottom.equalTo(self.profileView.mas_top).offset(-10).with.priorityHigh();
+        make.size.mas_equalTo(CGSizeMake(100, 100));
+    }];
     [self.profileView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.mas_left);
@@ -187,19 +203,8 @@ static NSString * const ObservedKeyPath = @"contentOffset";
         make.bottom.equalTo(self.mas_bottom);
         make.height.mas_equalTo(50);
     }];
-    [self.headImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.center.equalTo(self);
-        //make.top.equalTo(self.sexAddrLabel.mas_bottom).offset(5);
-        make.bottom.equalTo(self.profileView.mas_top).offset(-20);
-        make.size.mas_equalTo(CGSizeMake(100, 100));
-    }];
-    [self.sexAddrLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.centerX.equalTo(self);
-        //make.bottom.equalTo(self.headImgView.mas_top).offset(-10);
-        make.top.equalTo(self.mas_top).offset(45);
-    }];
+    
+    
     
     
 }
@@ -273,7 +278,7 @@ static NSString * const ObservedKeyPath = @"contentOffset";
         //backgroundImageView.backgroundColor = UIColorRGBA(0, 101, 68, 1);  //rothko green
         //backgroundImageView.backgroundColor = UIColorHex(27b6a4);
         //backgroundImageView.frame = self.bounds;
-        backgroundImageView.contentMode = UIViewContentModeScaleToFill;
+        backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
         /*
         [backgroundImageView addSubview:self.visualEffectView];
         [self.visualEffectView mas_makeConstraints:^(MASConstraintMaker *make) {

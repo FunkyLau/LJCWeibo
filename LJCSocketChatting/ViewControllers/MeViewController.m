@@ -35,7 +35,8 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     cellId = @"cell";
-    initialHeight = 240.f;
+    initialHeight = 260.f;
+    
     self.topView.backgroundColor = CLEAR_COLOR;
     //self.topView.backgroundColor = CLEAR_COLOR;
     messagesArr = [NSMutableArray array];
@@ -114,7 +115,8 @@
     [self.mainTableView addSubview:headView];
     
     [headView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mainTableView.mas_bottom).offset(-initialHeight);
+        //make.top.equalTo(self.mainTableView.mas_bottom).offset(-initialHeight);
+        make.top.equalTo(self.view.mas_top);
         make.left.equalTo(self.mainTableView.mas_left);
         make.right.equalTo(self.mainTableView.mas_right);
         make.bottom.equalTo(self.mainTableView.mas_top);

@@ -122,7 +122,7 @@
         [titleL setTextColor:WHITE_COLOR];
         [titleL setTextAlignment:NSTextAlignmentCenter];
         titleL.lineBreakMode = NSLineBreakByClipping;
-        titleL.center = CGPointMake(topToolsV.center.x, _topBarCenterY);
+        titleL.center = CGPointMake(topToolsV.center.x, _topBarCenterY+10);
         titleL.userInteractionEnabled = NO;
         [topToolsV addSubview:titleL];
         
