@@ -16,16 +16,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LJCSocketChatting/ModelData/UserManager.m"
-            timestampString = "504077173.175637"
+            filePath = "LJCSocketChatting/ViewControllers/SendWeiboViewController.m"
+            timestampString = "505130289.92832"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "354"
-            endingLineNumber = "354"
-            landmarkName = "-userProfileWithUserInfo:ifSucceed:"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
+            landmarkName = "-sendWeibo"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LJCSocketChatting/ModelData/MessageManager.m"
+            timestampString = "505379359.072493"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "-uploadWeiboPicturesWithMessageId:andImagePath:andCompletionHandler:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

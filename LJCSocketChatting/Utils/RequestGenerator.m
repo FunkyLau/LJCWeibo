@@ -161,16 +161,18 @@
 
 
 //上传头像
-+ (NSURLRequest *)UpdateImageRequest:(NSString *)imagePath andImgType:(NSInteger)type andRegistTel:(NSString *)registTel{
++ (NSURLRequest *)UpdateImageRequest:(NSString *)imagePath{
     Users *user = [[UserManager sharedInstance] loginedUser];
     NSData *data = [NSData dataWithContentsOfFile:imagePath];
 //    NSString *urlStr = [NSString stringWithFormat:@"%@Editavatar&uid=%@&avatar=%@", kServerUrl, [UserInfoManager sharedInstance].loginedUser.uid, data];
     NSString *urlStr;
-    if (user) {
-        urlStr = [NSString stringWithFormat:@"%@uploadImg?telnum=%@&type=%d", SeverURL, user.usersEmail,(int)type];
+    if (user.usersId) {
+        urlStr = [NSString stringWithFormat:@"%@iosUploadImg", SeverURL];
     }else{
-        urlStr = [NSString stringWithFormat:@"%@uploadImg?telnum=%@&type=%d", SeverURL, registTel,(int)type];
+        [PhoneNotification autoHideWithText:@"当前用户未登录，请先登录"];
+        return nil;
     }
+    /*
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
     //发送图片一定要注意格式
     NSString *boundary = @"---------------------------14737809831466499882746641449";//边界
@@ -179,7 +181,7 @@
     
     NSMutableData *body = [NSMutableData data];
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    NSString *temp = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"imgFile\"; filename=\"%@.png\"\r\n",user.usersEmail];
+    NSString *temp = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"imgFile\"; filename=\"%lu.png\"\r\n",(unsigned long)user.usersId];
     [body appendData:[[NSString stringWithString:temp] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[NSData dataWithData:data]];
@@ -188,8 +190,39 @@
     [request setHTTPBody:body];
     [request setHTTPMethod:@"POST"];//POST
     request.timeoutInterval = kTimeoutInterval;
+    */
+    NSDictionary *params = @{@"userId":[NSString stringWithFormat:@"%lu",user.usersId]};
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlStr parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        /*
+         [formData appendPartWithFileData:imageData name:@"对应参数名" fileName:@"test.jpg" mimeType:@"image/jpg"];
+         */
+        NSString *fileName = [NSString stringWithFormat:@"%lu.jpg",user.usersId];
+        [formData appendPartWithFileData:data name:@"file" fileName:fileName mimeType:@"image/jpg"];
+    } error:nil];
+    
     return request;
 }
+
+//上传微博图片
++ (NSURLRequest *)upLoadWeiboImageRequest:(NSString *)imagePath andMessageId:(NSString *)messageId{
+    NSData *data = [NSData dataWithContentsOfFile:imagePath];
+    NSString *urlStr = kUploadMessageImage;
+    
+    NSDictionary *params = @{@"messageId":[NSString stringWithFormat:@"%@",messageId]};
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlStr parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        /*
+         [formData appendPartWithFileData:imageData name:@"对应参数名" fileName:@"test.jpg" mimeType:@"image/jpg"];
+         */
+        //NSString *fileName = [NSString stringWithFormat:@"%@.jpg",messageId];
+        
+        [formData appendPartWithFileData:data name:@"file" fileName:[NSString stringWithFormat:@"%@_0.png",messageId] mimeType:@"image/png"];
+    } error:nil];
+    
+    return request;
+}
+
+
+
 
 /**
  *  工具函数，合并key=value

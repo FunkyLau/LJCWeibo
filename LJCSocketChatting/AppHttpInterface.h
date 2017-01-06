@@ -119,8 +119,8 @@ static const int curSeverType = kServer_Dev;
 
 // 上传债权信息
 #define kSaveClaims [NSString stringWithFormat:@"%@saveClaimsAndDebt",SeverURL]
-// 上传债权图片
-#define kUploadDebtImage [NSString stringWithFormat:@"%@uploadDeptImg",SeverURL]
+// 上传微博图片
+#define kUploadMessageImage [NSString stringWithFormat:@"%@PicturesAction_iosUploadHeadPic.action",SeverURL]
 
 
 #endif /* AppHttpInterface_h */

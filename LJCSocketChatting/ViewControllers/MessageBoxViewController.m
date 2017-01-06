@@ -46,7 +46,7 @@
     @weakify(self)
     [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
-        UIEdgeInsets inset  = UIEdgeInsetsMake(40, 0, 50, 0);
+        UIEdgeInsets inset  = UIEdgeInsetsMake(self.topBarHeight, 0, 50, 0);
         make.edges.equalTo(self.view).insets(inset);
     }];
 }

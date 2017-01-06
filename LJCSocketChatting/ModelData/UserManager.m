@@ -402,9 +402,9 @@ withCompletionHandler:^(BOOL succeeded, NSDictionary *dicData) {
 }
 
 
-//上传头像1或意见图片2
--(void)uploadHeadPic:(NSString *)imagePath andImgType:(NSInteger)type andRegistTel:(NSString *)registTel ifSucceed:(void(^)(BOOL succeed, NSDictionary *dicData))handler{
-    NSURLRequest *request = [RequestGenerator UpdateImageRequest:imagePath andImgType:type andRegistTel:registTel];
+//上传头像1
+-(void)uploadHeadPic:(NSString *)imagePath ifSucceed:(void(^)(BOOL succeed, NSDictionary *dicData))handler{
+    NSURLRequest *request = [RequestGenerator UpdateImageRequest:imagePath];
     NSURLSessionDataTask *dataTask = [_afManager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         [PhoneNotification hideNotification];
         [[NSURLCache sharedURLCache] removeAllCachedResponses];
@@ -462,6 +462,7 @@ withCompletionHandler:^(BOOL succeeded, NSDictionary *dicData) {
 
 */
 //获取banner图片
+/*
 -(void)getBannerPicturesIfSucceed:(void(^)(BOOL succeed,NSArray *result))handler{
     
     NSURLRequest *req = [RequestGenerator bannerPictures];
@@ -483,7 +484,7 @@ withCompletionHandler:^(BOOL succeeded, NSDictionary *dicData) {
     }];
     [dataTask resume];
 }
-
+*/
 //获取我的关注列表
 -(void)getFocusList:(NSString *)telnum ifSucceed:(void(^)(BOOL succeed,NSArray *result))handler{
     NSURLRequest *req = [RequestGenerator getFocusList:telnum];

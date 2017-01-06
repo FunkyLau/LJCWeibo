@@ -25,7 +25,7 @@
     return sharedInstance;
 }
 
-- (void)sendMessageWithUserId:(NSString *)userId andMessageInfo:(NSString *)messageInfo andCompletionHandler:(void(^)(BOOL succeeded, NSString *response))handler{
+- (void)sendMessageWithUserId:(NSString *)userId andMessageInfo:(NSString *)messageInfo andCompletionHandler:(void(^)(BOOL succeeded, NSDictionary *messagesDict))handler{
     if (!userId) {
         userId = @"";
     }
@@ -43,13 +43,15 @@
         [[NSURLCache sharedURLCache] setMemoryCapacity:0];
         BOOL success = NO;
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSDictionary *responseDict = [responseStr jsonValueDecoded];
+        NSDictionary *messagesDict = responseDict[@"object"];
         if (error) {
             DJLog(@"Error: %@", error);
-            responseStr = @"failed";
-            handler(success,responseStr);
+            
+            handler(success,messagesDict);
         }else{
-            success = YES;
-            handler(success, responseStr);
+            success = YES;            
+            handler(success, messagesDict);
         }
     }];
     [task resume];
@@ -80,4 +82,41 @@
                               }];
     [task resume];
 }
+
+//发送微博图片
+- (void)uploadWeiboPicturesWithMessageId:(NSString *)messagesId andImagePath:(NSString *)imagePath andCompletionHandler:(void(^)(BOOL succeeded, NSDictionary *dicData))handler{
+    NSURLRequest *request = [RequestGenerator upLoadWeiboImageRequest:imagePath andMessageId:messagesId];
+    NSURLSessionDataTask *dataTask = [_afManager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        [PhoneNotification hideNotification];
+        [[NSURLCache sharedURLCache] removeAllCachedResponses];
+        [[NSURLCache sharedURLCache] setDiskCapacity:0];
+        [[NSURLCache sharedURLCache] setMemoryCapacity:0];
+        BOOL sucess = NO;
+        if (error) {
+            DJLog(@"Error: %@", error);
+        }else{
+            NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            NSDictionary *dic = [responseStr jsonValueDecoded];
+            NSUInteger retCode = [[dic objectForKey:@"resCode"] integerValue] ;
+            if (retCode == 0) {
+                sucess = YES;
+                handler(sucess,dic);
+            }else{
+                //sucess = NO;
+                DJLog(@"失败");
+                handler(sucess,dic);
+            }
+        }
+        
+    }];
+    [dataTask resume];
+}
+
+//保存图片到本地(参数imageName其实为path)
+- (void)saveImage:(UIImage *)tempImage WithName:(NSString *)imageName
+{
+    NSData* imageData = UIImagePNGRepresentation(tempImage);
+    [imageData writeToFile:imageName atomically:NO];
+}
+
 @end

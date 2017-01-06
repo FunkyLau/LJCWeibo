@@ -43,12 +43,12 @@
 //保存头像和问题图片到本地
 - (void)saveImage:(UIImage *)tempImage WithName:(NSString *)imageName;
 //上传头像
--(void)uploadHeadPic:(NSString *)imagePath andImgType:(NSInteger)type andRegistTel:(NSString *)registTel ifSucceed:(void(^)(BOOL succeed, NSDictionary *dicData))handler;
+-(void)uploadHeadPic:(NSString *)imagePath ifSucceed:(void(^)(BOOL succeed, NSDictionary *dicData))handler;
 //提交反馈
 //-(void)submitFeedback:(NSString *)content andImgUrl:(NSString *)imgUrl andPhoneNum:(NSString *)phone ifSucceed:(void(^)(BOOL succeed))handler;
 
 //获取banner图片
--(void)getBannerPicturesIfSucceed:(void(^)(BOOL succeed,NSArray *result))handler;
+//-(void)getBannerPicturesIfSucceed:(void(^)(BOOL succeed,NSArray *result))handler;
 
 
 //获取我的关注列表

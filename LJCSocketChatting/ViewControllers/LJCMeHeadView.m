@@ -117,38 +117,7 @@ static NSString * const ObservedKeyPath = @"contentOffset";
     // Drawing code
 }
 */
-/*
--(instancetype)init{
-    if (self = [super init]) {
-        self.backgroundColor = DEFAULT_COLOR;
-        [self addSubview:self.sexAddrLabel];
-        [self addSubview:self.headImgView];
-        [self addSubview:self.profileView];
-        @weakify(self)
-        [self.sexAddrLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            @strongify(self)
-            make.centerX.mas_equalTo(self.centerX);
-            make.top.equalTo(self.mas_top).offset(10);
-            
-        }];
-        
-        [self.headImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-            @strongify(self)
-            make.centerX.mas_equalTo(self.centerX);
-            make.top.equalTo(self.sexAddrLabel.mas_bottom).offset(10);
-        }];
-        [self.profileView mas_makeConstraints:^(MASConstraintMaker *make) {
-            @strongify(self)
-            make.left.equalTo(self.mas_left);
-            make.right.equalTo(self.mas_right);
-            make.top.equalTo(self.headImgView.mas_bottom);
-            make.bottom.equalTo(self.mas_bottom).offset(-10);
-        }];
-        
-    }
-    return self;
-}
-*/
+
 - (instancetype)initWithTableView:(UITableView *)tableView initialHeight:(CGFloat)height {
     //self = [super initWithFrame:CGRectMake(0, -height, kScreenWidth, height)];
     if (self = [super init]) {
@@ -273,12 +242,12 @@ static NSString * const ObservedKeyPath = @"contentOffset";
 
 -(UIImageView *)backgroundImageView{
     if (!_backgroundImageView) {
-        UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IMG_0176.jpg"]];
+        UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IMG_0176.JPG"]];
         //UIImageView *backgroundImageView = [[UIImageView alloc] init];
         //backgroundImageView.backgroundColor = UIColorRGBA(0, 101, 68, 1);  //rothko green
         //backgroundImageView.backgroundColor = UIColorHex(27b6a4);
         //backgroundImageView.frame = self.bounds;
-        backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+        backgroundImageView.contentMode = UIViewContentModeScaleToFill;
         /*
         [backgroundImageView addSubview:self.visualEffectView];
         [self.visualEffectView mas_makeConstraints:^(MASConstraintMaker *make) {

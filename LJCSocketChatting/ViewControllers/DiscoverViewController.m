@@ -69,7 +69,7 @@ static NSString * const kImageCollectionViewCellID = @"kImageCollectionViewCellI
     }];
      */
     [self.mainCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        UIEdgeInsets inset = UIEdgeInsetsMake(40,0,50,0);
+        UIEdgeInsets inset = UIEdgeInsetsMake(self.topBarHeight,0,50,0);
         make.edges.equalTo(self.view).insets(inset);
     }];
 }
@@ -106,7 +106,7 @@ static NSString * const kImageCollectionViewCellID = @"kImageCollectionViewCellI
 */
 -(UISearchBar *)searchBar{
     if (!_searchBar) {
-        UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(15, 7.5, kScreenWidth-40, 25)];
+        UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(15, 25, kScreenWidth-40, 30)];
         searchBar.delegate = self;
         searchBar.searchBarStyle = UISearchBarStyleMinimal;
         searchBar.backgroundImage = [UIImage new];

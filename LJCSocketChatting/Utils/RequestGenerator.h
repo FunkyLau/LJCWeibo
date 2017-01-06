@@ -24,7 +24,9 @@
 //发送验证码
 + (NSURLRequest *)sendVerifyCodeRequest:(NSString *)phoneNum;
 //上传头像或问题报告
-+ (NSURLRequest *)UpdateImageRequest:(NSString *)imagePath andImgType:(NSInteger)type andRegistTel:(NSString *)registTel;
++ (NSURLRequest *)UpdateImageRequest:(NSString *)imagePath;
+//上传微博图片
++ (NSURLRequest *)upLoadWeiboImageRequest:(NSString *)imagePath andMessageId:(NSString *)messageId;
 //重置密码
 +(NSURLRequest *)resetPasswordRequest:(NSString *)phoneNumStr andPass:(NSString *)passStr andVerCode:(NSString *)verCode;
 //填写用户资料
@@ -36,7 +38,7 @@
 +(NSURLRequest *)changePasswordRequest:(NSString *)userName andNewPwd:(NSString *)newPassword andOldPwd:(NSString *)oldPassword;
 
 //用户实名认证
-+ (NSURLRequest *)realNameQueryWithName:(NSDictionary *)realNameDict;
+//+ (NSURLRequest *)realNameQueryWithName:(NSDictionary *)realNameDict;
 //修改昵称
 +(NSURLRequest *)changeNickName:(NSString *)nickName;
 
@@ -51,7 +53,7 @@
 +(NSURLRequest *)sendNewMessages:(NSDictionary *)params;
 
 //获取banner
-+(NSURLRequest *)bannerPictures;
+//+(NSURLRequest *)bannerPictures;
 
 
 //获取关注列表

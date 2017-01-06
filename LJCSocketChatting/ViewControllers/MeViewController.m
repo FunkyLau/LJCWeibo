@@ -48,14 +48,16 @@
     //user.userinfos
     [self.topView addSubview:self.searchBtn];
     [self.topView addSubview:self.settingBtn];
+    [self showMainTableView];
+    [self subviewLayouts];
     if (!user) {
         LoginViewController *loginVC = [LoginViewController new];
         loginVC.controllerState = LoginControlerState;
         [self presentController:loginVC];
     }else{
-        [self loadInfomation];
-        [self showMainTableView];
-        [self subviewLayouts];
+//        [self loadInfomation];
+//        [self showMainTableView];
+//        [self subviewLayouts];
     }
 }
 
@@ -71,12 +73,8 @@
     if (!user) {
         return;
     }
-    [self showMainTableView];
-//    if (!_mainTableView) {
-//        
-//    }else{
-//        
-//    }
+//    [self showMainTableView];
+//    [self subviewLayouts];
     
     self.title = user.usersNikename;
     //[self setTitileFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
@@ -84,6 +82,7 @@
         [headView setLocalUser:user];
         [headView loadUserInfo:user];
     }
+    [self loadInfomation];
 }
 
 
@@ -116,7 +115,7 @@
     
     [headView mas_makeConstraints:^(MASConstraintMaker *make) {
         //make.top.equalTo(self.mainTableView.mas_bottom).offset(-initialHeight);
-        make.top.equalTo(self.view.mas_top);
+        make.top.equalTo(self.view.mas_top).with.priorityLow();
         make.left.equalTo(self.mainTableView.mas_left);
         make.right.equalTo(self.mainTableView.mas_right);
         make.bottom.equalTo(self.mainTableView.mas_top);
@@ -177,28 +176,36 @@
 }
 
 -(void)loadInfomation{
-    /*
-    Messages * message1 = [Messages new];
-    message1.users = [Users new];
-    message1.users.usersNikename = @"大话西游";
-    message1.messagesTime = @"2小时前";
-    message1.messagesInfo = @"我想从成都挖个人才来我司工作，待遇性格什么都谈好了，他现在只有最后一个问题，就是小孩在上海怎么上学的问题，能解决这个就来。我这方面没经验，咨询一下各位，目前夫妻双方都不是上海人的情况下，怎么解决他小孩上学问题呢？是怎么个流程呢？";
-    message1.messagesType = @"WEIBO_TEXT_PIC";
-    
-    Messages * message2 = [Messages new];
-    message2.users = [Users new];
-    message2.users.usersNikename = @"乐一游劉";
-    message2.messagesTime = @"3小时前";
-    message2.messagesInfo = @"本文不会花太长篇幅来描述这些 controller 的实现细节，只会重点关注在收发信息的过程，游戏状态和数据是怎么变化的。关于具体实现，请自行阅读 Github 上的源码。我们的插件刚启动的时候处于compact状态。这点空间并不够展示游戏的棋盘，在 iPhone 上尤其不够。我们可以简单粗暴地立即切换成expanded状态，但是苹果官方警告不要这么做，毕竟还是应该把控制权交给用户。";
-    message2.messagesType = @"WEIBO_ONLY_TEXT";
-    
-    messagesArr = @[message1,message2];
-     */
-    //取本地缓存的本人微博信息
-    for (NSDictionary *messageDict in user.messageses) {
-        Messages *message = [Messages modelWithDictionary:messageDict];
-        [messagesArr addObject:message];
+    if (!user) {
+        [messagesArr removeAllObjects];
+        //假数据
+        Messages * message1 = [Messages new];
+        message1.users = [Users new];
+        message1.users.usersNikename = @"吴彦祖";
+        message1.users.pictureses = @[[YYImage imageNamed:@"wuyanzu"]];
+        message1.messagesTime = @"2小时前";
+        message1.messagesInfo = @"我想从成都挖个人才来我司工作，待遇性格什么都谈好了，他现在只有最后一个问题，就是小孩在上海怎么上学的问题，能解决这个就来。我这方面没经验，咨询一下各位，目前夫妻双方都不是上海人的情况下，怎么解决他小孩上学问题呢？是怎么个流程呢？";
+        message1.messagesType = @"WEIBO_TEXT_PIC";
+        [messagesArr addObject:message1];
+        Messages * message2 = [Messages new];
+        message2.users = [Users new];
+        message2.users.usersNikename = @"吴彦祖";
+        message2.users.pictureses = @[[YYImage imageNamed:@"wuyanzu"]];
+        message2.messagesTime = @"3小时前";
+        message2.messagesInfo = @"本文不会花太长篇幅来描述这些 controller 的实现细节，只会重点关注在收发信息的过程，游戏状态和数据是怎么变化的。关于具体实现，请自行阅读 Github 上的源码。我们的插件刚启动的时候处于compact状态。这点空间并不够展示游戏的棋盘，在 iPhone 上尤其不够。我们可以简单粗暴地立即切换成expanded状态，但是苹果官方警告不要这么做，毕竟还是应该把控制权交给用户。";
+        message2.messagesType = @"WEIBO_ONLY_TEXT";
+        [messagesArr addObject:message2];
+        //messagesArr = @[message1,message2];
+    }else{
+        [messagesArr removeAllObjects];
+        //取本地缓存的本人微博信息
+        for (NSDictionary *messageDict in user.messageses) {
+            Messages *message = [Messages modelWithDictionary:messageDict];
+            [messagesArr addObject:message];
+        }
     }
+    
+    
     
     
 }

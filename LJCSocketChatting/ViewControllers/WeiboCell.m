@@ -39,7 +39,7 @@
         [self.contentView addSubview:self.headPicView];
         [self.contentView addSubview:self.nickNameLabel];
         [self.contentView addSubview:self.timeLabel];
-        //[self.contentView addSubview:self.contentsView];
+        [self.contentView addSubview:self.contentsView];
         [self.contentView addSubview:self.bottomBar];
         
         
@@ -50,7 +50,43 @@
 
 -(void)layoutSubviews{
     [super layoutSubviews];
-    //[self.contentView layoutIfNeeded];
+    //[self.contentView addSubview:self.contentsView];
+    /*
+    [self.headPicView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView.mas_left).offset(5);
+        make.top.equalTo(self.contentView.mas_top).offset(10);
+        make.size.mas_equalTo(CGSizeMake(40, 40));
+        
+    }];
+    
+    [self.nickNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.headPicView.mas_right).offset(10);
+        make.top.equalTo(self.contentView.mas_top).offset(12);
+        make.size.mas_equalTo(self.nickNameLabel.intrinsicContentSize);
+    }];
+    
+    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.contentView.mas_right).offset(-10);
+        make.top.equalTo(self.contentView.mas_top).offset(10);
+        make.size.mas_equalTo(self.timeLabel.intrinsicContentSize);
+    }];
+    
+    [self.contentsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.headPicView.mas_right).offset(10);
+        make.right.equalTo(self.contentView.mas_right).offset(-10);
+        make.top.equalTo(self.nickNameLabel.mas_bottom).offset(5);
+        //make.bottom.equalTo(self.bottomBar.mas_top).offset(-10);
+    }];
+    
+    [self.bottomBar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.nickNameLabel);
+        make.right.equalTo(self.contentView.mas_right).offset(-20);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+        make.top.equalTo(self.contentsView.mas_bottom).offset(10);
+        
+    }];
+    [self.contentView layoutIfNeeded];
+     */
 }
 
 //头像
@@ -61,7 +97,6 @@
         
         headView.layer.cornerRadius = 20;
         headView.backgroundColor = GRAY_COLOR;
-        
         return _headPicView = headView;
     }
     
@@ -73,7 +108,6 @@
     if (!_nickNameLabel) {
         UILabel *label = [UILabel new];
         label.font = sysFont(14);
-        
         return _nickNameLabel = label;
     }
     return _nickNameLabel;
@@ -84,7 +118,6 @@
     if (!_timeLabel) {
         UILabel *label = [UILabel new];
         label.font = sysFont(12);
-        
         label.textColor = DEFAULT_COLOR;
         return _timeLabel = label;
     }
@@ -92,11 +125,12 @@
 }
 //微博正文
 -(UIView *)contentsView{
-    
+    //UIView *tempView;
     switch (_weiboType) {
         case WEIBO_ONLY_TEXT:
         {
             if (!_contentsView) {
+                
                 return _contentsView = [self onlyTextView];
                 //return _contentsView = [self textPicView];
             }
@@ -120,6 +154,7 @@
             break;
         }
     }
+    //return _contentsView = tempView;
     return _contentsView;
 }
 
@@ -158,7 +193,6 @@
         for (UIView *view in menuArr) {
             [bottomMenuView addArrangedSubview:view];
         }
-        
         return _bottomBar = bottomBar;
     }
     return _bottomBar;
@@ -168,6 +202,7 @@
 -(UIView *)onlyTextView{
     UIView *contentsView = [UIView new];
     UILabel *contentTextView = [UILabel new];
+    contentTextView.tag = 11;
     contentTextView.text = _message.messagesInfo;
     contentTextView.numberOfLines = 0;
     contentTextView.font = Font(12);
@@ -257,12 +292,18 @@
 
 - (void)bindCellDataWithMessage:(Messages *)message{
     _message = message;
-    
-    self.headPicView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:_message.users.avatarImageURL]];
+    //[self.contentView removeAllSubviews];
+    [self.headPicView sd_setImageWithURL:_message.users.avatarImageURL placeholderImage:[YYImage imageNamed:@"hi"]];
     self.nickNameLabel.text = _message.users.usersNikename;
     self.timeLabel.text = _message.messagesTime;
-    
-    [self.contentView addSubview:self.contentsView];
+    UILabel *label = [self.contentsView viewWithTag:11];
+    label.text = _message.messagesInfo;
+//    [self.contentView setNeedsUpdateConstraints];
+//    [self.contentView updateConstraintsIfNeeded];
+//    
+//    [UIView animateWithDuration:0.3 animations:^{
+//        [self.contentView layoutIfNeeded];
+//    }];
     
     [self.headPicView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(5);
@@ -298,5 +339,6 @@
         
     }];
     //[self layoutIfNeeded];
+
 }
 @end

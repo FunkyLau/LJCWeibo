@@ -103,7 +103,7 @@
     if (!_bgdImageView) {
         UIImageView *bgdImageView = [UIImageView new];
         //bgdImageView.backgroundColor = BG_COLOR;
-        UIImage *bgImage = [UIImage imageNamed:@"IMG_0176.jpg"];
+        UIImage *bgImage = [UIImage imageNamed:@"IMG_0176.JPG"];
         bgdImageView.image = bgImage;
         bgdImageView.contentMode = UIViewContentModeScaleToFill;
         [self.contentView addSubview:bgdImageView];
