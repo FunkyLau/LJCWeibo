@@ -47,9 +47,9 @@ static inline NSString* severURL(kSeverType sType) {
         }
         else if(sType == kServer_OLTest) {
             /**
-             * 预生产地址,在线测试环境
+             * 生产地址
              */
-            url = @"http://139.159.35.149:8090/appInterface/";
+            url = @"http://le1ul1u.com/";
         }
         else {
             /**
@@ -120,7 +120,7 @@ static const int curSeverType = kServer_Dev;
 // 上传债权信息
 #define kSaveClaims [NSString stringWithFormat:@"%@saveClaimsAndDebt",SeverURL]
 // 上传微博图片
-#define kUploadMessageImage [NSString stringWithFormat:@"%@PicturesAction_iosUploadHeadPic.action",SeverURL]
+#define kUploadMessageImage [NSString stringWithFormat:@"%@PicturesAction_iosUploadWeiboPic.action",SeverURL]
 
 
 #endif /* AppHttpInterface_h */

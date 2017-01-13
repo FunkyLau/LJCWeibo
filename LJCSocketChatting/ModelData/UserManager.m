@@ -100,7 +100,6 @@ withCompletionHandler:^(BOOL succeeded, NSDictionary *dicData) {
         NSDictionary *dictData = [responseStr jsonValueDecoded];
         if (error) {
             DJLog(@"Error: %@", error);
-            responseStr = @"failed";
             handler(sucess,dictData);
         }else{
             sucess = YES;

@@ -35,7 +35,7 @@ static CGFloat const DatePickerHeight = 120.0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.gestureRecognizers = nil;
-    
+    self.title = @"填写资料";
     [self.mainScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         UIEdgeInsets insets = UIEdgeInsetsMake(40, 0, 0, 0);
         make.edges.mas_equalTo(insets);
@@ -44,13 +44,13 @@ static CGFloat const DatePickerHeight = 120.0;
     [self.firstNameField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mainScrollView.mas_left).offset(20);
         make.right.equalTo(self.mainScrollView.mas_centerX).offset(-5);
-        make.top.equalTo(self.mainScrollView.mas_top).offset(20);
+        make.top.equalTo(self.topView.mas_bottom).offset(20);
         make.height.mas_equalTo(FieldHeight);
     }];
     [self.lastNameField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mainScrollView.mas_centerX).offset(5);
         make.right.equalTo(self.mainScrollView.mas_right).offset(-20);
-        make.top.equalTo(self.mainScrollView.mas_top).offset(20);
+        make.top.equalTo(self.topView.mas_bottom).offset(20);
         make.height.mas_equalTo(FieldHeight);
     }];
     [self.introField mas_makeConstraints:^(MASConstraintMaker *make) {

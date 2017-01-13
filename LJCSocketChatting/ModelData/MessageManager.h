@@ -24,5 +24,5 @@
 - (void)saveImage:(UIImage *)tempImage WithName:(NSString *)imageName;
 
 //发送微博图片
-- (void)uploadWeiboPicturesWithMessageId:(NSString *)messagesId andImagePath:(NSString *)imagePath andCompletionHandler:(void(^)(BOOL succeeded, NSDictionary *dicData))handler;
+- (void)uploadWeiboPicturesWithMessageId:(NSString *)messagesId andImageName:(NSString *)imageName andImagePath:(NSString *)imagePath andCompletionHandler:(void(^)(BOOL succeeded, NSDictionary *dicData))handler;
 @end

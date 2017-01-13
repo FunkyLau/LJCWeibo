@@ -83,33 +83,62 @@
     [task resume];
 }
 
+/*
+ *该方法的参数
+ 1. appendPartWithFileData：要上传的照片[二进制流]
+ 2. name：对应网站上[upload.php中]处理文件的字段（比如upload）
+ 3. fileName：要保存在服务器上的文件名
+ 4. mimeType：上传的文件的类型
+ */
 //发送微博图片
-- (void)uploadWeiboPicturesWithMessageId:(NSString *)messagesId andImagePath:(NSString *)imagePath andCompletionHandler:(void(^)(BOOL succeeded, NSDictionary *dicData))handler{
-    NSURLRequest *request = [RequestGenerator upLoadWeiboImageRequest:imagePath andMessageId:messagesId];
-    NSURLSessionDataTask *dataTask = [_afManager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        [PhoneNotification hideNotification];
-        [[NSURLCache sharedURLCache] removeAllCachedResponses];
-        [[NSURLCache sharedURLCache] setDiskCapacity:0];
-        [[NSURLCache sharedURLCache] setMemoryCapacity:0];
-        BOOL sucess = NO;
-        if (error) {
-            DJLog(@"Error: %@", error);
+- (void)uploadWeiboPicturesWithMessageId:(NSString *)messagesId andImageName:(NSString *)imageName andImagePath:(NSString *)imagePath andCompletionHandler:(void(^)(BOOL succeeded, NSDictionary *dicData))handler{
+    //NSURLRequest *request = [RequestGenerator upLoadWeiboImageRequest:imagePath andMessageId:messagesId];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer.timeoutInterval = 20;
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", @"multipart/form-data", @"application/json", @"text/html", @"image/jpeg", @"image/png", @"application/octet-stream", @"text/json", nil];
+    NSDictionary *params = @{@"messageId":[NSString stringWithFormat:@"%@",messagesId],@"imageName":imageName};
+    NSData *data = [NSData dataWithContentsOfFile:imagePath];
+    [manager POST:kUploadMessageImage parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        [formData appendPartWithFileData:data name:@"uploadHeadPics" fileName:imageName mimeType:@"image/png"];
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        //[PhoneNotification autoHideWithText:[NSString stringWithFormat:@"上传进度：%@",uploadProgress]];
+    } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *_Nullable responseObject) {
+//        NSString *successStr = @"上传成功";
+//        NSLog(@"%@",successStr);
+        //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSDictionary *dic = responseObject[@"result"];
+        NSUInteger retCode = [[dic objectForKey:@"resCode"] integerValue] ;
+        if (retCode == 0) {
+            BOOL sucess = YES;
+            handler(sucess,dic);
         }else{
-            NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-            NSDictionary *dic = [responseStr jsonValueDecoded];
-            NSUInteger retCode = [[dic objectForKey:@"resCode"] integerValue] ;
-            if (retCode == 0) {
-                sucess = YES;
-                handler(sucess,dic);
-            }else{
-                //sucess = NO;
-                DJLog(@"失败");
-                handler(sucess,dic);
-            }
+            BOOL sucess = NO;
+            DJLog(@"失败");
+            handler(sucess,dic);
         }
-        
+        //[PhoneNotification autoHideWithText:successStr];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSString *failureStr = @"上传失败";
+        [PhoneNotification autoHideWithText:failureStr];
+        BOOL sucess = NO;
+        DJLog(@"失败");
+        handler(sucess,@{});
     }];
-    [dataTask resume];
+    
+//    NSURLSessionDataTask *dataTask = [_afManager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+//        [PhoneNotification hideNotification];
+//        [[NSURLCache sharedURLCache] removeAllCachedResponses];
+//        [[NSURLCache sharedURLCache] setDiskCapacity:0];
+//        [[NSURLCache sharedURLCache] setMemoryCapacity:0];
+//        BOOL sucess = NO;
+//        if (error) {
+//            DJLog(@"Error: %@", error);
+//        }else{
+//            
+//        }
+//        
+//    }];
+    //[dataTask resume];
 }
 
 //保存图片到本地(参数imageName其实为path)

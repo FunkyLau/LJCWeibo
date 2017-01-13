@@ -291,7 +291,8 @@ static NSString * const ObservedKeyPath = @"contentOffset";
     Userinfo *userInfo = [Userinfo modelWithDictionary:dict];
     NSArray *headPics = user.pictureses;
     if (headPics.count>0) {
-        self.headImgView.image = [YYImage imageNamed:headPics[0]];
+        NSDictionary *picDict = headPics[0];
+        self.headImgView.image = [YYImage imageNamed:picDict[@"picturesUrl"]];
     }else{
         self.headImgView.image = [YYImage imageNamed:@"hi"];
     }

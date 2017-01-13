@@ -218,7 +218,7 @@
                 NSString *imagePath = [[PathUtil rootPathOfUser] stringByAppendingPathComponent:imageName];
                 NSLog(@"%@", imagePath);
                 [messageManager saveImage:image WithName:imagePath];
-                [messageManager uploadWeiboPicturesWithMessageId:messageId andImagePath:imagePath andCompletionHandler:^(BOOL succeeded, NSDictionary *dicData) {
+                [messageManager uploadWeiboPicturesWithMessageId:messageId andImageName:(NSString *)imageName andImagePath:imagePath andCompletionHandler:^(BOOL succeeded, NSDictionary *dicData) {
                     if (succeeded) {
                         NSLog(@"%@",dicData);
                     }
